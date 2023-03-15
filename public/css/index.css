@@ -1,7 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-size: 1rem;
+  background: linear-gradient(to top right, #4b2618, rgba(241, 142, 76, 0.61));
 }
+
 header {
   height: 10vh;
   display: flex;
@@ -14,9 +19,9 @@ header {
   width: 100%;
 }
 
-.container-flexbox {
-  display: flex;
-  justify-content: space-between;
+header div a {
+  display: block;
+  text-align: center;
 }
 
 header nav,
@@ -29,39 +34,69 @@ footer nav {
 main {
   margin: 0 1rem;
   margin-top: 10vh;
-  height: 80vh;
+  max-width: 50rem;
 }
 
-main article {
-  height: 100%;
-  width: 100%;
-  margin: 0;
+#main-section {
+  position: relative;
+  height: 20vh;
 }
-main article div {
+
+#main-section div {
+  font-size: 1rem;
   position: absolute;
-  height: 20%;
-  max-width: 75%;
-  margin: 0;
-  top: 30%;
+  top: 10%;
+  left: 5%;
+  max-width: 70%;
   z-index: 1;
 }
-main img {
+
+#main-section h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5;
+  color: white;
+}
+
+#main-section a {
+  font-size: 0.5rem;
+  max-width: 10%;
+}
+
+#main-section img {
+  width: 40%;
+  max-height: 110%;
+  object-fit: cover;
   position: absolute;
-  margin: 0;
-  padding: 0;
-  display: block;
-  width: 65%;
-  height: auto;
   z-index: -1;
-  margin-left: 20%;
-  margin-right: 1rem;
-  top: 25%;
+  left: 55%;
+  border-radius: 30px;
 }
 
 footer {
   margin: 0;
-  height: 10vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  cursor: pointer;
+}
+
+.flexbox-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: orange;
+  margin: 0;
+  padding: 0.3rem;
+  border-radius: 3px;
 }
