@@ -2,13 +2,31 @@
   box-sizing: border-box;
 }
 
+html {
+  font-family: 'Cormorant Garamond', serif;
+  --color-main: #f5deb3;
+  --color-button: #ff8c00;
+  --color-black: black;
+  --color-white: white;
+}
+
 body {
+  color: var(--color-main);
   margin: 0;
-  background: linear-gradient(to top right, #4b2618, rgba(241, 142, 76, 0.61));
+  background: linear-gradient(
+    to top right,
+    #3d220b,
+    #3d220b,
+    #3d220b,
+    #472a11,
+    #a66a29
+  );
 }
 
 header {
+  z-index: 99999;
   height: 10vh;
+  max-height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,29 +50,35 @@ footer nav {
 }
 
 main {
-  margin: 0 1rem;
+  margin: 0;
   margin-top: 10vh;
   max-width: 50rem;
 }
+main div {
+  margin: 0 5%;
+}
 
 #main-section {
+  font-style: italic;
+  font-weight: lighter;
   position: relative;
   height: 20vh;
+  width: 100vj;
 }
 
 #main-section div {
   font-size: 1rem;
   position: absolute;
-  top: 10%;
-  left: 5%;
-  max-width: 70%;
+  top: 20%;
+  max-width: 65%;
   z-index: 1;
 }
 
 #main-section h2 {
+  color: var(--color-white);
+  font-weight: bold;
   font-size: 1rem;
   margin-bottom: 0.5;
-  color: white;
 }
 
 #main-section a {
@@ -72,11 +96,56 @@ main {
   border-radius: 30px;
 }
 
+#about-section {
+  text-align: justify;
+  margin: 5% auto;
+}
+
+#about-section .flexbox-container {
+  justify-content: space-between;
+}
+
+#about-section p {
+  width: 70%;
+  font-size: 1rem;
+}
+#specialties-section {
+  margin: 0;
+  margin-bottom: 5%;
+}
+
+#specialities-section h4 {
+  font-weight: bold;
+  margin-bottom: 0  ;
+}
+
+#specialities-section p {
+  font-size: 1rem;
+}
+#specialities-section img {
+  max-width: 40%;
+  object-fit: cover;
+}
+
 footer {
   margin: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+li {
+  text-decoration: none;
 }
 
 a {
@@ -95,7 +164,8 @@ a:active {
 }
 
 .button {
-  background-color: orange;
+  color: var(--color-black);
+  background-color: var(--color-button);
   margin: 0;
   padding: 0.3rem;
   border-radius: 3px;

@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/public/css/index.css" />
   </head>
   <body>
@@ -30,8 +38,9 @@
         </div>
         <img src="/img/chef-ejecutivo.jpg" alt="chef-photo" />
       </section>
+
       <section id="about-section">
-        <div>
+        <div class="flexbox-container">
           <h3>ABOUT</h3>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum
@@ -41,23 +50,33 @@
           </p>
         </div>
       </section>
+
       <section id="specialities-section">
         <div>
           <h3>SPECIALITIES</h3>
         </div>
         <div>
           <ul>
-            <li>
-              <h4>Private group up to 10 people</h4>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <li class="flexbox-container">
+              <img src="/img/paella.jpg" alt="paella" id="img-1" />
+              <div>
+                <h4>Private group up to 10 people</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </div>
             </li>
-            <li>
-              <h4>Exclusive secret recipes</h4>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <li class="flexbox-container">
+              <div>
+                <h4>Exclusive secret recipes</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </div>
+              <img src="/img/croquetas.jpg" alt="croquetas" id="img-2" />
             </li>
-            <li>
-              <h4>Ask the chef directly via DMs</h4>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <li class="flexbox-container">
+              <img src="/img/paella.jpg" alt="paella" id="img-1" />
+              <div>
+                <h4>Ask the chef directly via DMs</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </div>
             </li>
           </ul>
         </div>
