@@ -1,9 +1,7 @@
-* {
-  box-sizing: border-box;
-}
+/* Estilos para la página "About" */
 
+/* Fuentes y colores */
 html {
-  font-family: 'Cormorant Garamond', serif;
   --color-1: #563b25;
   --color-2: #a34d21;
   --color-3: #c8672c;
@@ -17,16 +15,19 @@ body {
   color: var(--color-1);
   margin: 0;
   background-color: #f5deb3;
-  /* background: linear-gradient(
-    to top right,
-    #3d220b,
-    #3d220b,
-    #3d220b,
-    #472a11,
-    #a66a29
-  ); */
 }
 
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Diseño */
 header {
   z-index: 999;
   height: 9vh;
@@ -66,6 +67,24 @@ main {
   max-width: 50rem;
 }
 
+main div {
+  margin: 0 5%;
+}
+
+#about-section {
+  text-align: justify;
+  margin: 5% auto;
+}
+
+#about-section .flexbox-container {
+  justify-content: space-between;
+}
+
+#about-section p {
+  width: 70%;
+  font-size: 1rem;
+}
+ 
 footer {
   margin: 0 5%;
   margin-bottom: 2vh;
@@ -85,20 +104,6 @@ footer p {
   font-size: 0.8rem;
 }
 
-h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-h4 {
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-li {
-  text-decoration: none;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -109,15 +114,44 @@ a:active {
   cursor: pointer;
 }
 
-.flexbox-container {
-  display: flex;
-  justify-content: space-between;
-}
-
+/* Botones */
 .button {
   color: var(--color-black);
   background-color: var(--color-button);
   margin: 0;
   padding: 0.3rem;
   border-radius: 3px;
+}
+
+/* Sección "Acerca de mí" */
+#about-section h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#about-section img {
+  width: 30%;
+  float: left;
+  margin-right: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#about-section .info-container {
+  margin-top: 1rem;
+  text-align: justify;
+}
+
+#about-section .info-container p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#about-section .flexbox-container {
+  margin-top: 2rem;
+}
+
+#about-section .social-media a {
+  font-size: 1.2rem
 }
