@@ -4,29 +4,32 @@
 
 html {
   font-family: 'Cormorant Garamond', serif;
-  --color-main: #f5deb3;
+  --color-1: #563b25;
+  --color-2: #a34d21;
+  --color-3: #c8672c;
+  --color-4: #d19b3c;
   --color-button: #ff8c00;
   --color-black: black;
   --color-white: white;
 }
 
 body {
-  color: var(--color-main);
+  color: var(--color-1);
   margin: 0;
-  background: linear-gradient(
+  background-color: #f5deb3;
+  /* background: linear-gradient(
     to top right,
     #3d220b,
     #3d220b,
     #3d220b,
     #472a11,
     #a66a29
-  );
+  ); */
 }
 
 header {
   z-index: 999;
-  height: 10vh;
-  max-height: 10vh;
+  height: 9vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,6 +38,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  background-color: #f5deb3;
 }
 
 header div a {
@@ -54,4 +58,63 @@ header h1 {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+}
+
+footer {
+  margin: 0 5%;
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+footer h1 a {
+  display: block;
+  font-size: 1.2rem;
+}
+
+footer p {
+  margin: 0;
+  padding: 0.2rem ;
+  font-size: 0.8rem;
+}
+
+
+
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+li {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  cursor: pointer;
+}
+
+.flexbox-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  color: var(--color-black);
+  background-color: var(--color-button);
+  margin: 0;
+  padding: 0.3rem;
+  border-radius: 3px;
 }
