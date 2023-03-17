@@ -1,0 +1,27 @@
+{
+  "name": "chef-webpage",
+  "version": "1.0.0",
+  "description": "chef-webpage",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josemontano1996/chef-webpage.git"
+  },
+  "author": "Jose Manuel Montano Mengual",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josemontano1996/chef-webpage/issues"
+  },
+  "homepage": "https://github.com/josemontano1996/chef-webpage#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
