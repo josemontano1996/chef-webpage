@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/', baseController.getIndex);
 router.get('/about', baseController.getAbout)
+router.get('/menu', baseController.getMenu)
 
 module.exports = router;

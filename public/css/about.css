@@ -1,3 +1,11 @@
 main div {
   margin: 0 5%;
 }
+
+#descripion
+
+main img{
+  right: 5%;
+  width: 10rem;
+  max-height: 10rem;
+}
