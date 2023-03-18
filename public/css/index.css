@@ -6,7 +6,7 @@ main div {
   font-style: italic;
   font-weight: lighter;
   position: relative;
-  height: 20vh;
+  height: 30vh;
   width: 100vj;
 }
 
@@ -31,12 +31,11 @@ main div {
 }
 
 #main-section img {
-  width: 40%;
-  max-height: 110%;
-  object-fit: cover;
+  height: 100%;
+  object-fit:scale-down;
   position: absolute;
   z-index: -1;
-  left: 55%;
+  right: 5%;
   border-radius: 30px;
 }
 
