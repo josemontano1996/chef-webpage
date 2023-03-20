@@ -10,8 +10,13 @@ function getMenu(req, res) {
   res.render('./menu');
 }
 
+function getAuth(req, res) {
+  res.render('./auth');
+}
+
 module.exports = {
   getIndex: getIndex,
   getAbout: getAbout,
   getMenu: getMenu,
+  getAuth: getAuth,
 };
