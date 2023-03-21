@@ -16,6 +16,10 @@ function getAuth(req, res) {
   res.render('./auth');
 }
 
+function getOrders(req, res) {
+  res.render('./orders');
+}
+
 async function signup(req, res) {
   const user = new User(
     req.body.email,
@@ -42,5 +46,7 @@ module.exports = {
   getAbout: getAbout,
   getMenu: getMenu,
   getAuth: getAuth,
+  gerOrders: getOrders,
   signup: signup,
+  login: login,
 };

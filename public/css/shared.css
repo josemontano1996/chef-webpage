@@ -74,6 +74,8 @@ main {
   margin: 0;
   margin-top: 11vh;
   max-width: 50rem;
+  min-height: 72.5vh;
+  margin-bottom: 1.5rem;
 }
 
 footer {
