@@ -11,7 +11,7 @@ html {
   --color-button: #ff8c00;
   --color-black: black;
   --color-white: white;
-  --color-backgroundtext: #FFF8E7;
+  --color-backgroundtext: #fff8e7;
   --color-background: #f5deb3;
 }
 
@@ -127,19 +127,30 @@ a:active {
 
 .button {
   color: var(--color-black);
-  border:none;
+  border: none;
   background-color: var(--color-button);
   margin: 0;
   padding: 0.3rem;
   border-radius: 3px;
 }
 
-.button-alt{
+.button-alt {
   color: var(--color-black);
-  border:none;
+  border: none;
   background-color: var(--color-background);
   margin: 0 auto;
   margin-bottom: 1rem;
   padding: 0.3rem;
   border-radius: 3px;
+}
+
+input,
+textarea {
+  font: inherit;
+  border-radius: 2px;
+  border: 0.7px solid black;
+}
+
+button {
+  font: inherit;
 }

@@ -25,11 +25,6 @@ form button {
   display: block;
 }
 
-form input,
-form button {
-  font: inherit;
-}
-
 form input {
   margin-top: 0.2rem;
   height: 2rem;
