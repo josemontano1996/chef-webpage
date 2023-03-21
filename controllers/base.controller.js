@@ -1,23 +1,23 @@
 const User = require('../models/user.model');
 
 function getIndex(req, res) {
-  res.render('./index');
+  res.render('customer/index');
 }
 
 function getAbout(req, res) {
-  res.render('./about');
+  res.render('customer/about');
 }
 
 function getMenu(req, res) {
-  res.render('./menu');
+  res.render('customer/menu');
 }
 
 function getAuth(req, res) {
-  res.render('./auth');
+  res.render('customer/auth');
 }
 
 function getOrders(req, res) {
-  res.render('./orders');
+  res.render('customer/orders');
 }
 
 async function signup(req, res) {
@@ -34,11 +34,11 @@ async function signup(req, res) {
 
   await user.signup();
 
-  res.redirect('/orders');
+  res.redirect('/customer/orders');
 }
 
 function login(req, res) {
-  res.render('./menu');
+  res.render('customer/menu');
 }
 
 module.exports = {
