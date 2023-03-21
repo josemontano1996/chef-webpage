@@ -11,12 +11,14 @@ html {
   --color-button: #ff8c00;
   --color-black: black;
   --color-white: white;
+  --color-backgroundtext: #FFF8E7;
+  --color-background: #f5deb3;
 }
 
 body {
   color: var(--color-1);
   margin: 0;
-  background-color: #f5deb3;
+  background-color: var(--color-background);
   /* background: linear-gradient(
     to top right,
     #3d220b,
@@ -30,11 +32,11 @@ body {
 header {
   z-index: 999;
   height: 9vh;
+  min-height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -45,6 +47,13 @@ header {
 header div a {
   display: block;
   text-align: center;
+}
+
+header nav a {
+  padding: 0.1rem;
+}
+header h1 {
+  width: 20%;
 }
 
 header nav,
@@ -68,6 +77,7 @@ main {
 }
 
 footer {
+  height: 11vh;
   margin: 0 5%;
   margin-bottom: 2vh;
   display: flex;
@@ -117,8 +127,19 @@ a:active {
 
 .button {
   color: var(--color-black);
+  border:none;
   background-color: var(--color-button);
   margin: 0;
+  padding: 0.3rem;
+  border-radius: 3px;
+}
+
+.button-alt{
+  color: var(--color-black);
+  border:none;
+  background-color: var(--color-background);
+  margin: 0 auto;
+  margin-bottom: 1rem;
   padding: 0.3rem;
   border-radius: 3px;
 }
