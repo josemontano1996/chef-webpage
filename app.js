@@ -9,6 +9,7 @@ const db = require('./data/database');
 
 //MIDDLEWARES IMPORTS
 const errorHandlerMiddleware = require('./middlewares/error-handler');
+const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 
 //ROUTES IMPORTS
 const baseRoutes = require('./routes/base.routes');
@@ -23,9 +24,10 @@ app.use(express.urlencoded({ extended: false })); //form submision
 
 //creating a session
 const sessionConfig = createSessionConfig();
-app.use(expressSession(sessionConfig))
-
+app.use(expressSession(sessionConfig));
 //here goes the csrf protection
+
+app.use(checkAuthStatusMiddleware);
 
 app.use(baseRoutes);
 

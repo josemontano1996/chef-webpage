@@ -27,6 +27,14 @@ class User {
       address: this.address,
     });
   }
+
+  getUserWithSameEmail() {
+    return db.getDb().collection('users').findOne({ email: this.email });
+  }
+
+  comparePassword(hashedPassword) {
+    return bcrypt.compare(this.password, hashedPassword);
+  }
 }
 
 module.exports = User;

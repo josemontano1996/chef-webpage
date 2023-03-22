@@ -9,5 +9,8 @@
   <nav class="flexbox-container">
     <a href="/customer/orders"><img src="/img/cart-icon.png" alt="cart" /></a>
     <a href="/auth"><img src="/img/login-icon.png" alt="login-icon" /></a>
+    <% if (locals.isAuth) { %>
+    <a><img src="/img/log-out.png" alt="log-out-icon" /></a>
+    <% } %>
   </nav>
 </header>

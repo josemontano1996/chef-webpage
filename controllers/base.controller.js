@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const authUtil = require('../util/authentication');
 
 function getIndex(req, res) {
   res.render('customer/index');
@@ -37,8 +38,26 @@ async function signup(req, res) {
   res.redirect('/customer/orders');
 }
 
-function login(req, res) {
-  res.render('customer/menu');
+async function login(req, res) {
+  const user = new User(req.body.email, req.body.password);
+
+  const existingUser = await user.getUserWithSameEmail();
+
+  if (!existingUser) {
+    res.redirect('/auth');
+    return;
+  }
+
+  const passwordIsCorrect = await user.comparePassword(existingUser.password);
+
+  if (!passwordIsCorrect) {
+    res.redirect('/auth');
+    return;
+  }
+
+  authUtil.createUserSession(req, existingUser, function () {
+    res.redirect('/menu');
+  });
 }
 
 module.exports = {
