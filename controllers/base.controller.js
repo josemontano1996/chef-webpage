@@ -46,7 +46,7 @@ module.exports = {
   getAbout: getAbout,
   getMenu: getMenu,
   getAuth: getAuth,
-  gerOrders: getOrders,
+  getOrders: getOrders,
   signup: signup,
   login: login,
 };

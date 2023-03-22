@@ -24,7 +24,7 @@ class User {
       password: hashedPassword,
       name: this.name,
       phone: this.phone,
-      addres: this.address,
+      address: this.address,
     });
   }
 }
