@@ -1,16 +1,35 @@
-<header>
-  <nav class="flexbox-container">
-    <a href="/menu">Menu</a>
-    <a href="/about">About</a>
+<header class="flexbox-container">
+  <nav>
+    <ul class="flexbox-container">
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
   </nav>
   <h1>
     <a href="/" id="main-title">Chef Bautista D'Arconso</a>
   </h1>
-  <nav class="flexbox-container">
-    <a href="/customer/orders"><img src="/img/cart-icon.png" alt="cart" /></a>
-    <a href="/auth"><img src="/img/login-icon.png" alt="login-icon" /></a>
-    <% if (locals.isAuth) { %>
-    <a><img src="/img/log-out.png" alt="log-out-icon" /></a>
-    <% } %>
+  <nav>
+    <ul class="flexbox-container">
+      <li>
+        <a href="/customer/orders"
+          ><img src="/img/cart-icon.png" alt="cart"
+        /></a>
+      </li>
+      <li>
+        <a <% if (locals.isAuth) { %>
+          href="/account" <% } else { %> href="/auth" <% } %>>
+          <img src="/img/login-icon.png" alt="login-icon"
+        /></a>
+      </li>
+      <% if (locals.isAuth) { %>
+      <li>
+        <form action="/logout" method="POST">
+          <button class="neutral-button">
+            <img src="/img/log-out.png" alt="log-out-icon" />
+          </button>
+        </form>
+      </li>
+      <% } %>
+    </ul>
   </nav>
 </header>

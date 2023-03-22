@@ -32,31 +32,33 @@ body {
 header {
   z-index: 999;
   height: 9vh;
+  width: 100vw;
   min-height: 70px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 0;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   background-color: #f5deb3;
 }
 
-header div a {
-  display: block;
-  text-align: center;
+header nav {
+  margin: 0 5%;
+}
+header nav ul {
+  margin: 0;
+  padding: 0;
 }
 
-header nav a {
-  padding: 0.1rem;
+header nav li {
+  display: inline-block;
+  padding: 0.3rem;
 }
+
 header h1 {
   width: 20%;
 }
 
-header nav,
 footer nav {
   margin: auto 1rem;
   padding: 0 0.5rem;
@@ -110,6 +112,7 @@ h4 {
 
 li {
   text-decoration: none;
+  list-style: none;
 }
 
 a {
@@ -155,4 +158,11 @@ textarea {
 
 button {
   font: inherit;
+}
+
+.neutral-button {
+  background-color: var(--color-background);
+  border: none;
+  margin: inherit;
+  padding: inherit;
 }

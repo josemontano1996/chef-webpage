@@ -7,9 +7,10 @@ router.get('/', baseController.getIndex);
 router.get('/about', baseController.getAbout);
 router.get('/menu', baseController.getMenu);
 router.get('/auth', baseController.getAuth);
-router.get('/customer/orders', baseController.getOrders)
+router.get('/customer/orders', baseController.getOrders);
 
 router.post('/login', baseController.login);
 router.post('/signup', baseController.signup);
+router.post('/logout', baseController.logout);
 
 module.exports = router;

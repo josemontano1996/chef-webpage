@@ -1,10 +1,15 @@
 <%- include('../shared/head', {pageTitle: 'Orders'}) %>
+<link rel="stylesheet" href="/css/orders.css" />
 </head>
 <body>
     <%- include('../shared/header') %>
-<main >
-    <div>
+    <main >
+      <% if (!locals.isAuth) { %>
+      <div id="notAuth">
+      <p>You are not logged in, please click here to <a href="/auth"><span>Sign up or Log in</span></a>.</p>
       <div>
+      <% } %>
+      
        <h3>ORDERS</h3>
           
       </div>

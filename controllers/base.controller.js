@@ -60,6 +60,11 @@ async function login(req, res) {
   });
 }
 
+function logout(req, res) {
+  authUtil.destroyUserAuthSession(req);
+  res.redirect('/');
+}
+
 module.exports = {
   getIndex: getIndex,
   getAbout: getAbout,
@@ -68,4 +73,5 @@ module.exports = {
   getOrders: getOrders,
   signup: signup,
   login: login,
+  logout: logout,
 };
