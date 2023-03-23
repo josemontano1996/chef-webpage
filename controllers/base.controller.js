@@ -1,6 +1,8 @@
+const session = require('express-session');
 const User = require('../models/user.model');
 const authUtil = require('../util/authentication');
 const inputValidation = require('../util/input-validation');
+const sessionFlash = require('../util/session-flash');
 
 function getIndex(req, res) {
   res.render('customer/index');
@@ -23,6 +25,17 @@ function getOrders(req, res) {
 }
 
 async function signup(req, res, next) {
+  const enteredData = {
+    email: req.body.email,
+    password: req.body.password,
+    name: req.body.fullname,
+    phone: req.body.phone,
+    street: req.body.street,
+    postal: req.body.postal,
+    city: req.body.city,
+    country: req.body.country,
+  };
+
   if (
     !inputValidation.userDetailsAreValid(
       req.body.email,
@@ -41,7 +54,18 @@ async function signup(req, res, next) {
       req.body['confirm-password']
     )
   ) {
-    return alert('Invalid data, please check if your data is correct');
+    sessionFlash.flashDataToSession(
+      req,
+      {
+        errorMessage: 'Please check your input data.',
+        ...enteredData,
+      },
+      function () {
+        res.redirect('/auth');
+      }
+    );
+
+    return;
   }
 
   const user = new User(
@@ -58,7 +82,14 @@ async function signup(req, res, next) {
   try {
     const userExistsAlready = await user.userExistsAlready();
     if (userExistsAlready) {
-      return alert('User already exists');
+      sessionFlash.flashDataToSession(
+        req,
+        { errorMessage: 'User exists already', ...enteredData },
+        function () {
+          res.redirect('/auth');
+        }
+      );
+      return;
     }
 
     await user.signup();
@@ -80,7 +111,19 @@ async function login(req, res, next) {
   }
 
   if (!existingUser) {
-    res.redirect('/auth');
+    sessionFlash.flashDataToSession(
+      req,
+      {
+        errorMessage:
+          'Invalid credential. Please check your email and password',
+        email: user.email,
+        password: user.password,
+      },
+      function () {
+        res.redirect('/auth');
+      }
+    );
+
     return;
   }
 
@@ -92,7 +135,18 @@ async function login(req, res, next) {
   }
 
   if (!passwordIsCorrect) {
-    res.redirect('/auth');
+    sessionFlash.flashDataToSession(
+      req,
+      {
+        errorMessage:
+          'Invalid credential. Please check your email and password',
+        email: user.email,
+        password: user.password,
+      },
+      function () {
+        res.redirect('/auth');
+      }
+    );
     return;
   }
 
