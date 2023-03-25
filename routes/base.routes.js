@@ -7,6 +7,8 @@ router.get('/', baseController.getIndex);
 router.get('/about', baseController.getAbout);
 router.get('/menu', baseController.getMenu);
 router.get('/auth', baseController.getAuth);
+router.get('/auth/signup', baseController.getSignup);
+router.get('/auth/login', baseController.getLogin);
 router.get('/customer/orders', baseController.getOrders);
 
 router.post('/login', baseController.login);

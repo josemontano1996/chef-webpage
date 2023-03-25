@@ -10,11 +10,13 @@
   </h1>
   <nav>
     <ul class="flexbox-container">
+      <% if (!locals.isAdmin) { %>
       <li>
         <a href="/customer/orders"
           ><img src="/img/cart-icon.png" alt="cart"
         /></a>
       </li>
+      <% } %>
       <li>
         <a <% if (locals.isAuth) { %>
           href="/account" <% } else { %> href="/auth" <% } %>>

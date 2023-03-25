@@ -1,9 +1,9 @@
-<%- include('../shared/head', {pageTitle: 'Authentication'}) %>
-<link rel="stylesheet" href="./css/auth.css" />
-<script src="./scripts/auth.js" defer></script>
+<%- include('../../shared/head', {pageTitle: 'Authentication'}) %>
+<link rel="stylesheet" href="/css/auth/auth.css" />
+<script src="/scripts/auth.js" defer></script>
 </head>
 <body>
-    <%- include('../shared/header') %>
+    <%- include('../../shared/header') %>
 <main>
     <p>If you dont have an account, please click to <span id="signup-span">Create new Account</span> button. If you already have an existing account, please click the <span id="login-span">Log in</span> one.</p>
         <section id="signup">
@@ -66,9 +66,8 @@
                     <input type="password" name="password" id="password" required>
                 </p>            
                 <button class="button-alt">Log in</button>
-          </div>
-        </form>
-       </div>
+            </form>
+       </section>
     
 </main>
-<%- include('../shared/footer') %>
+<%- include('../../shared/footer') %>

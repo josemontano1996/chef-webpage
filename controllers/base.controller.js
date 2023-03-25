@@ -17,17 +17,52 @@ function getMenu(req, res) {
 }
 
 function getAuth(req, res) {
-  res.render('customer/auth');
+  res.render('customer/auth/auth');
+}
+
+function getSignup(req, res) {
+  let sessionData = sessionFlash.getSessionData(req);
+
+  if (!sessionData) {
+    sessionData = {
+      email: '',
+      confirmEmail: '',
+      password: '',
+      confirmPassword: '',
+      name: '',
+      phone: '',
+      street: '',
+      postal: '',
+      city: '',
+      country: '',
+    };
+  }
+
+  res.render('customer/auth/signup', { inputData: sessionData });
+}
+
+function getLogin(req, res) {
+  let sessionData = sessionFlash.getSessionData(req);
+
+  if (!sessionData) {
+    sessionData = {
+      email: '',
+      password: '',
+    };
+  }
+  res.render('customer/auth/login', { inputData: sessionData });
 }
 
 function getOrders(req, res) {
-  res.render('customer/orders');
+  res.render('customer/orders/orders');
 }
 
 async function signup(req, res, next) {
   const enteredData = {
     email: req.body.email,
+    confirmEmail: req.body['confirm-email'],
     password: req.body.password,
+    confirmPassword: req.body['confirm-password'],
     name: req.body.fullname,
     phone: req.body.phone,
     street: req.body.street,
@@ -57,11 +92,11 @@ async function signup(req, res, next) {
     sessionFlash.flashDataToSession(
       req,
       {
-        errorMessage: 'Please check your input data.',
+        errorMessage: 'Data provided is invalid, please check your input data again.',
         ...enteredData,
       },
       function () {
-        res.redirect('/auth');
+        res.redirect('/auth/signup');
       }
     );
 
@@ -84,7 +119,7 @@ async function signup(req, res, next) {
     if (userExistsAlready) {
       sessionFlash.flashDataToSession(
         req,
-        { errorMessage: 'User exists already', ...enteredData },
+        { errorMessage: 'User exists already, please try loging in.', ...enteredData },
         function () {
           res.redirect('/auth');
         }
@@ -115,12 +150,12 @@ async function login(req, res, next) {
       req,
       {
         errorMessage:
-          'Invalid credential. Please check your email and password',
+          'Invalid credentials. Please check your email and password.',
         email: user.email,
         password: user.password,
       },
       function () {
-        res.redirect('/auth');
+        res.redirect('/auth/login');
       }
     );
 
@@ -165,6 +200,8 @@ module.exports = {
   getAbout: getAbout,
   getMenu: getMenu,
   getAuth: getAuth,
+  getSignup: getSignup,
+  getLogin: getLogin,
   getOrders: getOrders,
   signup: signup,
   login: login,

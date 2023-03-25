@@ -166,3 +166,8 @@ button {
   margin: inherit;
   padding: inherit;
 }
+
+.alert {
+  background-color: var(--color-2);
+  color: var(--color-white);
+}
