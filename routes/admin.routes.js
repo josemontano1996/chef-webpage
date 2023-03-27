@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.get('/orders', adminController.getOrders);
 router.get('/account', adminController.getAccount);
+router.get('/menu', adminController.getMenu);
+router.get('/menu/new', adminController.getNewProduct);
 
 module.exports = router;

@@ -1,7 +1,11 @@
 <header class="flexbox-container">
   <nav>
     <ul class="flexbox-container">
-      <li><a href="/menu">Menu</a></li>
+      <li>
+        <a <% if (locals.isAdmin) { %>
+          href="/admin/menu" <% } else { %> href="/menu" <% } %>>Menu</a
+        >
+      </li>
       <li><a href="/about">About</a></li>
     </ul>
   </nav>
