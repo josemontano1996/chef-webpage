@@ -10,16 +10,19 @@
   </h1>
   <nav>
     <ul class="flexbox-container">
-      <% if (!locals.isAdmin) { %>
       <li>
-        <a href="/customer/orders"
-          ><img src="/img/cart-icon.png" alt="cart"
+        <a <% if (locals.isAdmin) { %>
+          href="/admin/orders" <% } else if (locals.isAuth) { %>
+          href="/customer/orders" <% } else { %> href="/orders" <% } %>><img
+            src="/img/cart-icon.png"
+            alt="cart"
         /></a>
       </li>
-      <% } %>
+
       <li>
-        <a <% if (locals.isAuth) { %>
-          href="/account" <% } else { %> href="/auth" <% } %>>
+        <a <% if (locals.isAdmin) { %>
+          href="/admin/account" <% } else if (locals.isAuth) { %>
+          href="/customer/account" <% } else { %> href="/auth" <% } %>>
           <img src="/img/login-icon.png" alt="login-icon"
         /></a>
       </li>

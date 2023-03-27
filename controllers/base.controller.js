@@ -92,7 +92,8 @@ async function signup(req, res, next) {
     sessionFlash.flashDataToSession(
       req,
       {
-        errorMessage: 'Data provided is invalid, please check your input data again.',
+        errorMessage:
+          'Data provided is invalid, please check your input data again.',
         ...enteredData,
       },
       function () {
@@ -119,7 +120,10 @@ async function signup(req, res, next) {
     if (userExistsAlready) {
       sessionFlash.flashDataToSession(
         req,
-        { errorMessage: 'User exists already, please try loging in.', ...enteredData },
+        {
+          errorMessage: 'User exists already, please try loging in.',
+          ...enteredData,
+        },
         function () {
           res.redirect('/auth');
         }
@@ -186,7 +190,11 @@ async function login(req, res, next) {
   }
 
   authUtil.createUserSession(req, existingUser, function () {
-    res.redirect('/menu');
+    if (req.session.isAdmin) {
+      res.redirect('/admin/orders');
+    } else {
+      res.redirect('/menu');
+    }
   });
 }
 

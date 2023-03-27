@@ -13,6 +13,8 @@ const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 
 //ROUTES IMPORTS
 const baseRoutes = require('./routes/base.routes');
+const adminRoutes = require('./routes/admin.routes');
+const customerRoutes = require('./routes/customer.routes');
 
 const app = express();
 
@@ -29,7 +31,12 @@ app.use(expressSession(sessionConfig));
 
 app.use(checkAuthStatusMiddleware);
 
+//UNPROTECTED ROUTES
 app.use(baseRoutes);
+
+//PROTECTED ROUTES
+app.use('/admin', adminRoutes);
+app.use('/customer', customerRoutes);
 
 app.use(errorHandlerMiddleware);
 
