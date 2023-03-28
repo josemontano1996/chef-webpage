@@ -9,10 +9,42 @@
         <p><a href="/admin/menu/new" class="button">Add new product</a></p>
     </section>
     <section>
-        <p>A list of dishes...</p>
+            <ul>
+              <h3>Starters</h3>
+        <% for (const starter of starters) { %>
+        <li>
+            <%- include('includes/product-item', {product : starter})%>
+
+          </article>
+        </li>
+        <% } %>
+       </ul>
+       <ul>
+              <h3>Main Dishes</h3>
+        <% for (const mainDish of mainDishes) { %>
+        <li>
+          <%- include('includes/product-item', {product : mainDish})%>
+        </li>
+        <% } %>
+       </ul>
+       <ul>
+              <h3>Side Dishes</h3>
+        <% for (const sideDish of sideDishes) { %>
+        <li>
+          <li>
+          <%- include('includes/product-item', {product : sideDish})%>
+        </li>
+        </li>
+        <% } %>
+       </ul>
+       <ul>
+              <h3>Desserts</h3>
+        <% for (const dessert of desserts) { %>
+        <li>
+            <%- include('includes/product-item', {product : dessert})%>
+        </li>
+        <% } %>
+       </ul>
     </section>
-
-
-
   </main>
     <%- include('../../shared/footer') %>

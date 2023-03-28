@@ -1,0 +1,12 @@
+<article>
+  <h4><%= product.name %></h4>
+  <p><%= product.description %></p>
+  <% if(product.minQuantity) { %>
+  <p><%= product.minQuantity %></p>
+  <% } %>
+  <p><%= product.price %></p>
+  <div>
+    <a href="/admin/menu/update/<%=product.id %>" class="button">View & Edit</a>
+    <button class="button">Delete</button>
+  </div>
+</article>
