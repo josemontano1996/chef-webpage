@@ -12,4 +12,6 @@ router.get('/menu/:id', adminController.getUpdateProduct);
 router.post('/menu/new', adminController.addNewProduct);
 router.post('/menu/:id', adminController.updateProduct);
 
+router.delete('/menu/:id', adminController.deleteProduct);
+
 module.exports = router;

@@ -39,15 +39,15 @@ class Product {
       throw error;
     }
 
-    return  new Product(
-        product.name,
-        product.description,
-        product.price,
-        product.cuisine,
-        product.type,
-        product.minQuantity,
-        product._id.toString()
-      );
+    return new Product(
+      product.name,
+      product.description,
+      product.price,
+      product.cuisine,
+      product.type,
+      product.minQuantity,
+      product._id.toString()
+    );
   }
 
   static async findAll() {
@@ -158,6 +158,11 @@ class Product {
       //if it doesnt exist, create a new one
       await db.getDb().collection('products').insertOne(productData);
     }
+  }
+
+  async remove() {
+    const mongoId = new mongodb.ObjectId(this.id);
+    await db.getDb().collection('products').deleteOne({ _id: this.id });
   }
 }
 

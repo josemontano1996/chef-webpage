@@ -77,6 +77,18 @@ async function updateProduct(req, res, next) {
   res.redirect('/admin/menu');
 }
 
+async function deleteProduct(req, res, next) {
+  let product;
+  try {
+    product = await Product.findById(req.params.id);
+    await product.remove();
+  } catch (error) {
+    return next(error);
+  }
+
+  res.redirect('/admin/menu');
+}
+
 module.exports = {
   getOrders: getOrders,
   getAccount: getAccount,
@@ -85,4 +97,5 @@ module.exports = {
   addNewProduct: addNewProduct,
   getUpdateProduct: getUpdateProduct,
   updateProduct: updateProduct,
+  deleteProduct: deleteProduct,
 };

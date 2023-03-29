@@ -5,8 +5,10 @@
   <p><%= product.minQuantity %></p>
   <% } %>
   <p><%= product.price %></p>
-  <div>
+  <div class="flexbox-container" id="product-item-button">
     <a href="/admin/menu/<%=product.id %>" class="button">View & Edit</a>
+    <form action="/admin/menu/<%=product.id %>" method="DELETE">
     <button class="button">Delete</button>
+    </form>
   </div>
 </article>
