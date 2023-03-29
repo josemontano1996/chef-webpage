@@ -2,14 +2,13 @@
 <link rel="stylesheet" href="/css/forms.css">
 </head> 
 
-<body>
-  <%- include("../../shared/header") %>
-  <main>
-    <h2>Menu Administration</h2>
-    <section>
-      <h3>Edita a dish</h3>
-      <%- include("includes/product-form", { submitPath: "/admin/menu/edit/" +
-      product.id, method: "GET"}) %>
-    </section>
-  </main>
-<%- include("../../shared/footer") %> 
+<body> 
+<%- include("../../shared/header") %>
+<main>
+  <h2>Menu Administration</h2>
+  <section>
+    <h3>Edit a dish</h3>
+    <%- include("includes/product-form", { submitPath: "/admin/menu/" + product.id, product: product}) %>
+  </section>
+</main>
+<%- include("../../shared/footer") %>  

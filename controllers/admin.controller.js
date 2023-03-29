@@ -35,7 +35,37 @@ async function addNewProduct(req, res, next) {
     req.body.price,
     req.body.cuisine,
     req.body.type,
-    req.body.minQuantity
+    req.body.minQuantity,
+    req.params.id // this is just passed to we have an id to find the product in our model
+  );
+
+  try {
+    await product.save();
+  } catch (error) {
+    return next(error);
+  }
+
+  res.redirect('/admin/menu');
+}
+
+async function getUpdateProduct(req, res, next) {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.render('admin/menu/edit-product', { product: product });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function updateProduct(req, res, next) {
+  const product = new Product(
+    req.body.name,
+    req.body.description,
+    req.body.price,
+    req.body.cuisine,
+    req.body.type,
+    req.body.minQuantity,
+    req.params.id
   );
 
   try {
@@ -53,4 +83,6 @@ module.exports = {
   getMenu: getMenu,
   getNewProduct: getNewProduct,
   addNewProduct: addNewProduct,
+  getUpdateProduct: getUpdateProduct,
+  updateProduct: updateProduct,
 };

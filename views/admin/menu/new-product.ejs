@@ -1,15 +1,16 @@
-<%- include("../../shared/head", {pageTitle: "Add new product"}) %>
+ <%- include("../../shared/head", {pageTitle: "Add new product"}) %>
 <link rel="stylesheet" href="/css/forms.css">
 </head>
 
-<body>
-  <%- include("../../shared/header") %>
-  <main>
-      <h2>Menu Administration</h2>
-    <section>
-        <h3>Add dish</h3>
-        <%- include("includes/product-form", { submitPath: "/admin/menu/new", method:"POST"}) %>
-    </section>
-
-  </main>
-<%- include("../../shared/footer") %>
+<body> 
+<%- include("../../shared/header") %>
+<main>
+  <h2>Menu Administration</h2>
+  <section>
+    <h3>Add dish</h3>
+    <%- include("includes/product-form", { submitPath: "/admin/menu/new",
+    product: { name:"", description: "", cuisine: "", type:"", minQuantity:
+    null, price:"", }}) %>
+  </section>
+</main>
+ <%- include("../../shared/footer") %> 
