@@ -1,8 +1,8 @@
-<%- include('../../shared/head', {pageTitle: 'Orders'}) %>
+<%- include("../../shared/head", {pageTitle: "Orders"}) %>
 <link rel="stylesheet" href="/css/orders.css" />
 </head>
 <body>
-    <%- include('../../shared/header') %>
+    <%- include("../../shared/header") %>
     <main >
       <% if (!locals.isAuth) { %>
       <div id="notAuth">
@@ -15,4 +15,4 @@
       </div>
     </div>
 </main>
-<%- include('../../shared/footer') %>
+<%- include("../../shared/footer") %>

@@ -1,80 +1,77 @@
-<%- include('../shared/head', {pageTitle: 'Index'}) %>
+<%- include("../shared/head", {pageTitle: "Index"}) %>
   <link rel="stylesheet" href="/css/index.css" />
   </head>
 
-  <body>
-    <%- include('../shared/header') %>
-    <main>
-      <section id="main-section">
-        <div>
-          <h2>
-            Chef Bautista D'Arconso for an unforgetable authentic Spanish
-            culinary experience.
-          </h2>
-          <a href="" class="button">Check the menu</a>
-        </div>
-        <img src="/img/chef-ejecutivo.jpg" alt="chef-photo" />
-      </section>
+<body>
+    <%- include("../shared/header") %>
+<main>
+  <section id="main-section">
+    <div>
+      <h2>
+        Chef Bautista D"Arconso for an unforgetable authentic Spanish culinary
+        experience.
+      </h2>
+      <a href="" class="button">Check the menu</a>
+    </div>
+    <img src="/img/chef-ejecutivo.jpg" alt="chef-photo" />
+  </section>
 
-      <section id="about-section">
-        <div class="flexbox-container">
-          <h3><a href="/about">ABOUT</a></h3>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            dolore quam at iste quidem eligendi et dolor magni officiis
-            doloribus, quis culpa dolorem aliquid reiciendis dolores minima!
-            Odio, non dolorum.
-          </p>
-        </div>
-      </section>
+  <section id="about-section">
+    <div class="flexbox-container">
+      <h3><a href="/about">ABOUT</a></h3>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum dolore
+        quam at iste quidem eligendi et dolor magni officiis doloribus, quis
+        culpa dolorem aliquid reiciendis dolores minima! Odio, non dolorum.
+      </p>
+    </div>
+  </section>
 
-      <section id="specialities-section">
-        <div>
-          <h3><a href="">SPECIALITIES</a></h3>
-        </div>
-        <div>
-          <ul>
-            <li class="flexbox-container">
-              <img src="/img/paella.jpg" alt="paella" id="img-1" />
-              <div>
-                <h4>Private group up to 10 people</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-              </div>
-            </li>
-            <li class="flexbox-container">
-              <div>
-                <h4>Exclusive secret recipes</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-              </div>
-              <img src="/img/croquetas.jpg" alt="croquetas" id="img-2" />
-            </li>
-            <li class="flexbox-container">
-              <img src="/img/focaccia.jpg" alt="focaccia" id="img-1" />
-              <div>
-                <h4>Ask the chef directly via DMs</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section id="reviews-section">
-        <div class="flexbox-container">
-          <h3>REVIEWS</h3>
+  <section id="specialities-section">
+    <div>
+      <h3><a href="">SPECIALITIES</a></h3>
+    </div>
+    <div>
+      <ul>
+        <li class="flexbox-container">
+          <img src="/img/paella.jpg" alt="paella" id="img-1" />
           <div>
-            <h4>Dolores Maria</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              dolore quam at iste quidem eligendi et dolor magni officiis
-              doloribus.
-            </p>
+            <h4>Private group up to 10 people</h4>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
-        </div>
-      </section>
-      <section id="call-to-action">
-        What are you waiting for! <a href="/auth">Sign up</a> or
-        <a href="/auth">Log in</a> and make your first order!
-      </section>
-    </main>
-    <%- include('../shared/footer') %>
-
+        </li>
+        <li class="flexbox-container">
+          <div>
+            <h4>Exclusive secret recipes</h4>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+          <img src="/img/croquetas.jpg" alt="croquetas" id="img-2" />
+        </li>
+        <li class="flexbox-container">
+          <img src="/img/focaccia.jpg" alt="focaccia" id="img-1" />
+          <div>
+            <h4>Ask the chef directly via DMs</h4>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section id="reviews-section">
+    <div class="flexbox-container">
+      <h3>REVIEWS</h3>
+      <div>
+        <h4>Dolores Maria</h4>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum dolore
+          quam at iste quidem eligendi et dolor magni officiis doloribus.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="call-to-action">
+    What are you waiting for! <a href="/auth">Sign up</a> or
+    <a href="/auth">Log in</a> and make your first order!
+  </section>
+</main>
+<%- include("../shared/footer") %>

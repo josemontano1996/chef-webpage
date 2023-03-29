@@ -1,48 +1,15 @@
-<%- include('../../shared/head', {pageTitle: 'Add new product'}) %>
+<%- include("../../shared/head", {pageTitle: "Add new product"}) %>
 <link rel="stylesheet" href="/css/forms.css">
-</head>
-<body>
-  <%- include('../../shared/header') %>
-  <main>
-      <h2>Menu Administration</h2>
-    <section>
-        <h3>Add dish</h3>
-        <form action="/admin/menu/new" method="POST">
-            <p>
-                <label for="name">Dish name</label>
-                <input type="text" id="name" name="name" required>
-            </p>
-             <p>
-                <label for="description">Description</label>
-                <textarea  id="description" name="description" rows="7" required></textarea>
-            </p>
-            <p>
-                <label for="cuisine">Cuisine</label>
-                <select name="cuisine" id="cuisine">
-                    <option value="spanish">Spanish</option>
-                    <option value="italian">Italian</option>
-                </select>
-            </p>
-            <p>
-                <label for="type">Type</label>
-                <select name="type" id="type">
-                    <option value="starter">Starter</option>
-                    <option value="main">Main dish</option>
-                    <option value="side">Side dish</option>
-                    <option value="dessert">Dessert</option>
-                </select>
-            </p>
-            <p>
-                <label for="minQuantity">Minimum quantity <span>(do not write anything if no min quantity is needed)</span></label>
-                <input type="number" id="minQuantity" name="minQuantity" min="1" step="1">
-            </p>
-             <p>
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" min="0.01" step="0.01" required>
-            </p>
-            <button class="button">Save</button>
-        </form>
-    </section>
+</head> 
 
+<body>
+  <%- include("../../shared/header") %>
+  <main>
+    <h2>Menu Administration</h2>
+    <section>
+      <h3>Edita a dish</h3>
+      <%- include("includes/product-form", { submitPath: "/admin/menu/edit/" +
+      product.id, method: "GET"}) %>
+    </section>
   </main>
-    <%- include('../../shared/footer') %>
+<%- include("../../shared/footer") %> 
