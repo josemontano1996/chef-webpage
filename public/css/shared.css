@@ -19,14 +19,6 @@ body {
   color: var(--color-1);
   margin: 0;
   background-color: var(--color-background);
-  /* background: linear-gradient(
-    to top right,
-    #3d220b,
-    #3d220b,
-    #3d220b,
-    #472a11,
-    #a66a29
-  ); */
 }
 
 header {
@@ -75,7 +67,6 @@ header h1 {
 main {
   margin: 0 5%;
   margin-top: 11vh;
-  max-width: 50rem;
   min-height: 72.5vh;
   margin-bottom: 3rem;
 }

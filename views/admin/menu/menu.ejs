@@ -1,5 +1,7 @@
 <%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
 <link rel="stylesheet" href="/css/admin/menu.css">
+<script src="/scripts/product.management.js" defer></script>
+
 </head>
 <body>
   <%- include("../../shared/header") %>
@@ -7,40 +9,38 @@
       <h2>Menu Management</h2>
     <section>
         <p><a href="/admin/menu/new" class="button">Add new product</a></p>
+        <p><a href="/menu" class="button">See user Menu display</a></p>
     </section>
     <section>
-            <ul>
+            <ul class="menu-list">
               <h3>Starters</h3>
         <% for (const starter of starters) { %>
-        <li>
+        <li class="menu-item">
             <%- include("includes/product-item", {product : starter})%>
-
-          </article>
         </li>
         <% } %>
        </ul>
-       <ul>
+       <ul class="menu-list">
               <h3>Main Dishes</h3>
         <% for (const mainDish of mainDishes) { %>
-        <li>
+        <li class="menu-item">
           <%- include("includes/product-item", {product : mainDish})%>
         </li>
         <% } %>
        </ul>
-       <ul>
+       <ul class="menu-list">
               <h3>Side Dishes</h3>
         <% for (const sideDish of sideDishes) { %>
-        <li>
-          <li>
+        <li class="menu-item">
           <%- include("includes/product-item", {product : sideDish})%>
         </li>
         </li>
         <% } %>
        </ul>
-       <ul>
+       <ul class="menu-list">
               <h3>Desserts</h3>
         <% for (const dessert of desserts) { %>
-        <li>
+        <li class="menu-item">
             <%- include("includes/product-item", {product : dessert})%>
         </li>
         <% } %>

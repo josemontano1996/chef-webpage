@@ -55,21 +55,25 @@ class Product {
       .getDb()
       .collection('products')
       .find({ type: 'starter' })
+      .sort({ name: 1 }) // sort by name in ascending order
       .toArray();
     const mainDishesArray = await db
       .getDb()
       .collection('products')
       .find({ type: 'main' })
+      .sort({ name: 1 })
       .toArray();
     const sideDishesArray = await db
       .getDb()
       .collection('products')
       .find({ type: 'side' })
+      .sort({ name: 1 })
       .toArray();
     const dessertsArray = await db
       .getDb()
       .collection('products')
       .find({ type: 'dessert' })
+      .sort({ name: 1 })
       .toArray();
 
     const starters = startersArray.map(function (p) {
@@ -162,7 +166,7 @@ class Product {
 
   async remove() {
     const mongoId = new mongodb.ObjectId(this.id);
-    await db.getDb().collection('products').deleteOne({ _id: this.id });
+    await db.getDb().collection('products').deleteOne({ _id: mongoId });
   }
 }
 
