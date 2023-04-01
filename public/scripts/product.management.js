@@ -15,7 +15,7 @@ async function deleteProduct(event) {
     return;
   }
 
-  const productItemElement = event.target.closest('.product-item');
+  const productItemElement = event.target.closest('.menu-item');
 
   productItemElement.remove();
 }

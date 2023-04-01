@@ -4,8 +4,8 @@
   <% if(product.minQuantity) { %>
   <p><%= product.minQuantity %></p>
   <% } %>
-  <p class="price"><%= product.price %> &euro; </p>
-  <div class="flexbox-container" id="product-item-button">
+  <p class="price"><%= product.price %> &euro;</p>
+  <div class="flexbox-container">
     <a href="/admin/menu/<%= product.id %>" class="button">View & Edit</a>
     <button class="button" data-productid="<%= product.id%>">Delete</button>
   </div>
