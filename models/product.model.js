@@ -11,8 +11,9 @@ class Product {
     minQuantity = null,
     _id = null
   ) {
-    (this.name = name),
-      (this.description = description),
+    (this.name = name.charAt(0).toUpperCase() + name.slice(1)),
+      (this.description =
+        description.charAt(0).toUpperCase() + description.slice(1)),
       (this.price = price),
       (this.cuisine = cuisine),
       (this.type = type),
