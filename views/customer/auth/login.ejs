@@ -17,6 +17,7 @@
   <section id="signup">
     <h2>Create new Account</h2>
     <form action="/signup" method="POST" id="signup-form">
+       <input type="hidden" name="csrfToken" value="<%= locals.csrfToken %>">
       <p>
         <label for="email">E-mail</label>
         <input type="email" name="email" id="email" required />
@@ -114,6 +115,7 @@
   <section id="login">
     <h2>Log in</h2>
     <form action="/login" method="POST" id="login-form">
+       <input type="hidden" name="csrfToken" value="<%= locals.csrfToken %>">
       <p>
         <label for="email">Email</label>
         <input

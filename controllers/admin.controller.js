@@ -25,7 +25,7 @@ async function getMenu(req, res, next) {
 }
 
 function getNewProduct(req, res) {
-  res.render('admin/menu/new-product');
+  res.render('admin/menu/new-product', { req: req });
 }
 
 async function addNewProduct(req, res, next) {
