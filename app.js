@@ -12,6 +12,7 @@ const db = require('./data/database');
 //MIDDLEWARES IMPORTS
 const errorHandlerMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
+const protectRoutesMiddeware = require('./middlewares/protect-routes');
 
 /* const csrfProtection = require('./middlewares/customs-csrf-protection'); */
 
@@ -46,7 +47,8 @@ app.use(checkAuthStatusMiddleware);
 //UNPROTECTED ROUTES
 app.use(baseRoutes);
 
-//PROTECTED ROUTES
+//PROTECTED ROUTES\
+app.use(protectRoutesMiddeware);
 app.use('/admin', adminRoutes);
 app.use('/customer', customerRoutes);
 
