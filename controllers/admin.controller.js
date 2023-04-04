@@ -12,16 +12,15 @@ async function getMenu(req, res, next) {
   let product;
   try {
     product = await Product.findAll();
+    res.render('admin/menu/menu', {
+      starters: product.starters,
+      mainDishes: product.mainDishes,
+      sideDishes: product.sideDishes,
+      desserts: product.desserts,
+    });
   } catch (error) {
     return next(error);
   }
-
-  res.render('admin/menu/menu', {
-    starters: product.starters,
-    mainDishes: product.mainDishes,
-    sideDishes: product.sideDishes,
-    desserts: product.desserts,
-  });
 }
 
 function getNewProduct(req, res) {

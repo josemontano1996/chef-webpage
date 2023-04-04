@@ -1,0 +1,59 @@
+<%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
+<link rel="stylesheet" href="/css/menu.css">
+<script src="/scripts/menu-scroll.js" defer></script>
+</head>
+<body>
+  <%- include("../../shared/header") %>
+  <main>
+    
+      <h3>Menu</h3>
+
+  <nav id="side-scroll-nav">
+    <ul class="side-scroll">
+      <li><a href="#starters">Starters</a></li>
+        <li><a href="#main-dishes">Main Dishes</a></li>
+        <li><a href="#side-dishes">Side Dishes</a></li>
+        <li><a href="#desserts">Desserts</a></li>
+        <li>Dummy text</li>
+        <li>Dummy text</li>
+        <li>Dummy text</li>
+    </ul>
+  </nav>
+
+    <section id="menu">
+      <ul class="menu-list" id="starters">
+        <h3>Starters</h3>
+        <% for (const starter of starters) { %>
+        <li class="menu-item">
+            <%- include("includes/product-item", {product : starter})%>
+        </li>
+        <% } %>
+       </ul>
+       <ul class="menu-list" id="main-dishes" >
+              <h3 >Main Dishes</h3>
+        <% for (const mainDish of mainDishes) { %>
+        <li class="menu-item">
+          <%- include("includes/product-item", {product : mainDish})%>
+        </li>
+        <% } %>
+       </ul>
+       <ul class="menu-list" id="side-dishes">
+              <h3>Side Dishes</h3>
+        <% for (const sideDish of sideDishes) { %>
+        <li class="menu-item">
+          <%- include("includes/product-item", {product : sideDish})%>
+        </li>
+        </li>
+        <% } %>
+       </ul>
+       <ul class="menu-list" id="desserts">
+              <h3>Desserts</h3>
+        <% for (const dessert of desserts) { %>
+        <li class="menu-item">
+            <%- include("includes/product-item", {product : dessert})%>
+        </li>
+        <% } %>
+       </ul>
+    </section>
+  </main>
+    <%- include("../../shared/footer") %>

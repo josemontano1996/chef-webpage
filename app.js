@@ -20,6 +20,7 @@ const protectRoutesMiddeware = require('./middlewares/protect-routes');
 const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
 const customerRoutes = require('./routes/customer.routes');
+const menuRoutes = require('./routes/menu.routes');
 
 const app = express();
 app.use(helmet());
@@ -46,6 +47,7 @@ app.use(checkAuthStatusMiddleware);
 
 //UNPROTECTED ROUTES
 app.use(baseRoutes);
+app.use(menuRoutes);
 
 //PROTECTED ROUTES\
 app.use(protectRoutesMiddeware);

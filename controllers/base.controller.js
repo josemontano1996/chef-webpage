@@ -12,10 +12,6 @@ function getAbout(req, res) {
   res.render('customer/about');
 }
 
-function getMenu(req, res) {
-  res.render('customer/menu');
-}
-
 function getAuth(req, res) {
   res.render('customer/auth/auth');
 }
@@ -206,7 +202,6 @@ function logout(req, res) {
 module.exports = {
   getIndex: getIndex,
   getAbout: getAbout,
-  getMenu: getMenu,
   getAuth: getAuth,
   getSignup: getSignup,
   getLogin: getLogin,

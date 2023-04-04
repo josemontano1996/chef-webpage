@@ -1,0 +1,9 @@
+<article class="product-item">
+  <h4><%= product.name %></h4>
+  <p><%= product.description %></p>
+  <% if(product.minQuantity) { %>
+  <p><%= product.minQuantity %></p>
+  <% } %>
+  <p class="price"><%= product.price %> &euro;</p>
+  </div>
+</article>
