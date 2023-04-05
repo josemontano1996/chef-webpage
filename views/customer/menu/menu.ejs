@@ -1,10 +1,10 @@
-<%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
+ <%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
 <link rel="stylesheet" href="/css/menu.css">
 <script src="/scripts/menu-scroll.js" defer></script>
 </head>
 <body>
   <%- include("../../shared/header") %>
-  <main>
+  <main> 
     
       <h3>Menu</h3>
 
@@ -55,5 +55,16 @@
         <% } %>
        </ul>
     </section>
+    <% if (locals.cart.totalPrice !== 0) { %>
+    <section id="cart">
+        <a href="/customer/cart" ><span>
+           <img
+              src="/img/cart-icon-button.png"
+              alt="cart"
+            />
+              <h4>Your Cart (<span><%= locals.cart.totalPrice %>&euro;</span>)</h4></a>
+        </span>
+    </section>
+    <% } %>
   </main>
-    <%- include("../../shared/footer") %>
+    <%- include("../../shared/footer") %> 

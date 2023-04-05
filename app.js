@@ -13,6 +13,7 @@ const db = require('./data/database');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 const protectRoutesMiddeware = require('./middlewares/protect-routes');
+const cartMiddleware = require('./middlewares/cart');
 
 /* const csrfProtection = require('./middlewares/customs-csrf-protection'); */
 
@@ -42,6 +43,8 @@ app.use(expressSession(sessionConfig));
 
 //here goes the csrf protection
 /* app.use(csrfProtection); */
+
+app.use(cartMiddleware);
 
 app.use(checkAuthStatusMiddleware);
 

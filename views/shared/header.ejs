@@ -15,12 +15,19 @@
   <nav>
     <ul class="flexbox-container">
       <li>
+        <img src="" alt="" />
         <a <% if (locals.isAdmin) { %>
-          href="/admin/orders" <% } else if (locals.isAuth) { %>
-          href="/customer/orders" <% } else { %> href="/orders" <% } %>><img
-            src="/img/cart-icon.png"
+          href="/admin/orders" <% } else { %> href="/customer/cart" <% } %>> <%
+          if(locals.cart.totalPrice !== 0 ) { %>
+          <img
+            id="cart-header-img"
+            src="/img/cart-icon-button.png"
             alt="cart"
-        /></a>
+          />
+          <% } else { %>
+          <img src="/img/cart-icon.png" alt="cart" />
+          <% } %>
+        </a>
       </li>
 
       <li>
