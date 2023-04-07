@@ -22,6 +22,7 @@ const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
 const customerRoutes = require('./routes/customer.routes');
 const menuRoutes = require('./routes/menu.routes');
+const cartRoutes = require('./routes/cart.routes');
 
 const app = express();
 app.use(helmet());
@@ -30,7 +31,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false })); //form submision
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //creating a session
 app.use(
@@ -51,6 +53,7 @@ app.use(checkAuthStatusMiddleware);
 //UNPROTECTED ROUTES
 app.use(baseRoutes);
 app.use(menuRoutes);
+app.use('/cart', cartRoutes);
 
 //PROTECTED ROUTES\
 app.use(protectRoutesMiddeware);

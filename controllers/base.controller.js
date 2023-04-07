@@ -1,4 +1,3 @@
-const session = require('express-session');
 const User = require('../models/user.model');
 const authUtil = require('../util/authentication');
 const inputValidation = require('../util/input-validation');
