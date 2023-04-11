@@ -1,25 +1,21 @@
 <article>
   <h3><%= item.product.name %></h3>
   <div class="cart-item-info">
-   
-      <label for="quantity">Quantity</label>
-      <div>
-        <button>-</button>
-        <input
-          type="number"
-          id="quantity"
-          value="<%= item.quantity %>"
-          min="0"
-          step="1"
-          required
-        />
-        <button>+</button>
-      
-    </div>
+    <label for="quantity">Quantity</label>
+    <form class="cart-item-management"  data-productid="<%= item.product.id %>">
+      <input
+        type="number"
+        id="quantity"
+        value="<%= item.quantity %>"
+        min="0"
+        step="1"
+        required
+      />
+      <button class="button">Update</button>
+    </form>
     <p>
-      <%= item.totalPrice.toFixed(2) %> &euro;<span
-        >(<%= item.product.price %> &euro; per por.)</span
-      >
+      <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
+      &euro;<span>(<%= item.product.price %> &euro; per por.)</span>
     </p>
   </div>
 </article>

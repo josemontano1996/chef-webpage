@@ -32,6 +32,6 @@ async function addToCart(event) {
   cartPriceElement.textContent = newTotalPrice;
 }
 
-for (addItemButtonElement of addItemButtonElements) {
+for (const addItemButtonElement of addItemButtonElements) {
   addItemButtonElement.addEventListener('click', addToCart);
 }
