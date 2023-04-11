@@ -57,14 +57,14 @@
        </ul>
     </section>
 
-    <% if (locals.cart.totalPrice !== 0) { %>
+    <% if (locals.cart.totalPrice) { %>
     <section id="cart">
         <a href="/customer/cart" ><span>
            <img
               src="/img/cart-icon-button.png"
               alt="cart"
             />
-              <h4>Your Cart (<span id="cart-price"></span>&euro;)</h4></a>
+              <h4>Your Cart (<span id="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4></a>
         </span>
     </section>
     <% } %>

@@ -14,10 +14,10 @@ class Product {
     (this.name = name.charAt(0).toUpperCase() + name.slice(1)),
       (this.description =
         description.charAt(0).toUpperCase() + description.slice(1)),
-      (this.price = price),
+      (this.price = +price),
       (this.cuisine = cuisine),
       (this.type = type),
-      (this.minQuantity = minQuantity),
+      (this.minQuantity = +minQuantity),
       (this.id = _id);
   }
 

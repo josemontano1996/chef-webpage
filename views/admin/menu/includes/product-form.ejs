@@ -1,23 +1,22 @@
 <form action="<%= submitPath %>" method="POST">
-            <input type="hidden" name="csrfToken" value="<%= locals.csrfToken %>">
+           <p>
+               <label for="name">Dish name</label>
+               <input type="text" id="name" name="name" value="<%= product.name %>"  required>
+           </p>
             <p>
-                <label for="name">Dish name</label>
-                <input type="text" id="name" name="name" value="<%= product.name %>"  required>
+               <label for="description">Description</label>
+               <textarea  id="description" name="description" rows="7" required><%= product.description %></textarea>
+           </p>
+           <p>
+               <label for="cuisine">Cuisine</label>
+               <select name="cuisine" id="cuisine">
+                   <option value="spanish" <% if(product.cuisine === "spanish") { %> return selected <% } %> >Spanish</option>
+                   <option value="italian" <% if(product.cuisine === "italian") { %> return selected <% } %>>Italian</option>
+               </select>
             </p>
-             <p>
-                <label for="description">Description</label>
-                <textarea  id="description" name="description" rows="7" required><%= product.description %></textarea>
-            </p>
-            <p>
-                <label for="cuisine">Cuisine</label>
-                <select name="cuisine" id="cuisine">
-                    <option value="spanish" <% if(product.cuisine === "spanish") { %> return selected <% } %> >Spanish</option>
-                    <option value="italian" <% if(product.cuisine === "italian") { %> return selected <% } %>>Italian</option>
-                </select>
-            </p>
-            <p>
-                <label for="type">Type</label>
-                <select name="type" id="type">
+           <p>
+               <label for="type">Type</label>
+               <select name="type" id="type">
                     <option value="starter" <% if(product.type === "starter") { %> return selected <% } %>>Starter</option>
                     <option value="main" <% if(product.type === "main") { %> return selected <% } %>>Main dish</option>
                     <option value="side"<% if(product.type === "side") { %> return selected <% } %>>Side dish</option>
@@ -32,5 +31,80 @@
                 <label for="price">Price</label>
                 <input type="number" id="price" name="price" min="0.01" step="0.01" value="<%= product.price %>" required>
             </p>
+
+        <!--     <p>
+        <h4>Allergens</h4>
+            <div id="allergens">
+                <p>
+                    <input type="checkbox" id="gluten" name="allergens[]" value="gluten">
+                    <label for="gluten">Gluten</label>
+                </p>
+
+        <p>
+        <input type="checkbox" id="eggs" name="allergens[]" value="eggs">
+        <label for="eggs">Eggs</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="peaunuts" name="allergens[]" value="peaunuts">
+        <label for="peaunuts">Peaunuts</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="milk" name="allergens[]" value="milk">
+        <label for="milk">Milk</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="cellery" name="allergens[]" value="cellery">
+        <label for="cellery">Cellery</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="sesame" name="allergens[]" value="sesame">
+        <label for="sesame">Sesame</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="lupin" name="allergens[]" value="lupin">
+        <label for="lupin">Lupin</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="crustaceans" name="allergens[]" value="crustaceans">
+        <label for="crustaceans">Crustaceans</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="fish" name="allergens[]" value="fish">
+        <label for="fish">Fish</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="Soy" name="allergens[]" value="Soy">
+        <label for="Soy">Soy</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="tree-nuts" name="allergens[]" value="tree-nuts">
+        <label for="tree-nuts">Tree nuts</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="mustard" name="allergens[]" value="mustard">
+        <label for="mustard">Mustard</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="sulphites" name="allergens[]" value="sulphites">
+        <label for="sulphites">Sulphites</label>
+        </p>
+
+        <p>
+        <input type="checkbox" id="mollusks" name="allergens[]" value="mollusks">
+        <label for="mollusks">Mollusks</label>
+        </p>
+    </div>
+            </p> -->
             <button class="button">Save</button>
         </form>

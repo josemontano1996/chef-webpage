@@ -38,3 +38,12 @@ textarea {
 .button {
   margin: 1rem auto;
 }
+
+#allergens {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#allergens input{
+  width: 1rem;
+}

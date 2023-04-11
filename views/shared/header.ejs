@@ -18,7 +18,7 @@
         <img src="" alt="" />
         <a <% if (locals.isAdmin) { %>
           href="/admin/orders" <% } else { %> href="/cart" <% } %>> <%
-          if(locals.cart.totalPrice !== 0 ) { %>
+          if(locals.cart.totalPrice !== 0 && !locals.isAdmin ) { %>
           <img
             id="cart-header-img"
             src="/img/cart-icon-button.png"
