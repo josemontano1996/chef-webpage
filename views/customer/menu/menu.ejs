@@ -11,6 +11,7 @@
 
   <nav id="side-scroll-nav">
     <ul class="side-scroll">
+      <li ><a href="#main-title">&#8962;</a></li>
       <li><a href="#starters">Starters</a></li>
         <li><a href="#main-dishes">Main Dishes</a></li>
         <li><a href="#side-dishes">Side Dishes</a></li>
@@ -57,9 +58,9 @@
        </ul>
     </section>
 
-    <% if (locals.cart.totalPrice) { %>
+    
     <section id="cart">
-        <a href="/customer/cart" ><span>
+        <a href="/cart" ><span>
            <img
               src="/img/cart-icon-button.png"
               alt="cart"
@@ -67,6 +68,7 @@
               <h4>Your Cart (<span id="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4></a>
         </span>
     </section>
-    <% } %>
+  
+    
   </main>
     <%- include("../../shared/footer") %> 

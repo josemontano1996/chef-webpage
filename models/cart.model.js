@@ -34,12 +34,12 @@ class Cart {
       const item = this.items[i];
       if (item.product.id === productId && newQuantity > 0) {
         const cartItem = { ...item };
-        const quantityChange = newQuantity - item.quantity;
+        const quantityChange = +newQuantity - item.quantity;
         cartItem.quantity = +newQuantity;
         cartItem.totalPrice = newQuantity * item.product.price;
         this.items[i] = cartItem;
 
-        this.totalQuantity = this.totalQuantity + quantityChange;
+        this.totalQuantity = +this.totalQuantity + quantityChange;
         this.totalPrice += quantityChange * item.product.price;
         return { updatedItemPrice: cartItem.totalPrice };
       } else if (item.product.id === productId && newQuantity <= 0) {

@@ -1,4 +1,5 @@
 const addItemButtonElements = document.querySelectorAll('#product-item-button');
+const cartElement = document.querySelector('#cart');
 const cartPriceElement = document.querySelector('#cart-price');
 
 async function addToCart(event) {
@@ -30,6 +31,21 @@ async function addToCart(event) {
   const newTotalPrice = responseData.newTotalPrice;
 
   cartPriceElement.textContent = newTotalPrice;
+
+  if (newTotalPrice > 0) {
+    cartElement.style.display = 'block';
+    localStorage.setItem('cartVisible', 'true');
+  } else {
+    cartElement.style.display = 'none';
+    localStorage.setItem('cartVisible', 'false');
+  }
+}
+
+// Check if the cart should be visible on page load
+if (localStorage.getItem('cartVisible') === 'true') {
+  cartElement.style.display = 'block';
+} else {
+  cartElement.style.display = 'none';
 }
 
 for (const addItemButtonElement of addItemButtonElements) {

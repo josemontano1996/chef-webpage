@@ -12,7 +12,12 @@
         <% } %>
     </ul>
      <div id="cart-total"> Total: <span id="cart-total-price"><%= locals.cart.totalPrice %></span> &euro; </div>
-     <button class="button">Make order</button>
+     <% if(locals.isAuth){ %>
+         <button class="button">Make order</button>
+
+     <% } else { %>
+        <p id="disclaimer">You must  <a href="/auth"> log in  or create an account </a> to make an order </p>
+     <% } %>
 </main>
 <%- include("../../shared/footer") %>
 

@@ -74,7 +74,9 @@ main {
   position: fixed;
   bottom: 0;
   background-color: var(--color-background);
+  display: none;
 }
+
 #cart a {
   display: flex;
   justify-content: center;

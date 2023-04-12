@@ -16,3 +16,13 @@ input {
   text-align: right;
   width: 45%;
 }
+
+#disclaimer {
+  text-align: center;
+}
+
+#disclaimer a {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
