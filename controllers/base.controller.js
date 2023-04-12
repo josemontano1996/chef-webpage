@@ -131,7 +131,7 @@ async function signup(req, res, next) {
     return next(error);
   }
 
-  res.redirect('/customer/orders');
+  res.redirect('/auth');
 }
 
 async function login(req, res, next) {

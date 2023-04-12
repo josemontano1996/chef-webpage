@@ -5,6 +5,7 @@
 <body>
     <%- include("../../shared/header") %>
 <main>
+    <section>
     <h3>Your cart</h3>
      <ul id="cart-items">
         <% for (const cartItem of locals.cart.items){ %>
@@ -12,12 +13,14 @@
         <% } %>
     </ul>
      <div id="cart-total"> Total: <span id="cart-total-price"><%= locals.cart.totalPrice %></span> &euro; </div>
+     
      <% if(locals.isAuth){ %>
-         <button class="button">Make order</button>
-
+      <button class="button"><a href="/orders/checkout">To checkout</a></button> 
      <% } else { %>
         <p id="disclaimer">You must  <a href="/auth"> log in  or create an account </a> to make an order </p>
      <% } %>
+     </section>
+
 </main>
 <%- include("../../shared/footer") %>
 

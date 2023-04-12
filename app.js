@@ -23,6 +23,7 @@ const adminRoutes = require('./routes/admin.routes');
 const customerRoutes = require('./routes/customer.routes');
 const menuRoutes = require('./routes/menu.routes');
 const cartRoutes = require('./routes/cart.routes');
+const ordersRoutes = require('./routes/orders.routes');
 
 const app = express();
 app.use(helmet());
@@ -59,6 +60,7 @@ app.use('/cart', cartRoutes);
 app.use(protectRoutesMiddeware);
 app.use('/admin', adminRoutes);
 app.use('/customer', customerRoutes);
+app.use('/orders', ordersRoutes);
 
 app.use(errorHandlerMiddleware);
 
