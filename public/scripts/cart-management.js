@@ -32,13 +32,6 @@ async function addToCart(event) {
 
   cartPriceElement.textContent = newTotalPrice;
 
-  if (newTotalPrice > 0) {
-    cartElement.style.display = 'block';
-    localStorage.setItem('cartVisible', 'true');
-  } else {
-    cartElement.style.display = 'none';
-    localStorage.setItem('cartVisible', 'false');
-  }
 }
 
 // Check if the cart should be visible on page load

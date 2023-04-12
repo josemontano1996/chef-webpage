@@ -48,10 +48,6 @@ function getLogin(req, res) {
   res.render('customer/auth/login', { inputData: sessionData });
 }
 
-function getOrders(req, res) {
-  res.render('customer/orders/orders');
-}
-
 async function signup(req, res, next) {
   const enteredData = {
     email: req.body.email,
@@ -204,7 +200,6 @@ module.exports = {
   getAuth: getAuth,
   getSignup: getSignup,
   getLogin: getLogin,
-  getOrders: getOrders,
   signup: signup,
   login: login,
   logout: logout,

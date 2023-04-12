@@ -14,11 +14,13 @@
     </ul>
      <div id="cart-total"> Total: <span id="cart-total-price"><%= locals.cart.totalPrice %></span> &euro; </div>
      
-     <% if(locals.isAuth){ %>
-      <button class="button"><a href="/orders/checkout">To checkout</a></button> 
-     <% } else { %>
+     <% if(!locals.isAuth){ %>
         <p id="disclaimer">You must  <a href="/auth"> log in  or create an account </a> to make an order </p>
-     <% } %>
+     <% } else if (locals.cart.totalPrice) { %>
+        <button class="button"><a href="/orders/checkout">To checkout</a></button> 
+     <% } else { %>
+        <p id="disclaimer">Your cart is empty, <a href="/menu"> check our Menu </a>to make an order </p>
+        <% } %>
      </section>
 
 </main>

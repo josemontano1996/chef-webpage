@@ -8,8 +8,6 @@ router.get('/about', baseController.getAbout);
 router.get('/auth', baseController.getAuth);
 router.get('/auth/signup', baseController.getSignup);
 router.get('/auth/login', baseController.getLogin);
-router.get('/orders', baseController.getOrders);
-
 
 router.post('/login', baseController.login);
 router.post('/signup', baseController.signup);

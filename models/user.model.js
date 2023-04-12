@@ -31,7 +31,10 @@ class User {
 
   static getUserWithSameId(id) {
     const mongoId = new mongodb.ObjectId(id);
-    return db.getDb().collection('users').findOne({ _id: mongoId });
+    return db
+      .getDb()
+      .collection('users')
+      .findOne({ _id: mongoId }, { projection: { password: 0 } });
   }
 
   getUserWithSameEmail() {
