@@ -4,15 +4,12 @@
 <body>
     <%- include("../../shared/header") %>
     <main >
-      <% if (!locals.isAuth) { %>
-      <div id="notAuth">
-      <p>You are not logged in, please click here to <a href="/auth"><span>Sign up or Log in</span></a>.</p>
-      <div>
-      <% } %>
-      
-       <h3>CUSTOMER ORDERS</h3>
-          
-      </div>
-    </div>
-</main>
+       <h3>All your orders</h3>
+       <ol>
+        <% for (const order of orders) {%>
+         <%- include('includes/order-item', {order:order})%>
+         <% } %>
+       </ol>
+        
+    </main>
 <%- include("../../shared/footer") %>

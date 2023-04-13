@@ -1,5 +1,6 @@
 <%- include("../../shared/head", {pageTitle: "Checkout"}) %>
 <link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/checkout.css">
 </head>
 <body>
     <%- include("../../shared/header") %>
@@ -10,7 +11,10 @@
   </section>
   <% } %>
      <section>
-        <h3>Your delivery data</h3>
+      <h2>Checkout</h2>
+      <h3> <p>Total order price: <span><%= locals.cart.totalPrice %></span> &euro;</p></h3>
+      <hr>
+        <h4>Your delivery data</h4>
         <form action="/orders" method="POST">
       <p>
         <label for="fullname">Full Name</label>
@@ -84,6 +88,7 @@
           required
         />
       </p>
+      <hr>
       <p>
         <label for="pickup">If you want to pick-up your order please select this field.</label>
        <input type="checkbox" name="pickup" id="pickup" />
@@ -94,7 +99,7 @@
        <textarea name="request" id="request" rows="5"></textarea>
 
       </p>
-      <p>Total order price: <span><%= locals.cart.totalPrice %></span> &euro;</p>
+     
             <button class="button">Place order</button>
         </form>
      </section>

@@ -6,7 +6,11 @@
     <%- include("../../shared/header") %>
 <main>
     <section>
-    <h3>Your cart</h3>
+      <div class="flexbox-container">
+<h3>Your cart</h3>
+<h3 ><a href="/orders" class="orders-button">To your Orders</a></h3>
+      </div>
+    
      <ul id="cart-items">
         <% for (const cartItem of locals.cart.items){ %>
         <li class="cart-item"><%- include("includes/cart-item", {item: cartItem}) %></li>
@@ -17,7 +21,7 @@
      <% if(!locals.isAuth){ %>
         <p id="disclaimer">You must  <a href="/auth"> log in  or create an account </a> to make an order </p>
      <% } else if (locals.cart.totalPrice) { %>
-        <button class="button"><a href="/orders/checkout">To checkout</a></button> 
+        <h3> <button class="button"><a href="/orders/checkout">To checkout</a></button> </h3>
      <% } else { %>
         <p id="disclaimer">Your cart is empty, <a href="/menu"> check our Menu </a>to make an order </p>
         <% } %>

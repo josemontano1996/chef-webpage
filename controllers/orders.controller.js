@@ -4,12 +4,20 @@ const sessionFlash = require('../util/session-flash');
 const User = require('../models/user.model');
 const Order = require('../models/order.model');
 
-function getOrders(req, res) {
-  res.render('customer/orders/orders');
+async function getOrders(req, res, next) {
+ 
+  try {
+    const orders = await Order.findAllForUser(res.locals.userid);
+    
+    res.render('customer/orders/orders', { orders: orders });
+  } catch (error) {
+    return next(error);
+  }
 }
 
 async function checkOut(req, res, next) {
   let sessionData = sessionFlash.getSessionData(req);
+
   if (!sessionData) {
     sessionData = {
       email: '',
@@ -26,8 +34,9 @@ async function checkOut(req, res, next) {
   }
 
   try {
-    const userid = req.session.userid;
+    const userid = res.locals.userid;
     const userData = await User.getUserWithSameId(userid);
+
     res.render('customer/cart/checkout', {
       user: userData,
       inputData: sessionData,
@@ -39,6 +48,8 @@ async function checkOut(req, res, next) {
 
 async function placeOrder(req, res, next) {
   const cart = res.locals.cart;
+  const userId = res.locals.userid;
+
   const validationData = {
     name: req.body.fullname,
     phone: req.body.phone,
@@ -75,6 +86,7 @@ async function placeOrder(req, res, next) {
     const order = new Order(
       cart,
       {
+        _id: userId,
         fullname: req.body.fullname,
         phone: req.body.phone,
         street: req.body.street,
