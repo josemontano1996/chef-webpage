@@ -8,6 +8,7 @@ class Order {
     status = 'pending',
     deliveryDate,
     pickup = false,
+    request = '',
     orderDate,
     orderId
   ) {
@@ -23,6 +24,7 @@ class Order {
       year: 'numeric',
     });
     this.pickup = pickup;
+    this.request = request;
     this.orderDate = orderDate;
     this.id = orderId;
   }
@@ -36,6 +38,7 @@ class Order {
         status: this.status,
         deliveryDate: this.deliveryDate,
         pickup: this.pickup,
+        request: this.request,
         orderDate: new Date().toLocaleDateString('en-US', {
           hour: 'numeric',
           minute: 'numeric',

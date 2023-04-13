@@ -1,3 +1,5 @@
+const Order = require('../models/order.model');
+
 function isValid(value) {
   return value && value.trim() !== '';
 }
@@ -26,6 +28,26 @@ function userDetailsAreValid(
   );
 }
 
+function orderDetailsAreValid(
+  name,
+  phone,
+  street,
+  postal,
+  city,
+  country,
+  deliveryDate
+) {
+  return (
+    isValid(name) &&
+    isValid(phone) &&
+    isValid(street) &&
+    isValid(postal) &&
+    isValid(city) &&
+    isValid(country) &&
+    isValid(deliveryDate)
+  );
+}
+
 function emailsPasswordsMatch(email, confirmEmail, password, confirmPassword) {
   return email === confirmEmail && password === confirmPassword;
 }
@@ -33,4 +55,5 @@ function emailsPasswordsMatch(email, confirmEmail, password, confirmPassword) {
 module.exports = {
   userDetailsAreValid: userDetailsAreValid,
   emailsPasswordsMatch: emailsPasswordsMatch,
+  orderDetailsAreValid: orderDetailsAreValid,
 };

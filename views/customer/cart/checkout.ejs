@@ -4,7 +4,11 @@
 <body>
     <%- include("../../shared/header") %>
 <main>
-
+<% if (inputData.errorMessage) { %>
+  <section class="alert">
+    <p><%= inputData.errorMessage %></p>
+  </section>
+  <% } %>
      <section>
         <h3>Your delivery data</h3>
         <form action="/orders" method="POST">
@@ -14,7 +18,7 @@
           type="text"
           name="fullname"
           id="fullname"
-          value="<%= user.name %>"
+          value="<%= inputData.errorMessage ? inputData.name : user.name %>"
           required
         />
       </p>
@@ -24,7 +28,7 @@
           type="tel"
           name="phone"
           id="phone"
-          value="<%=user.phone%>"
+          value="<%= inputData.errorMessage ? inputData.phone : user.phone %>"
           required
         />
       </p>
@@ -34,7 +38,7 @@
           type="text"
           name="street"
           id="street"
-          value="<%=user.address.street%>"
+         value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
           required
         />
       </p>
@@ -46,7 +50,7 @@
           id="postal"
           minlength="5"
           maxlength="5"
-          value="<%=user.address.postal%>"
+          value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
           required
         />
       </p>
@@ -56,7 +60,7 @@
           type="text"
           name="city"
           id="city"
-          value="<%=user.address.city%>"
+         value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
           required
         />
       </p>
@@ -66,7 +70,7 @@
           type="text"
           name="country"
           id="contry"
-          value="<%=user.address.country%>"
+          value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
           required
         />
       </p>
@@ -76,12 +80,18 @@
           type="datetime-local"
           name="deliveryDate"
           id="deliveryDate"
+          <% if (inputData.errorMessage) { %> value="<%= inputData.deliveryDate %>" <% } %>
           required
         />
       </p>
       <p>
-        <label for="pickup">If you want to pick-up your order please select this field</label>
+        <label for="pickup">If you want to pick-up your order please select this field.</label>
        <input type="checkbox" name="pickup" id="pickup" />
+
+      </p>
+      <p>
+        <label for="request">If you have any special request please write it here.</label>
+       <textarea name="request" id="request" rows="5"></textarea>
 
       </p>
       <p>Total order price: <span><%= locals.cart.totalPrice %></span> &euro;</p>
