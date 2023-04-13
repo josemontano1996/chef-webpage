@@ -1,11 +1,11 @@
 <form action="/login" method="POST" id="login-form">
   <p>
     <label for="email">Email</label>
-    <input type="text" name="email" id="email" required />
+    <input type="text" name="email" id="email" required <% if (inputData.errorMessage) { %> value="<%= inputData.email %>" <% } %> />
   </p>
   <p>
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" required />
+    <input type="password" name="password" id="password" required <% if (inputData.errorMessage) { %> value="<%= inputData.password %>" <% } %> />
   </p>
   <button class="button-alt">Log in</button>
 </form>

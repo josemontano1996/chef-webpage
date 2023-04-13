@@ -12,7 +12,21 @@ function getAbout(req, res) {
 }
 
 function getAuth(req, res) {
-  res.render('customer/auth/auth');
+ 
+ const sessionData = {
+      email: '',
+      confirmEmail: '',
+      password: '',
+      confirmPassword: '',
+      name: '',
+      phone: '',
+      street: '',
+      postal: '',
+      city: '',
+      country: '',
+    };
+  
+  res.render('customer/auth/auth', { inputData: sessionData });
 }
 
 function getSignup(req, res) {

@@ -1,11 +1,17 @@
 <form action="/signup" method="POST" id="signup-form">
   <p>
     <label for="signup-email">E-mail</label>
-    <input type="email" name="email" id="signup-email" required />
+    <input type="email" name="email" id="signup-email" <% if (inputData.errorMessage) { %> value="<%= inputData.password %>" <% } %> required />
   </p>
   <p>
     <label for="confirm-email">Confirm Email</label>
-    <input type="email" name="confirm-email" id="confirm-email" required />
+    <input
+      type="email"
+      name="confirm-email"
+      id="confirm-email"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.confirmEmail %>" <% } %>
+      required
+       />
   </p>
   <p>
     <label for="signup-password">Password</label>
@@ -13,9 +19,10 @@
       type="password"
       name="password"
       id="signup-password"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.password %>" <% } %>
       required
       minlength="8"
-    />
+     />
   </p>
   <p>
     <label for="confirm-password">Confirm Password</label>
@@ -23,9 +30,10 @@
       type="password"
       name="confirm-password"
       id="confirm-password"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.confirmPassword %>" <% } %>
       required
       minlength="8"
-    />
+     />
   </p>
   <h2>Personal Data</h2>
   <p>
@@ -35,8 +43,9 @@
       name="fullname"
       id="fullname"
       placeholder="Josep Maximilian"
+      <%if (inputData.errorMessage) { %> value="<%= inputData.name %>"<% } %>
       required
-    />
+      />
   </p>
   <p>
     <label for="phone">Contact Phone</label>
@@ -45,8 +54,9 @@
       name="phone"
       id="phone"
       placeholder="+352 5263942315"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.password %>" <% } %>
       required
-    />
+      />
   </p>
   <p>
     <label for="address">Address</label>
@@ -55,8 +65,9 @@
       name="street"
       id="street"
       placeholder="Street name and Number"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.street %>" <% } %>
       required
-    />
+       />
   </p>
   <p>
     <label for="PLZ">PLZ</label>
@@ -67,8 +78,9 @@
       placeholder="98554"
       minlength="5"
       maxlength="5"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.postal %>" <% } %>
       required
-    />
+     />
   </p>
   <p>
     <label for="city">City</label>
@@ -77,16 +89,18 @@
       name="city"
       id="city"
       placeholder="Echternach"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.city %>" <% } %>
       required
-    />
+     />
   </p>
   <p>
     <label for="country">Country</label>
     <input
       type="text"
       name="country"
-      id="contry"
+      id="country"
       placeholder="Luxembourg"
+      <% if (inputData.errorMessage) { %> value="<%= inputData.country %>" <% } %>
       required
     />
   </p>

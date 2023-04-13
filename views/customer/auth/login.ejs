@@ -11,16 +11,15 @@
   <section class="alert">
     <p><%= inputData.errorMessage %></p>
   </section>
-
   <% } %>
 
   <section id="signup">
     <h2>Create new Account</h2>
-    <%- include('includes/signup-form')%>
+    <%- include('includes/signup-form', {inputData: inputData})%>
   </section>
   <section id="login">
     <h2>Log in</h2>
-    <%- include('includes/login-form')%>
+    <%- include('includes/login-form', {inputData: inputData})%>
   </section>
 </main>
 <%- include("../../shared/footer") %> 
