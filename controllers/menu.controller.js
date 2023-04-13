@@ -2,6 +2,7 @@ const Product = require('../models/product.model');
 
 async function getMenu(req, res, next) {
   let product;
+
   try {
     product = await Product.findAll();
     res.render('customer/menu/menu', {
@@ -9,6 +10,7 @@ async function getMenu(req, res, next) {
       mainDishes: product.mainDishes,
       sideDishes: product.sideDishes,
       desserts: product.desserts,
+      cart: res.locals.cart,
     });
   } catch (error) {
     return next(error);

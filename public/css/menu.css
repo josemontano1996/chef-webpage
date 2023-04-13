@@ -69,40 +69,41 @@ main {
   width: 100%;
 }
 
-#cart {
+.cart {
   width: 100%;
   position: fixed;
   bottom: 0;
   background-color: var(--color-background);
 }
 
-#cart a {
+.cart a {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 9vh;
 }
-#cart span,
-#cart h4 {
+.cart span,
+.cart h4 {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
 }
 
-#cart span {
+.cart span {
   height: 60%;
   padding: 6px;
   border-radius: 30px;
   background-color: var(--color-button);
 }
-#cart h4 {
+.cart h4 {
   font-size: 1.3rem;
 }
 
 button:hover {
   cursor: pointer;
 }
+
 
 .menu-item .price {
   font-size: 1.5rem;

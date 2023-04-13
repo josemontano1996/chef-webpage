@@ -1,6 +1,6 @@
 const addItemButtonElements = document.querySelectorAll('#product-item-button');
-const cartElement = document.querySelector('#cart');
-const cartPriceElement = document.querySelector('#cart-price');
+const cartElement = document.querySelector('.cart');
+const cartPriceElement = document.querySelector('.cart-price');
 
 async function addToCart(event) {
   const productId = event.target.dataset.productid;
@@ -30,15 +30,19 @@ async function addToCart(event) {
 
   const newTotalPrice = responseData.newTotalPrice;
 
-  cartPriceElement.textContent = newTotalPrice;
-
-}
-
-// Check if the cart should be visible on page load
-if (localStorage.getItem('cartVisible') === 'true') {
-  cartElement.style.display = 'block';
-} else {
-  cartElement.style.display = 'none';
+  if (!cartElement) {
+    const newSectionElement = document.createElement('section');
+    newSectionElement.classList.add('cart');
+    newSectionElement.innerHTML = `
+        <a href="/cart"><span>
+          <img src="/img/cart-icon-button.png" alt="cart" />
+          <h4>Your Cart (<span class="cart-price">${newTotalPrice}</span>&euro;)</h4>
+        </span></a>
+      `;
+    document.body.appendChild(newSectionElement);
+  } else {
+    cartPriceElement.textContent = newTotalPrice;
+  }
 }
 
 for (const addItemButtonElement of addItemButtonElements) {

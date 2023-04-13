@@ -1,5 +1,6 @@
  <%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
 <link rel="stylesheet" href="/css/menu.css">
+
 <script src="/scripts/menu-scroll.js" defer></script>
 <script src="/scripts/cart-management.js" defer></script>
 </head>
@@ -58,17 +59,17 @@
        </ul>
     </section>
 
-    
-    <section id="cart">
+ <% if (cart.totalPrice) { %>
+    <section class="cart">
         <a href="/cart" ><span>
            <img
               src="/img/cart-icon-button.png"
               alt="cart"
             />
-              <h4>Your Cart (<span id="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4></a>
+              <h4>Your Cart (<span class="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4></a>
         </span>
     </section>
-  
+  <% } %>
     
   </main>
     <%- include("../../shared/footer") %> 
