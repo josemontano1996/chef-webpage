@@ -1,15 +1,32 @@
 <li>
   <article>
     <div>
-      <h3>Overall info about the order</h3>
+      <h3>Order Information</h3>
       <div>
-        <h4>Order placed</h4>
-        <p><%= order.deliveryDate %></p>
-      </div>
-      <div>
-        <h4>Total amount</h4>
-        <p>order.productData.totalPrice</p>
-      </div>
+        <h4>Order placed for: <span><%= order.deliveryDate %></span></h4>
+        <p>
+          <% for(let i=0; i<order.productData.items.length; i++) { %>
+          <%= order.productData.items[i].quantity %> <%= order.productData.items[i].product.name %>
+          <% if(i === order.productData.items.length - 1) { %>
+           .
+          <% } else { %>
+              ,
+           <% } %>
+        <% } %>
+        </p>
+       <div class="flexbox-container"><p>Status: <%= order.status %>.</p>
+      <p>Pickup?: <% if(order.pickup){ %>
+      Yes.
+    <% } else { %>
+    No. %>
+  <% } %></p></div>
+  <div class="flexbox-container">
+    <div>
+      <p>Order ref: <%=order.id%></p>
+      <h4>Total amount: <%= order.productData.totalPrice %> &euro;</h4>
     </div>
+  <button class="button"><a href="/orders/<%=order.id%>">Check Order</a></button>
+</div>
+      <hr>
   </article>
 </li>

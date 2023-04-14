@@ -43,7 +43,7 @@ class Order {
         o.pickup,
         o.request,
         o.orderDate,
-        o.orderId,
+        (o.orderId = o._id.toString()),
         o.chefMessage
       );
     });
@@ -67,11 +67,11 @@ class Order {
         o.pickup,
         o.request,
         o.orderDate,
-        o.orderId,
+        (o.orderId = o._id.toString()),
         o.chefMessage
       );
     });
-    
+
     return orders;
   }
 

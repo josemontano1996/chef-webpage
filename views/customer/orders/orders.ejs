@@ -4,7 +4,7 @@
 <body>
     <%- include("../../shared/header") %>
     <main >
-       <h3>All your orders</h3>
+       <h3 id="order">All your orders</h3>
        <ol>
         <% for (const order of orders) {%>
          <%- include('includes/order-item', {order:order})%>

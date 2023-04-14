@@ -108,6 +108,11 @@ h4 {
   font-weight: bold;
 }
 
+ul,
+ol {
+  padding-left: 0;
+}
+
 li {
   text-decoration: none;
   list-style: none;
@@ -121,6 +126,11 @@ a {
 a:hover,
 a:active {
   cursor: pointer;
+}
+
+hr {
+  border-color: var(--color-button-alt);
+  margin: 15px auto;
 }
 
 .flexbox-container {
