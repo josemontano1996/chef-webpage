@@ -76,12 +76,36 @@ class Order {
   }
 
   static async findById(orderId) {
+    let objectId;
+    try {
+      objectId = new mongodb.ObjectId(orderId);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+
     const order = await db
       .getDb()
       .collection('orders')
-      .findOne({ _id: new mongodb.ObjectId(orderId) });
+      .findOne({ _id: objectId });
 
-    return this.transformOrderDocument(order);
+    if (!order) {
+      const error = new Error('Could not find order');
+      error.code = 404;
+      throw error;
+    }
+
+    return new Order(
+      order.productData,
+      order.userData,
+      order.status,
+      order.deliveryDate,
+      order.pickup,
+      order.request,
+      order.orderDate,
+      order._id.toString(),
+      order.chefMessage
+    );
   }
 
   async save() {
@@ -127,6 +151,11 @@ class Order {
 
       return db.getDb().collection('orders').insertOne(orderDocument);
     }
+  }
+
+  async remove() {
+    const mongoId = new mongodb.ObjectId(this.id);
+    await db.getDb().collection('orders').deleteOne({ _id: mongoId });
   }
 }
 

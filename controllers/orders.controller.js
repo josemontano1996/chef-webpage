@@ -109,8 +109,22 @@ async function placeOrder(req, res, next) {
   res.redirect('/orders');
 }
 
+async function deleteComment(req, res, next) {
+  
+  
+  try {
+    const order = await Order.findById(req.params.id);
+    await order.remove();
+  } catch (error) {
+    return next(error);
+  }
+
+  res.json({ message: 'Deleted Order' });
+}
+
 module.exports = {
   placeOrder: placeOrder,
   checkOut: checkOut,
   getOrders: getOrders,
+  deleteComment: deleteComment,
 };

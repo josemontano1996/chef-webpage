@@ -1,6 +1,20 @@
-#notAuth {
-  margin: 0 5%;
-  text-align: center;
+.bottom-h4 {
+  margin: 1.5rem auto 1rem auto;
+  padding: 0.3rem;
+}
+
+.delete-button,
+.confirm-delete-button {
+  width: 30%;
+  height: 50%;
+  margin: auto 0;
+  margin-bottom: 1rem;
+}
+
+.confirm-delete-button {
+  display: none;
+  background-color: red;
+  color: white;
 }
 
 span {

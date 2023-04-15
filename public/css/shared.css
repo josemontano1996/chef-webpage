@@ -138,7 +138,7 @@ hr {
   justify-content: space-between;
 }
 
-.button {
+.button, button {
   color: var(--color-black);
   border: none;
   background-color: var(--color-button);

@@ -1,4 +1,4 @@
-<li>
+<li class="order-li">
   <article>
     <div>
       <h3>Order Information</h3>
@@ -23,10 +23,16 @@
   <div class="flexbox-container">
     <div>
       <p>Order ref: <%=order.id%></p>
-      <h4>Total amount: <%= order.productData.totalPrice %> &euro;</h4>
+      <h4 class="bottom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
     </div>
-  <button class="button"><a href="/orders/<%=order.id%>">Check Order</a></button>
-</div>
+    <% if(order.status === "fulfilled") { %>
+      <button class="button" class="comment-button">Share your experience!</button>
+      <% } else if (order.status === "cancelled") {%>
+        <% } else { %>
+      <button class="delete-button" data-orderid="<%=order.id%>">Cancel Order</button>
+      <button class="confirm-delete-button" data-orderid="<%=order.id%>">Click again for canceling your order</button>
+      <% } %>
+    </div>
       <hr>
   </article>
 </li>

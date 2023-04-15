@@ -3,6 +3,7 @@ const deleteProductButtonElements = document.querySelectorAll(
 );
 
 async function deleteProduct(event) {
+  event.preventDefault();
   const productId = event.target.dataset.productid;
 
   const response = await fetch('/admin/menu/' + productId, {
