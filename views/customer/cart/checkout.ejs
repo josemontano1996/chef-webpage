@@ -89,13 +89,17 @@
         />
       </p>
       <hr>
-      <p>
-        <label for="pickup">If you want to pick-up your order please select this field.</label>
+      <p id="pickup-section">
+        <label for="pickup">Check the box below if you prefer to pick up your package at:
+          <br><span>
+            <%= orderDataFlash.pickupAddress.street + ', ' + orderDataFlash.pickupAddress.postal + ', ' + orderDataFlash.pickupAddress.city + ', ' + orderDataFlash.pickupAddress.country%>.
+          </span>
+          </label>
        <input type="checkbox" name="pickup" id="pickup" />
 
       </p>
       <p>
-        <label for="request">If you have any special request please write it here.</label>
+        <label for="request" id="request-section" >If you have any special request please write it here.</label>
        <textarea name="request" id="request" rows="5"></textarea>
 
       </p>

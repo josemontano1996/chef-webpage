@@ -1,4 +1,12 @@
-.bottom-h4 {
+section {
+  margin: 1rem auto;
+}
+
+.order-management {
+  margin-bottom: 0;
+}
+
+.buttom-h4 {
   margin: 1.5rem auto 1rem auto;
   padding: 0.3rem;
 }
@@ -15,6 +23,25 @@
   display: none;
   background-color: red;
   color: white;
+}
+
+.message-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0;
+}
+
+.chef-messages {
+  text-align: right;
+}
+
+.messages-hr{
+  margin: auto 0;
+}
+
+.italic {
+  text-decoration: none;
+  font-style: italic;
 }
 
 span {

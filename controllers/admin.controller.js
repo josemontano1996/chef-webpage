@@ -1,7 +1,14 @@
 const Product = require('../models/product.model');
+const Order = require('../models/order.model');
 
-function getOrders(req, res) {
-  res.render('admin/orders/orders');
+async function getOrders(req, res) {
+  try {
+    const orders = await Order.findAll();
+
+    res.render('admin/orders/orders', { orders: orders });
+  } catch (error) {
+    return next(error);
+  }
 }
 
 function getAccount(req, res) {

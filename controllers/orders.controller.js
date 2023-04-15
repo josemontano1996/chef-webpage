@@ -36,9 +36,14 @@ async function checkOut(req, res, next) {
     const userid = res.locals.userid;
     const userData = await User.getUserWithSameId(userid);
 
+    const orderDataFlash = new Order();
+    //I use the orderDataFlash to create a new Order instance
+    //and pass to the template the Pickup Address data.
+    
     res.render('customer/cart/checkout', {
       user: userData,
       inputData: sessionData,
+      orderDataFlash: orderDataFlash,
     });
   } catch (error) {
     return next(error);
@@ -110,8 +115,6 @@ async function placeOrder(req, res, next) {
 }
 
 async function deleteComment(req, res, next) {
-  
-  
   try {
     const order = await Order.findById(req.params.id);
     await order.remove();

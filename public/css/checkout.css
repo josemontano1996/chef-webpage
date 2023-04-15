@@ -8,3 +8,11 @@ input {
 .button{
     font-weight: bold;
 }
+
+#pickup-section label span{
+  font-style: italic;
+}
+
+#request-section{
+  margin-bottom: 0.5rem;
+}

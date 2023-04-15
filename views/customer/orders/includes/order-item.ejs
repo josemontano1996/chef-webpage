@@ -3,36 +3,74 @@
     <div>
       <h3>Order Information</h3>
       <div>
-        <h4>Order placed for: <span><%= order.deliveryDate %></span></h4>
-        <p>
+        <section>
+          <h4>Order placed for: <span><%= order.deliveryDate %></span></h4>
+        </section>
+        <section>
           <% for(let i=0; i<order.productData.items.length; i++) { %>
-          <%= order.productData.items[i].quantity %> <%= order.productData.items[i].product.name %>
-          <% if(i === order.productData.items.length - 1) { %>
-           .
-          <% } else { %>
+            <%= order.productData.items[i].quantity %> <%= order.productData.items[i].product.name %>
+            <% if(i === order.productData.items.length - 1) { %>
+              .
+            <% } else { %>
               ,
-           <% } %>
-        <% } %>
-        </p>
-       <div class="flexbox-container"><p>Status: <%= order.status %>.</p>
-      <p>Pickup?: <% if(order.pickup){ %>
-      Yes.
-    <% } else { %>
-    No. %>
-  <% } %></p></div>
-  <div class="flexbox-container">
-    <div>
-      <p>Order ref: <%=order.id%></p>
-      <h4 class="bottom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
-    </div>
-    <% if(order.status === "fulfilled") { %>
-      <button class="button" class="comment-button">Share your experience!</button>
-      <% } else if (order.status === "cancelled") {%>
+            <% } %>
+          <% } %>
+        </section>
+      </div>
+      <section>Status: <%= order.status %>.</section>
+      <section>
+        <% if(order.pickup) { %>
+          Delivery address:
+          <span class="italic">
+            <%= order.pickupAddress.street + ', ' + order.pickupAddress.postal + ', ' + order.pickupAddress.city + ', ' + order.pickupAddress.country %>.
+          </span>
         <% } else { %>
-      <button class="delete-button" data-orderid="<%=order.id%>">Cancel Order</button>
-      <button class="confirm-delete-button" data-orderid="<%=order.id%>">Click again for canceling your order</button>
-      <% } %>
-    </div>
+          Pickup at:
+          <span class="italic">
+            <%= order.userData.street+ ', ' + order.userData.postal + ', ' + order.userData.city + ', ' + order.userData.country %>.
+          </span>
+        <% } %>
+      </section>
+      <section class="flexbox-container order-management">
+        <div>
+          <p>Order ref: <%= order.id %></p>
+          <h4 class="bttom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
+        </div>
+        <% if(order.status === "fulfilled") { %>
+          <button class="button" class="comment-button">Share your experience!</button>
+        <% } else if (order.status === "cancelled") { %>
+        <% } else { %>
+          <button class="delete-button" data-orderid="<%= order.id %>">Cancel Order</button>
+          <button class="confirm-delete-button" data-orderid="<%= order.id %>">Click again for canceling your order</button>
+        <% } %>
+      </section>
+      <section class="message-section">
+        <div>
+          <% if(order.request) { %>
+            <h4>Your requests:</h4>
+            <ol>
+              <% for (const orderRequest of order.request.slice(1)) { %>
+                <% if (orderRequest) { %>
+                  <li class="li-p">
+                    <p class="italic"><%= orderRequest[0] ? orderRequest[0].toLocaleString() : '' %></p>
+                    <p><%= orderRequest[1] ? orderRequest[1] : '' %></p>
+                  </li>
+                <% } %>
+              <% } %>
+            </ol>
+          <% } %>
+        </div>
+        <div class="chef-messages">
+          <h4>Chef messages:</h4>
+          <ol>
+            <li>
+              <p class="italic">14febreto 303014</p>
+              <p>Okay todo perfecto</p>
+            </li>
+          </ol>
+        </div>
+      </section>
       <hr>
+    </div>
   </article>
 </li>

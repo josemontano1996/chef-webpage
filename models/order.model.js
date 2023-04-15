@@ -10,20 +10,35 @@ class Order {
     status = 'pending',
     deliveryDate,
     pickup = false,
-    request = '',
+    request,
     orderDate,
     orderId,
-    chefMessage = ''
+    chefMessage = '',
+    pickupAddress = {
+      street: '2 Rue Genistre',
+      postal: '1623',
+      city: 'Luxembourg',
+      country: 'Luxembourg',
+    }
   ) {
     this.productData = productData;
     this.userData = userData;
     this.status = status;
     this.deliveryDate = deliveryDate;
     this.pickup = pickup;
-    this.request = request;
+    if (request) {
+      this.request = [new Date(), request];
+    } else {
+      this.request = '';
+    }
     this.orderDate = orderDate;
     this.id = orderId;
-    this.chefMessage = chefMessage;
+    if (chefMessage) {
+      this.chefMessage = [new Date(), chefMessage];
+    } else {
+      this.chefMessage = '';
+    }
+    this.pickupAddress = pickupAddress;
   }
 
   static async findAll() {
@@ -44,7 +59,8 @@ class Order {
         o.request,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage
+        o.chefMessage,
+        o.pickupAddress
       );
     });
 
@@ -57,7 +73,7 @@ class Order {
       .collection('orders')
       .find({ 'userData._id': userId })
       .toArray();
-
+      
     const orders = ordersArray.map((o) => {
       return new Order(
         o.productData,
@@ -68,7 +84,8 @@ class Order {
         o.request,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage
+        o.chefMessage,
+        o.pickupAddress
       );
     });
 
@@ -104,7 +121,8 @@ class Order {
       order.request,
       order.orderDate,
       order._id.toString(),
-      order.chefMessage
+      order.chefMessage,
+      order.pickupAddress
     );
   }
 
