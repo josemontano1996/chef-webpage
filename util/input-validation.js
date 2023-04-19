@@ -1,4 +1,3 @@
-const Order = require('../models/order.model');
 
 function isValid(value) {
   return value && value.trim() !== '';
@@ -30,6 +29,7 @@ function userDetailsAreValid(
 
 function orderDetailsAreValid(
   name,
+  email,
   phone,
   street,
   postal,
@@ -39,6 +39,8 @@ function orderDetailsAreValid(
 ) {
   return (
     isValid(name) &&
+    email &&
+    email.includes('@') &&
     isValid(phone) &&
     isValid(street) &&
     isValid(postal) &&

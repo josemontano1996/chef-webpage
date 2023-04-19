@@ -3,7 +3,7 @@ const mongodb = require('mongodb');
 const db = require('../data/database');
 
 class Order {
-  //status => pending, accepted, fulfilled, cancelled
+  //status => pending, accepted, fulfilled, Cancellation Requested, cancelled
   constructor(
     productData,
     userData,
@@ -136,9 +136,7 @@ class Order {
           { _id: mongoId },
           {
             $set: {
-              status: this.status,
-              deliveryDate: this.deliveryDate,
-              chefMessage: this.chefMessage,
+              status: this.status
             },
           }
         );

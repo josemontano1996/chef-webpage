@@ -9,6 +9,6 @@ router.get('/checkout', ordersController.checkOut);
 
 router.post('/', ordersController.placeOrder);
 
-router.delete('/:id', ordersController.deleteComment)
+router.patch('/:id', ordersController.cancelRequest)
 
 module.exports = router;

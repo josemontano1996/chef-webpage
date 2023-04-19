@@ -1,15 +1,21 @@
-<%- include("../../shared/head", {pageTitle: "Adming Orders"}) %>
-<link rel="stylesheet" href="css/orders.css" />
+<%- include("../../shared/head", {pageTitle: "Orders administration"}) %>
+<link rel="stylesheet" href="/css/orders.css" />
+<script src="/scripts/user-delete-order.js" defer></script>
+<script src="/scripts/user-confirm-delete-order.js" defer></script>
 </head>
 <body>
     <%- include("../../shared/header") %>
     <main >
-       <h3 id="order">All your orders</h3>
+       <h3 id="order">Order Administration</h3>
+       <nav>
+        <ul>
+          <li></li>
+        </ul>
+      </nav>
        <ol>
         <% for (const order of orders) {%>
          <%- include('includes/order-item', {order:order})%>
          <% } %>
        </ol>
-        
     </main>
 <%- include("../../shared/footer") %>

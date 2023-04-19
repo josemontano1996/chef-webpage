@@ -1,9 +1,9 @@
-const deleteButtonElements = document.querySelectorAll('.delete-button');
+const deleteButtonElements = document.querySelectorAll('.cancel-button');
 
 function showConfirmButton(event) {
   const deleteButton = event.target;
   const confirmDeleteButton = deleteButton.parentElement.querySelector(
-    '.confirm-delete-button'
+    '.confirm-cancel-button'
   );
   deleteButton.style.display = 'none';
   confirmDeleteButton.style.display = 'block';

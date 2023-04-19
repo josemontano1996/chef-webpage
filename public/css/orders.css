@@ -11,15 +11,15 @@ section {
   padding: 0.3rem;
 }
 
-.delete-button,
-.confirm-delete-button {
+.cancel-button,
+.confirm-cancel-button {
   width: 30%;
   height: 50%;
   margin: auto 0;
   margin-bottom: 1rem;
 }
 
-.confirm-delete-button {
+.confirm-cancel-button {
   display: none;
   background-color: red;
   color: white;

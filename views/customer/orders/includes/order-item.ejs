@@ -17,15 +17,15 @@
           <% } %>
         </section>
       </div>
-      <section>Status: <%= order.status %>.</section>
+      <section class="order-status">Status: <%= order.status %>.</section>
       <section>
         <% if(order.pickup) { %>
-          Delivery address:
+          Pickup at:
           <span class="italic">
             <%= order.pickupAddress.street + ', ' + order.pickupAddress.postal + ', ' + order.pickupAddress.city + ', ' + order.pickupAddress.country %>.
           </span>
         <% } else { %>
-          Pickup at:
+          Delivery address:
           <span class="italic">
             <%= order.userData.street+ ', ' + order.userData.postal + ', ' + order.userData.city + ', ' + order.userData.country %>.
           </span>
@@ -38,10 +38,10 @@
         </div>
         <% if(order.status === "fulfilled") { %>
           <button class="button" class="comment-button">Share your experience!</button>
-        <% } else if (order.status === "cancelled") { %>
-        <% } else { %>
-          <button class="delete-button" data-orderid="<%= order.id %>">Cancel Order</button>
-          <button class="confirm-delete-button" data-orderid="<%= order.id %>">Click again for canceling your order</button>
+        <% } else if (order.status === "cancelled" || order.status === "Cancellation Requested") { %>
+       <% } else { %>
+          <button class="cancel-button" data-orderid="<%= order.id %>">Cancel Order</button>
+          <button class="confirm-cancel-button" data-orderid="<%= order.id %>">Click again for canceling your order</button>
         <% } %>
       </section>
       <section class="message-section">

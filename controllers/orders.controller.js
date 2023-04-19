@@ -39,7 +39,7 @@ async function checkOut(req, res, next) {
     const orderDataFlash = new Order();
     //I use the orderDataFlash to create a new Order instance
     //and pass to the template the Pickup Address data.
-    
+
     res.render('customer/cart/checkout', {
       user: userData,
       inputData: sessionData,
@@ -56,6 +56,7 @@ async function placeOrder(req, res, next) {
 
   const validationData = {
     name: req.body.fullname,
+    email: req.body.email,
     phone: req.body.phone,
     street: req.body.street,
     postal: req.body.postal,
@@ -66,6 +67,7 @@ async function placeOrder(req, res, next) {
   if (
     !inputValidation.orderDetailsAreValid(
       req.body.fullname,
+      req.body.email,
       req.body.phone,
       req.body.street,
       req.body.postal,
@@ -92,6 +94,7 @@ async function placeOrder(req, res, next) {
       {
         _id: userId,
         fullname: req.body.fullname,
+        email: req.body.email,
         phone: req.body.phone,
         street: req.body.street,
         postal: req.body.postal,
@@ -114,20 +117,31 @@ async function placeOrder(req, res, next) {
   res.redirect('/orders');
 }
 
-async function deleteComment(req, res, next) {
+async function cancelRequest(req, res, next) {
   try {
-    const order = await Order.findById(req.params.id);
-    await order.remove();
+    const cancellationOrder = new Order(
+      undefined,
+      undefined,
+      'Cancellation Requested',
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      req.params.id,
+      undefined,
+      undefined
+    );
+    await cancellationOrder.save();
   } catch (error) {
     return next(error);
   }
 
-  res.json({ message: 'Deleted Order' });
+  res.json({ message: 'Cancellation process started' });
 }
 
 module.exports = {
   placeOrder: placeOrder,
   checkOut: checkOut,
   getOrders: getOrders,
-  deleteComment: deleteComment,
+  cancelRequest: cancelRequest,
 };
