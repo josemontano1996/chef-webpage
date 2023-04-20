@@ -131,7 +131,7 @@ async function cancelRequest(req, res, next) {
       undefined,
       undefined
     );
-    await cancellationOrder.save();
+    await cancellationOrder.editStatus();
   } catch (error) {
     return next(error);
   }

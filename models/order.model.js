@@ -3,7 +3,7 @@ const mongodb = require('mongodb');
 const db = require('../data/database');
 
 class Order {
-  //status => pending, accepted, fulfilled, Cancellation Requested, cancelled
+  //status => Pending, Accepted, Fulfilled, Cancellation Requested, Cancelled
   constructor(
     productData,
     userData,
@@ -73,7 +73,7 @@ class Order {
       .collection('orders')
       .find({ 'userData._id': userId })
       .toArray();
-      
+
     const orders = ordersArray.map((o) => {
       return new Order(
         o.productData,
@@ -126,7 +126,26 @@ class Order {
     );
   }
 
+  async editStatus() {
+    const mongoId = new mongodb.ObjectId(this.id);
+
+    const order = await db
+      .getDb()
+      .collection('orders')
+      .findOne({ _id: mongoId });
+
+    if (order.status === 'Cancelled' || order.status === 'Fulfilled') {
+      return;
+    }
+
+    return db
+      .getDb()
+      .collection('orders')
+      .updateOne({ _id: mongoId }, { $set: { status: this.status } });
+  }
+
   async save() {
+    //EDIT THIS CODE LATER
     if (this.id) {
       const mongoId = new mongodb.ObjectId(this.id);
       return db
@@ -136,7 +155,7 @@ class Order {
           { _id: mongoId },
           {
             $set: {
-              status: this.status
+              status: this.status,
             },
           }
         );
