@@ -14,15 +14,12 @@ async function getOrders(req, res, next) {
   }
 }
 
-async function checkOut(req, res, next) {
+async function checkOut(req, res, next) { //I HAVE TO ADD THE DATE VALIDATION!!
   let sessionData = sessionFlash.getSessionData(req);
 
   if (!sessionData) {
     sessionData = {
       email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
       name: '',
       phone: '',
       street: '',

@@ -1,18 +1,93 @@
-<%- include("../../shared/head", {pageTitle: "Orders"}) %>
-<link rel="stylesheet" href="/css/orders.css" />
+<%- include("../../shared/head", {pageTitle: "User account"}) %>
+<link rel="stylesheet" href="/css/forms.css">
 </head>
 <body>
     <%- include("../../shared/header") %>
-    <main >
-      <% if (!locals.isAuth) { %>
-      <div id="notAuth">
-      <p>You are not logged in, please click here to <a href="/auth"><span>Sign up or Log in</span></a>.</p>
-      <div>
-      <% } %>
-      
-       <h3>CUSTOMER ACCOUNT</h3>
-          
-      </div>
-    </div>
+<main>
+<% if (inputData.errorMessage) { %>
+  <section class="alert">
+    <p><%= inputData.errorMessage %></p>
+  </section>
+  <% } %>
+     <section>
+        <h4>Your Personal Information</h4>
+        
+        <form action="/customer/<%=user.id%>" method="PATCH">
+      <p>
+        <label for="fullname">Your Name</label>
+        <input
+          type="text"
+          name="fullname"
+          id="fullname"
+          value="<%= inputData.errorMessage ? inputData.name : user.name %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="<%= inputData.errorMessage ? inputData.email : user.email %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="phone">Contact Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          value="<%= inputData.errorMessage ? inputData.phone : user.phone %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="street">Delivery Address</label>
+        <input
+          type="text"
+          name="street"
+          id="street"
+         value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="PLZ">PLZ</label>
+        <input
+          type="number"
+          name="postal"
+          id="postal"
+          minlength="5"
+          maxlength="5"
+          value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="city">City</label>
+        <input
+          type="text"
+          name="city"
+          id="city"
+         value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="country">Country</label>
+        <input
+          type="text"
+          name="country"
+          id="contry"
+          value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
+          required
+        />
+      </p>   
+            <button class="button">Update Your Data</button>
+        </form>
+     </section>
 </main>
 <%- include("../../shared/footer") %>
+
