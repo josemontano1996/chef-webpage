@@ -1,5 +1,6 @@
 <%- include("../../shared/head", {pageTitle: "User account"}) %>
 <link rel="stylesheet" href="/css/forms.css">
+<script defer src="/scripts/update-customer-info.js" ></script>
 </head>
 <body>
     <%- include("../../shared/header") %>
@@ -8,11 +9,11 @@
   <section class="alert">
     <p><%= inputData.errorMessage %></p>
   </section>
+  
   <% } %>
      <section>
         <h4>Your Personal Information</h4>
-        
-        <form action="/customer/<%=user.id%>" method="PATCH">
+        <form id="updateInfoForm" data-userid="<%=user._id%>">
       <p>
         <label for="fullname">Your Name</label>
         <input

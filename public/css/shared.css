@@ -181,6 +181,11 @@ button {
   color: var(--color-white);
 }
 
+.success {
+  background-color: green;
+  color: var(--color-white);
+}
+
 .pop-up {
   color: white;
   background-color: green;

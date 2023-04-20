@@ -17,12 +17,12 @@ async function addToCart(event) {
       },
     });
   } catch (error) {
-    alert('Something went wrong 1');
+    alert('Something went wrong');
     return;
   }
 
   if (!response.ok) {
-    alert('Something went wrong 2');
+    alert('Something went wrong');
     return;
   }
 

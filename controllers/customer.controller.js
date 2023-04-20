@@ -1,4 +1,5 @@
 const sessionFlash = require('../util/session-flash');
+const inputValidation = require('../util/input-validation');
 
 const User = require('../models/user.model');
 
@@ -8,9 +9,6 @@ async function getAccount(req, res, next) {
   if (!sessionData) {
     sessionData = {
       email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
       name: '',
       phone: '',
       street: '',
@@ -22,9 +20,8 @@ async function getAccount(req, res, next) {
 
   try {
     const userid = res.locals.userid;
-    
     const userData = await User.getUserWithSameId(userid);
-   
+
     res.render('customer/account/account', {
       user: userData,
       inputData: sessionData,
@@ -34,6 +31,34 @@ async function getAccount(req, res, next) {
   }
 }
 
+async function updateUserData(req, res, next) {
+  if (req.params.id !== req.session.userid) {
+    return res.status(403).render('shared/errors/403');
+  }
+
+  if (
+    !inputValidation.updatedUserDetailsAreValid(
+      req.body.email,
+      req.body.fullname,
+      req.body.phone,
+      req.body.street,
+      req.body.postal,
+      req.body.city,
+      req.body.country
+    )
+  ) {
+    return res.json({
+      statusMessage: 'Some of your inputs is not valid, check them again!',
+    });
+  }
+
+  const result = await User.editUser(req);
+  return res.json({
+    statusMessage: result.statusMessage,
+  });
+}
+
 module.exports = {
   getAccount: getAccount,
+  updateUserData: updateUserData,
 };

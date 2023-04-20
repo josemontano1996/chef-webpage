@@ -1,4 +1,3 @@
-
 function isValid(value) {
   return value && value.trim() !== '';
 }
@@ -18,6 +17,28 @@ function userDetailsAreValid(
     email.includes('@') &&
     password &&
     password.trim().length >= 8 &&
+    isValid(name) &&
+    isValid(phone) &&
+    isValid(street) &&
+    isValid(postal) &&
+    isValid(city) &&
+    isValid(country)
+  );
+}
+
+
+function updatedUserDetailsAreValid(
+  email,
+  name,
+  phone,
+  street,
+  postal,
+  city,
+  country
+) {
+  return (
+    email &&
+    email.includes('@') &&
     isValid(name) &&
     isValid(phone) &&
     isValid(street) &&
@@ -56,6 +77,7 @@ function emailsPasswordsMatch(email, confirmEmail, password, confirmPassword) {
 
 module.exports = {
   userDetailsAreValid: userDetailsAreValid,
+  updatedUserDetailsAreValid:updatedUserDetailsAreValid,
   emailsPasswordsMatch: emailsPasswordsMatch,
   orderDetailsAreValid: orderDetailsAreValid,
 };

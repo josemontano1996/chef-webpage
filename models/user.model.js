@@ -54,6 +54,47 @@ class User {
   comparePassword(hashedPassword) {
     return bcrypt.compare(this.password, hashedPassword);
   }
+
+  static async editUser(req) {
+    const mongoId = new mongodb.ObjectId(req.params.id);
+
+    const currentUser = await db
+      .getDb()
+      .collection('users')
+      .findOne({ _id: mongoId });
+
+    if (req.body.email !== currentUser.email) {
+      const userExistsAlready = await db
+        .getDb()
+        .collection('users')
+        .findOne({ email: req.body.email });
+
+      if (userExistsAlready) {
+        return { statusMessage: 'This email address is already being used.' };
+      }
+    }
+
+    await db
+      .getDb()
+      .collection('users')
+      .updateOne(
+        { _id: mongoId },
+        {
+          $set: {
+            email: req.body.email,
+            name: req.body.fullname,
+            phone: req.body.phone,
+            address: {
+              street: req.body.street,
+              postal: req.body.postal,
+              city: req.body.city,
+              country: req.body.country,
+            },
+          },
+        }
+      );
+    return { statusMessage: 'Your data was succesfully updated!' };
+  }
 }
 
 module.exports = User;

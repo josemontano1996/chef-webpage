@@ -5,9 +5,15 @@ const confirmCancelProductButtonElements = document.querySelectorAll(
 async function cancelOrder(event) {
   event.preventDefault();
   const orderId = event.target.dataset.orderid;
-  const response = await fetch('/orders/' + orderId, {
-    method: 'PATCH',
-  });
+
+  try {
+    const response = await fetch('/orders/' + orderId, {
+      method: 'PATCH',
+    });
+  } catch (error) {
+    alert('Something went wrong');
+    return;
+  }
 
   if (!response.ok) {
     alert(

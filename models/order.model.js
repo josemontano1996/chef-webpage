@@ -134,11 +134,11 @@ class Order {
       .collection('orders')
       .findOne({ _id: mongoId });
 
-    if (order.status === 'Cancelled' || order.status === 'Fulfilled') {
+    if (order.status === this.status || order.status === 'Cancelled' || order.status === 'Fulfilled') {
       return;
     }
 
-    return db
+    return await db
       .getDb()
       .collection('orders')
       .updateOne({ _id: mongoId }, { $set: { status: this.status } });
@@ -148,7 +148,7 @@ class Order {
     //EDIT THIS CODE LATER
     if (this.id) {
       const mongoId = new mongodb.ObjectId(this.id);
-      return db
+      return await db
         .getDb()
         .collection('orders')
         .updateOne(
@@ -184,7 +184,7 @@ class Order {
         }),
       };
 
-      return db.getDb().collection('orders').insertOne(orderDocument);
+      return await db.getDb().collection('orders').insertOne(orderDocument);
     }
   }
 
