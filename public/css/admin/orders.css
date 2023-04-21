@@ -11,20 +11,6 @@ section {
   padding: 0.3rem;
 }
 
-.cancel-button,
-.confirm-cancel-button {
-  width: 30%;
-  height: 50%;
-  margin: auto 0;
-  margin-bottom: 1rem;
-}
-
-.confirm-cancel-button {
-  display: none;
-  background-color: red;
-  color: white;
-}
-
 .message-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -35,11 +21,14 @@ section {
   text-align: right;
 }
 
-.messages-hr{
+.messages-hr {
   margin: auto 0;
 }
 
-
+.italic {
+  text-decoration: none;
+  font-style: italic;
+}
 
 .order-number {
   -webkit-user-select: all;

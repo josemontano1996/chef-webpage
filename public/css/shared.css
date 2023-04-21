@@ -198,3 +198,12 @@ button {
   transition-duration: 1s;
   transition-timing-function: ease-out;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.italic {
+  text-decoration: none;
+  font-style: italic;
+}

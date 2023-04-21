@@ -4,7 +4,7 @@
       <h3>Order Information</h3>
       <div>
         <section>
-          <h4>Order placed for: <span><%= order.deliveryDate %></span></h4>
+          <h4>Order placed for: <span class="underline"><%= order.deliveryDate %></span></h4>
         </section>
         <section>
           <% for(let i=0; i<order.productData.items.length; i++) { %>
@@ -20,21 +20,16 @@
       <section class="order-status">Status: <%= order.status %>.</section>
       <section>
         <% if(order.pickup) { %>
-          Pickup at:
-          <span class="italic">
-            <%= order.pickupAddress.street + ', ' + order.pickupAddress.postal + ', ' + order.pickupAddress.city + ', ' + order.pickupAddress.country %>.
-          </span>
+          <p>Pickup at: <a href="https://www.google.com/maps?q=<%= order.pickupAddress.street %>, <%= order.pickupAddress.postal %>, <%= order.pickupAddress.city %>, <%= order.pickupAddress.country %>"><%= order.pickupAddress.street %>, <%= order.pickupAddress.postal %>, <%= order.pickupAddress.city %>, <%= order.pickupAddress.country %></a></p>
         <% } else { %>
-          Delivery address:
-          <span class="italic">
-            <%= order.userData.street+ ', ' + order.userData.postal + ', ' + order.userData.city + ', ' + order.userData.country %>.
-          </span>
+          <p>Delivery Address: <a href="https://www.google.com/maps?q=<%= order.userData.street %>, <%= order.userData.postal %>, <%= order.userData.city %>, <%= order.userData.country %>"><%= order.userData.street %>, <%= order.userData.postal %>, <%= order.userData.city %>, <%= order.userData.country %></a></p>
         <% } %>
+
       </section>
       <section class="flexbox-container order-management">
         <div>
-          <p>Order ref: <%= order.id %></p>
-          <h4 class="bttom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
+          <p>Order ref: <span class="order-number"><%= order.id %></span></p>
+          <h4 class="buttom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
         </div>
         <% if(order.status === "fulfilled") { %>
           <button class="button" class="comment-button">Share your experience!</button>
