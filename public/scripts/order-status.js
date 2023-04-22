@@ -30,7 +30,8 @@ for (const updateStatusFormElement of updateStatusFormElements) {
       alert('Something went wrong - could not update status.');
       return;
     }
-    const data = await response.json();
-    alert(data.statusMessage);
+   
+    const formLi = form.closest('.order-li');
+    formLi.style.display = 'none';
   });
 }
