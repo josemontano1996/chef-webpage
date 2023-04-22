@@ -1,0 +1,18 @@
+<%- include("../../shared/head", {pageTitle: "Fulfilled Orders"}) %>
+<link rel="stylesheet" href="/css/admin/orders.css" />
+<script defer src="/scripts/order-status.js"></script>
+</head>
+<body>
+    <%- include("../../shared/header") %>
+    <main>
+      <h3 id="page-title">Order Administration</h3>
+     <%- include("includes/sort-nav", {page:'Fulfilled'}) %>
+       <section>
+         <ol>
+          <% for (const order of orders) {%>
+           <%- include('includes/order-item', {order:order})%>
+           <% } %>
+         </ol>
+       </section>
+    </main>
+<%- include("../../shared/footer") %>

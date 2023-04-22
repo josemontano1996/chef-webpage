@@ -5,7 +5,7 @@ async function getOrders(req, res) {
   try {
     const orders = await Order.findAll();
 
-    res.render('admin/orders/orders', { orders: orders });
+    res.render('admin/orders/pending', { orders: orders });
   } catch (error) {
     return next(error);
   }
@@ -83,6 +83,23 @@ async function updateProduct(req, res, next) {
   res.redirect('/admin/menu');
 }
 
+async function updateOrderStatus(req, res, next) {
+  const orderId = req.params.id;
+  const newStatus = req.body.newStatus;
+
+  try {
+    const order = await Order.findById(orderId);
+
+    order.status = newStatus;
+
+    await order.save();
+
+    res.json({ statusMessage: 'Order succesfully updated!' });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 async function deleteProduct(req, res, next) {
   let product;
   try {
@@ -104,4 +121,5 @@ module.exports = {
   getUpdateProduct: getUpdateProduct,
   updateProduct: updateProduct,
   deleteProduct: deleteProduct,
+  updateOrderStatus: updateOrderStatus,
 };

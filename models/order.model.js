@@ -7,7 +7,7 @@ class Order {
   constructor(
     productData,
     userData,
-    status = 'pending',
+    status = 'Pending',
     deliveryDate,
     pickup = false,
     request,
@@ -134,7 +134,11 @@ class Order {
       .collection('orders')
       .findOne({ _id: mongoId });
 
-    if (order.status === this.status || order.status === 'Cancelled' || order.status === 'Fulfilled') {
+    if (
+      order.status === this.status ||
+      order.status === 'Cancelled' ||
+      order.status === 'Fulfilled'
+    ) {
       return;
     }
 
@@ -145,7 +149,6 @@ class Order {
   }
 
   async save() {
-    //EDIT THIS CODE LATER
     if (this.id) {
       const mongoId = new mongodb.ObjectId(this.id);
       return await db

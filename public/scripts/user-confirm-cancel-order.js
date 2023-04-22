@@ -6,8 +6,10 @@ async function cancelOrder(event) {
   event.preventDefault();
   const orderId = event.target.dataset.orderid;
 
+  let response;
+
   try {
-    const response = await fetch('/orders/' + orderId, {
+    response = await fetch('/orders/' + orderId, {
       method: 'PATCH',
     });
   } catch (error) {

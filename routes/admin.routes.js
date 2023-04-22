@@ -9,10 +9,10 @@ router.get('/menu', adminController.getMenu);
 router.get('/menu/new', adminController.getNewProduct);
 router.get('/menu/:id', adminController.getUpdateProduct);
 
-
-
 router.post('/menu/new', adminController.addNewProduct);
 router.post('/menu/:id', adminController.updateProduct);
+
+router.patch('/orders/status/:id', adminController.updateOrderStatus);
 
 router.delete('/menu/:id', adminController.deleteProduct);
 

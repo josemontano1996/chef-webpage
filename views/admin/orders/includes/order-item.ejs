@@ -12,7 +12,23 @@
             </li> 
           <% } %>
         </section>
-        <div>Status: <%= order.status %>.</div>
+        <section>
+          <form class="order-status">
+            <input type="hidden" name="orderid" value="<%=order.id%>">
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+              <option value="Pending" <% if(order.status === 'Pending'){ %> selected <%}%>>Pending</option>
+              <option value="Accepted" <% if(order.status === 'Accepted'){ %> selected <%}%>>Accepted</option>
+              <option value="Cancelled" <% if(order.status === 'Cancelled'){ %> selected <%}%>>Cancelled</option>
+              <option value="Fulfilled" <% if(order.status === 'Fulfilled'){ %> selected <%}%>>Fulfilled</option>
+              <option value="Cancellation Requested" <% if(order.status === 'Cancellation Requested'){ %> selected <%}%>>Cancellation Requested</option>
+            </select>
+            <button>Update Status</button>
+          </form>
+
+        </section>
+
+        <section>
         <% if(order.pickup) { %>
           <p>Pickup at: <a href="https://www.google.com/maps?q=<%= order.pickupAddress.street %>, <%= order.pickupAddress.postal %>, <%= order.pickupAddress.city %>, <%= order.pickupAddress.country %>"><%= order.pickupAddress.street %>, <%= order.pickupAddress.postal %>, <%= order.pickupAddress.city %>, <%= order.pickupAddress.country %></a></p>
         <% } else { %>

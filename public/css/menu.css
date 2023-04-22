@@ -1,36 +1,9 @@
-header {
-  position: static;
-}
-
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-}
-
-#side-scroll-nav {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: var(--color-background);
-  overflow-x: auto;
-}
-
-#side-scroll-nav::-webkit-scrollbar {
-  display: none;
-}
-.side-scroll {
-  display: flex;
-  padding: 0;
-  margin: 0 3%;
-}
-
-.side-scroll li {
-  padding: 1rem 0.5rem;
-  display: inline-block;
-  white-space: nowrap;
 }
 
 .menu-list {

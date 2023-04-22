@@ -7,23 +7,24 @@ form.addEventListener('submit', async (event) => {
   const formData = new FormData(form);
   const userId = event.target.dataset.userid;
 
+  let response;
   try {
-    const response = await fetch('/customer/account/' + userId, {
+    response = await fetch('/customer/account/' + userId, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(Object.fromEntries(formData.entries())),
     });
-
-    if (!response.ok) {
-      alert('Something went wrong 2!');
-      return;
-    }
-    const data = await response.json();
-    alert(data.statusMessage);
   } catch (error) {
     console.log(error);
     return;
   }
+
+  if (!response.ok) {
+    alert('Something went wrong 2!');
+    return;
+  }
+  const data = await response.json();
+  alert(data.statusMessage);
 });

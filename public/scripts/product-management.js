@@ -5,8 +5,10 @@ const deleteProductButtonElements = document.querySelectorAll(
 async function deleteProduct(event) {
   event.preventDefault();
   const productId = event.target.dataset.productid;
+
+  let response;
   try {
-    const response = await fetch('/admin/menu/' + productId, {
+    response = await fetch('/admin/menu/' + productId, {
       //in the url should come at the end the '?_csrf=' + dataset.csrf (we have to add it in the html data)
       method: 'DELETE',
     });
