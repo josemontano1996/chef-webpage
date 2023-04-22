@@ -67,6 +67,32 @@ class Order {
     return orders;
   }
 
+  static async findForQuery(query) {
+    const ordersArray = await db
+      .getDb()
+      .collection('orders')
+      .find({ status: query })
+      .sort({ deliveryDate: -1 })
+      .toArray();
+
+    const orders = ordersArray.map((o) => {
+      return new Order(
+        o.productData,
+        o.userData,
+        o.status,
+        o.deliveryDate,
+        o.pickup,
+        o.request,
+        o.orderDate,
+        (o.orderId = o._id.toString()),
+        o.chefMessage,
+        o.pickupAddress
+      );
+    });
+
+    return orders;
+  }
+
   static async findAllForUser(userId) {
     const ordersArray = await db
       .getDb()

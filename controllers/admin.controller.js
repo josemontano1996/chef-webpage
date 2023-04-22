@@ -3,7 +3,23 @@ const Order = require('../models/order.model');
 
 async function getOrders(req, res) {
   try {
-    const orders = await Order.findAll();
+    const orders = await Order.findForQuery('Pending');
+
+    res.render('admin/orders/pending', { orders: orders });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function getQueryOrders(req, res) {
+  let query = req.params.query;
+
+  if (query === 'CancelRequest') {
+    query = 'Cancellation Requested';
+  }
+
+  try {
+    const orders = await Order.findForQuery(query);
 
     res.render('admin/orders/pending', { orders: orders });
   } catch (error) {
@@ -122,4 +138,5 @@ module.exports = {
   updateProduct: updateProduct,
   deleteProduct: deleteProduct,
   updateOrderStatus: updateOrderStatus,
+  getQueryOrders: getQueryOrders,
 };

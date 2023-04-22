@@ -4,6 +4,7 @@ const adminController = require('../controllers/admin.controller');
 const router = express.Router();
 
 router.get('/orders', adminController.getOrders);
+router.get('/orders/:query', adminController.getQueryOrders);
 router.get('/account', adminController.getAccount);
 router.get('/menu', adminController.getMenu);
 router.get('/menu/new', adminController.getNewProduct);
