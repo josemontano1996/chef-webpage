@@ -4,7 +4,18 @@ const mongodb = require('mongodb');
 const db = require('../data/database');
 
 class User {
-  constructor(email, password, name, phone, street, postal, city, country) {
+  constructor(
+    email,
+    password,
+    name,
+    phone,
+    street,
+    postal,
+    city,
+    country,
+    facebook,
+    instagram
+  ) {
     (this.email = email),
       (this.password = password),
       (this.name = name),
@@ -14,6 +25,10 @@ class User {
         postal: postal,
         city: city,
         country: country,
+      }),
+      (this.social = {
+        facebook: facebook,
+        instagram: instagram,
       });
   }
 
@@ -90,6 +105,12 @@ class User {
               city: req.body.city,
               country: req.body.country,
             },
+            social: req.body.facebook
+              ? {
+                  facebook: req.body.facebook,
+                  instagram: req.body.instagram,
+                }
+              : {},
           },
         }
       );

@@ -1,5 +1,4 @@
 const sessionFlash = require('../util/session-flash');
-const inputValidation = require('../util/input-validation');
 
 const Product = require('../models/product.model');
 const Order = require('../models/order.model');
@@ -59,6 +58,31 @@ async function getAccount(req, res, next) {
   } catch (error) {
     return next(error);
   }
+}
+
+async function pushAdmin(req, res, next) {
+  // TODO Add user collection actualisation, check if the user exists in the other one and if not
+  //update it instead of posting it, could be done with front end submit route at template generation
+
+  try {
+    const admin = new Admin(
+      req.body.fullname,
+      req.body.email,
+      req.body.phone,
+      req.body.street,
+      req.body.postal,
+      req.body.city,
+      req.body.country,
+      req.body.facebook,
+      req.body.instagram
+    );
+
+    await admin.pushAdmin();
+  } catch (error) {
+    return next(error);
+  }
+
+  return res.redirect('/admin/account');
 }
 
 async function getMenu(req, res, next) {
@@ -169,4 +193,5 @@ module.exports = {
   deleteProduct: deleteProduct,
   updateOrderStatus: updateOrderStatus,
   getQueryOrders: getQueryOrders,
+  pushAdmin: pushAdmin,
 };

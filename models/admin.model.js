@@ -36,6 +36,17 @@ class Admin {
       .collection('users')
       .findOne({ _id: mongoId }, { projection: { password: 0 } });
   }
+
+  async pushAdmin() {
+    await db.getDb().collection('admin').insertOne({
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+      address: this.address,
+      social: this.social,
+    });
+
+  }
 }
 
 module.exports = Admin;

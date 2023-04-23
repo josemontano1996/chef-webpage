@@ -12,6 +12,7 @@ router.get('/menu/:id', adminController.getUpdateProduct);
 
 router.post('/menu/new', adminController.addNewProduct);
 router.post('/menu/:id', adminController.updateProduct);
+router.post('/push', adminController.pushAdmin);
 
 router.patch('/orders/status/:id', adminController.updateOrderStatus);
 

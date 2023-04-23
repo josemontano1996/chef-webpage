@@ -15,7 +15,10 @@
       </section>
       
       <% } %>
-        <form id="updateInfoForm" data-userid="<%=user._id%>">
+        <form  <% if(!user.social) { %> action="/admin/push" method="POST" <% } 
+        else {%>
+          id="updateInfoForm" data-userid="<%=user._id%>"
+         <%}%> >
       <p>
         <label for="fullname">Your Name</label>
         <input
@@ -108,7 +111,9 @@
           required
         />
       </p>   
-            <button class="button">Update Your Data</button>
+      <div>
+           <button class="button" id="updateButton">Update Your Data</button>
+      </div>
         </form>
      </section>
 </main>
