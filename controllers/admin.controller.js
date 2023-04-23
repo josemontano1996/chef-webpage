@@ -1,5 +1,9 @@
+const sessionFlash = require('../util/session-flash');
+const inputValidation = require('../util/input-validation');
+
 const Product = require('../models/product.model');
 const Order = require('../models/order.model');
+const Admin = require('../models/admin.model');
 
 async function getOrders(req, res) {
   try {
@@ -27,8 +31,34 @@ async function getQueryOrders(req, res) {
   }
 }
 
-function getAccount(req, res) {
-  res.render('admin/account/account');
+async function getAccount(req, res, next) {
+  let sessionData = sessionFlash.getSessionData(req);
+
+  if (!sessionData) {
+    sessionData = {
+      email: '',
+      name: '',
+      phone: '',
+      street: '',
+      postal: '',
+      city: '',
+      country: '',
+      facebook: '',
+      instagram: '',
+    };
+  }
+
+  try {
+    const userid = res.locals.userid;
+    const userData = await Admin.getAccountInfo(userid);
+
+    res.render('admin/account/account', {
+      user: userData,
+      inputData: sessionData,
+    });
+  } catch (error) {
+    return next(error);
+  }
 }
 
 async function getMenu(req, res, next) {

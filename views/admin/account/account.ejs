@@ -1,11 +1,115 @@
-<%- include('../../shared/head', {pageTitle: 'Admin Account'}) %>
+<%- include("../../shared/head", {pageTitle: "Admin account"}) %>
+<link rel="stylesheet" href="/css/forms.css">
+<script defer src="/scripts/update-customer-info.js" ></script>
+</head>
 <body>
-    <%- include('../../shared/header') %>
-    <main >
-        
-       <h3>ADMIN ACCOUNT</h3>
-          
-      </div>
-    </div>
+    <%- include("../../shared/header") %>
+<main>
+
+<%- include("includes/sort-nav", {urlPath:'account'}) %>
+  <section>
+    <h4>Your Personal Information</h4>
+    <% if (inputData.errorMessage) { %>
+      <section class="alert">
+        <p><%= inputData.errorMessage %></p>
+      </section>
+      
+      <% } %>
+        <form id="updateInfoForm" data-userid="<%=user._id%>">
+      <p>
+        <label for="fullname">Your Name</label>
+        <input
+          type="text"
+          name="fullname"
+          id="fullname"
+          value="<%= inputData.errorMessage ? inputData.name : user.name %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="<%= inputData.errorMessage ? inputData.email : user.email %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="phone">Contact Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          value="<%= inputData.errorMessage ? inputData.phone : user.phone %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="street">Delivery Address</label>
+        <input
+          type="text"
+          name="street"
+          id="street"
+         value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="PLZ">PLZ</label>
+        <input
+          type="number"
+          name="postal"
+          id="postal"
+          minlength="5"
+          maxlength="5"
+          value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="city">City</label>
+        <input
+          type="text"
+          name="city"
+          id="city"
+         value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="country">Country</label>
+        <input
+          type="text"
+          name="country"
+          id="contry"
+          value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
+          required
+        />
+      </p>   
+      <p>
+        <label for="facebook">Facebook</label>
+        <input
+          type="text"
+          name="facebook"
+          id="facebook"
+          value="<%= inputData.errorMessage ? inputData.facebook : user.social?.facebook %>"
+          required
+        />
+      </p>   
+      <p>
+        <label for="instagram">Instagram</label>
+        <input
+          type="text"
+          name="instagram"
+          id="instagram"
+          value="<%= inputData.errorMessage ? inputData.instagram : user.social?.instagram %>"
+          required
+        />
+      </p>   
+            <button class="button">Update Your Data</button>
+        </form>
+     </section>
 </main>
-<%- include('../../shared/footer') %>
+<%- include("../../shared/footer") %>
