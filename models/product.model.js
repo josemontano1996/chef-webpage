@@ -52,30 +52,32 @@ class Product {
   }
 
   static async findAll() {
-    const startersArray = await db
+    const dishesArray = await db
       .getDb()
       .collection('products')
-      .find({ type: 'starter' })
-      .sort({ name: 1 }) // sort by name in ascending order
-      .toArray();
-    const mainDishesArray = await db
-      .getDb()
-      .collection('products')
-      .find({ type: 'main' })
+      .find()
       .sort({ name: 1 })
       .toArray();
-    const sideDishesArray = await db
-      .getDb()
-      .collection('products')
-      .find({ type: 'side' })
-      .sort({ name: 1 })
-      .toArray();
-    const dessertsArray = await db
-      .getDb()
-      .collection('products')
-      .find({ type: 'dessert' })
-      .sort({ name: 1 })
-      .toArray();
+
+    let startersArray = [];
+    let mainDishesArray = [];
+    let sideDishesArray = [];
+    let dessertsArray = [];
+
+    for (const dish of dishesArray) {
+      if (dish.type === 'starter') {
+        startersArray.push(dish);
+      }
+      if (dish.type === 'main') {
+        mainDishesArray.push(dish);
+      }
+      if (dish.type === 'side') {
+        sideDishesArray.push(dish);
+      }
+      if (dish.type === 'dessert') {
+        dessertsArray.push(dish);
+      }
+    }
 
     const starters = startersArray.map(function (p) {
       return new Product(
