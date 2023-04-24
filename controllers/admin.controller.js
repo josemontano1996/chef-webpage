@@ -2,7 +2,8 @@ const sessionFlash = require('../util/session-flash');
 
 const Product = require('../models/product.model');
 const Order = require('../models/order.model');
-const Admin = require('../models/admin.model');
+const Config = require('../models/config.model');
+const User = require('../models/user.model');
 
 async function getOrders(req, res) {
   try {
@@ -49,7 +50,7 @@ async function getAccount(req, res, next) {
 
   try {
     const userid = res.locals.userid;
-    const userData = await Admin.getAccountInfo(userid);
+    const userData = await User.getUserWithSameId(userid);
 
     res.render('admin/account/account', {
       user: userData,
@@ -60,29 +61,39 @@ async function getAccount(req, res, next) {
   }
 }
 
-async function pushAdmin(req, res, next) {
-  // TODO Add user collection actualisation, check if the user exists in the other one and if not
-  //update it instead of posting it, could be done with front end submit route at template generation
-
+async function getConfig(req, res, next) {
   try {
-    const admin = new Admin(
-      req.body.fullname,
+    const config = await Config.getConfig();
+    res.render('admin/account/web-configuration', {
+      config: config,
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function updateConfig(req, res, next) {
+  try {
+    const admin = new Config(
+      req.body.webname,
       req.body.email,
       req.body.phone,
+      req.body.pickup,
       req.body.street,
       req.body.postal,
       req.body.city,
       req.body.country,
       req.body.facebook,
-      req.body.instagram
+      req.body.instagram,
+      req.body._id
     );
 
-    await admin.pushAdmin();
+    await admin.save();
   } catch (error) {
     return next(error);
   }
 
-  return res.redirect('/admin/account');
+  return res.redirect('/admin/config');
 }
 
 async function getMenu(req, res, next) {
@@ -193,5 +204,6 @@ module.exports = {
   deleteProduct: deleteProduct,
   updateOrderStatus: updateOrderStatus,
   getQueryOrders: getQueryOrders,
-  pushAdmin: pushAdmin,
+  getConfig: getConfig,
+  updateConfig: updateConfig,
 };

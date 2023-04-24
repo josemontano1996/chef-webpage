@@ -1,24 +1,24 @@
 <%- include("../../shared/head", {pageTitle: "Admin account"}) %>
 <link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/sort-nav.css">
 <script defer src="/scripts/update-customer-info.js" ></script>
 </head>
 <body>
     <%- include("../../shared/header") %>
 <main>
+  <h4>Admin Account Data</h4>
 
 <%- include("includes/sort-nav", {urlPath:'account'}) %>
   <section>
-    <h4>Your Personal Information</h4>
-    <% if (inputData.errorMessage) { %>
-      <section class="alert">
-        <p><%= inputData.errorMessage %></p>
-      </section>
-      
-      <% } %>
-        <form  <% if(!user.social) { %> action="/admin/push" method="POST" <% } 
-        else {%>
-          id="updateInfoForm" data-userid="<%=user._id%>"
-         <%}%> >
+<% if (inputData.errorMessage) { %>
+  <section class="alert">
+    <p><%= inputData.errorMessage %></p>
+  </section>
+  <% } %>
+
+     <section>
+        <h4>Your Personal Information</h4>
+        <form id="updateInfoForm" data-userid="<%=user._id%>">
       <p>
         <label for="fullname">Your Name</label>
         <input
@@ -86,35 +86,15 @@
         <input
           type="text"
           name="country"
-          id="contry"
+          id="country"
           value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
           required
         />
       </p>   
-      <p>
-        <label for="facebook">Facebook</label>
-        <input
-          type="text"
-          name="facebook"
-          id="facebook"
-          value="<%= inputData.errorMessage ? inputData.facebook : user.social?.facebook %>"
-          required
-        />
-      </p>   
-      <p>
-        <label for="instagram">Instagram</label>
-        <input
-          type="text"
-          name="instagram"
-          id="instagram"
-          value="<%= inputData.errorMessage ? inputData.instagram : user.social?.instagram %>"
-          required
-        />
-      </p>   
-      <div>
-           <button class="button" id="updateButton">Update Your Data</button>
-      </div>
+            <button class="button">Update Your Data</button>
         </form>
      </section>
+    </section>
 </main>
 <%- include("../../shared/footer") %>
+

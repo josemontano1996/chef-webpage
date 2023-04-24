@@ -1,0 +1,19 @@
+
+.sort-nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-background);
+  height: 3rem;
+}
+
+.sort-nav ul {
+  margin: 0;
+}
+
+.sort-nav li {
+  padding: 0.5rem;
+}
+
+.sort-nav hr {
+  margin-top: 0;
+}

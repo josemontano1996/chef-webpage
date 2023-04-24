@@ -207,3 +207,8 @@ button {
   text-decoration: none;
   font-style: italic;
 }
+
+.highligthed {
+  background-color: var(--color-button-alt);
+  font-weight: bold;
+}

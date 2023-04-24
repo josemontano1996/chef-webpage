@@ -1,0 +1,55 @@
+<%- include("../../shared/head", {pageTitle: "Admin account"}) %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/sort-nav.css">
+</head>
+<body>
+    <%- include("../../shared/header") %>
+<main>
+
+<%- include("includes/sort-nav", {urlPath:'work'}) %>
+  <section>
+    <h4>Holidays Configuration</h4>
+
+        <form >
+      <p>
+      <h4>Working Schedule</h4>
+      <p>
+          <h5>Working hours</h5>
+          <label for="start">Day starts at: </label>
+          <input type="time" id="start" name = "startingTime"
+          value="<%= work && work.workSchedule.startingTime ? work.workSchedule.startingTime : '' %>">
+        
+           <label for="finish">Day finishes at: </label>
+          <input type="time" id="finish" name = "finishingTime"
+          value="<%= work && work.workSchedule.finishingTime ? work.workSchedule.finishingTime : '' %>">
+        </p>
+      <p>
+        <h5>Working Workdays</h5>
+        <div>
+          <label for="monday">Monday</label>
+          <input type="checkbox" id="monday" name="monday"
+          value="<%= work && work.workdays.monday ? work.workdays.monday : false %>">
+          <label for="tuesday">Tuesday</label>
+          <input type="checkbox" id="tuesday" name="tuesday"
+          value="<%= work && work.workdays.tuesday ? work.workdays.tuesday : false %>">
+        <label for="wednesday">Wednesday</label>
+          <input type="checkbox" id="wednesday" name="wednesday"
+          value="<%= work && work.workdays.wednesday ? work.workdays.wednesday : false %>">
+        <label for="thursday">Thursday</label>
+          <input type="checkbox" id="thursday" name="thursday"
+          value=" <%= work && work.workdays.thursday ? work.workdays.thursday : false %>">
+        <label for="friday">Friday</label>
+          <input type="checkbox" id="friday" name="friday"
+          value="<%= work && work.workdays.friday ? work.workdays.friday : false %>">
+        <label for="saturday">Saturday</label>
+          <input type="checkbox" id="saturday" name="saturday"
+          value="<%= work && work.workdays.saturday ? work.workdays.saturday : false %>">
+        <label for="sunday">Sunday</label>
+          <input type="checkbox" id="sunday" name="sunday"
+          value="<%= work && work.workdays.sunday ? work.workdays.sunday : false %>">
+        </div>
+      </p>
+        </form>
+     </section>
+</main>
+<%- include("../../shared/footer") %>

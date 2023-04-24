@@ -1,0 +1,120 @@
+<%- include("../../shared/head", {pageTitle: "Web Configuration"}) %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/sort-nav.css">
+</head>
+<body>
+    <%- include("../../shared/header") %>
+<main>
+
+<%- include("includes/sort-nav", {urlPath:'config'}) %>
+  <section>
+    <h4>Web Configuration</h4>
+        <form action="/admin/config" method="POST">
+        <input type="hidden" name="_id" value="<%= config && config._id ? config._id : null %>">
+        <p>
+        <label for="webname">Web Name</label>
+        <input
+          type="text"
+          name="webname"
+          id="webname"
+          value="<%= config && config.webname ? config.webname : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="<%= config && config.email ? config.email : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="phone">Contact Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          value="<%= config && config.phone ? config.phone : ''  %>"
+          required
+        />
+      </p>
+
+      <h4>Delivery</h4>
+      <p>
+        <label for="pickup">Only pickup available?</label>
+        <input type="checkbox" id="pickup" name="pickup" <%= config && Boolean(config.pickup) ? 'checked' : '' %>>
+        </p>
+
+        <label for="street">Delivery Address</label>
+        <input
+          type="text"
+          name="street"
+          id="street"
+         value="<%= config && config.address ? config.address.street : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="PLZ">PLZ</label>
+        <input
+          type="number"
+          name="postal"
+          id="postal"
+          minlength="5"
+          maxlength="5"
+          value="<%= config && config.address ? config.address.postal : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="city">City</label>
+        <input
+          type="text"
+          name="city"
+          id="city"
+         value="<%= config && config.address ? config.address.city : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="country">Country</label>
+        <input
+          type="text"
+          name="country"
+          id="contry"
+          value="<%= config && config.address ? config.address.country : '' %>"
+          required
+        />
+      </p>   
+      
+      <h4>Social Networks</h4>
+      <p>
+        <label for="facebook">Facebook</label>
+        <input
+          type="text"
+          name="facebook"
+          id="facebook"
+          value="<%= config && config.social ? config.social.facebook : '' %>"
+          required
+        />
+      </p>   
+      <p>
+        <label for="instagram">Instagram</label>
+        <input
+          type="text"
+          name="instagram"
+          id="instagram"
+          value="<%= config && config.social ? config.social.instagram : '' %>"
+          required
+        />
+      </p>   
+      <div>
+           <button class="button" id="updateButton">Update Data</button>
+      </div>
+        </form>
+     </section>
+</main>
+<%- include("../../shared/footer") %>

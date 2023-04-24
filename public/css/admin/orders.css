@@ -10,24 +10,6 @@ main {
   text-align: center;
 }
 
-.sort-nav {
-  position: sticky;
-  top: 0;
-  background-color: var(--color-background);
-  height: 3rem;
-}
-
-.sort-nav ul {
-  margin: 0;
-}
-
-.sort-nav li {
-  padding: 0.5rem;
-}
-
-.sort-nav hr {
-  margin-top: 0;
-}
 
 section {
   margin: 1rem auto;
@@ -56,10 +38,6 @@ section {
   margin: auto 0;
 }
 
-.italic {
-  text-decoration: none;
-  font-style: italic;
-}
 
 .order-number {
   -webkit-user-select: all;
@@ -70,7 +48,3 @@ section {
   font-style: italic;
 }
 
-.highligthed {
-  background-color: var(--color-button-alt);
-  font-weight: bold;
-}
