@@ -3,23 +3,11 @@ const NodeCache = require('node-cache');
 
 async function storeConfigData(req, res, next) {
   let configData;
-  let configCache;
 
-  db.connectToDatabase().then(async () => {
-    // set up the cache outside the middleware function
-    configCache = new NodeCache({ stdTTL: 86400, checkperiod: 0 });
+  let configCache = new NodeCache({ stdTTL: 86400, checkperiod: 0 });
 
-    // set up the change stream outside the middleware function
-    const configCollection = db.getDb().collection('config');
-    const changeStream = configCollection.watch();
-
-    // update the cache when the config data changes in the database
-    changeStream.on('change', async (change) => {
-      console.log('Config data changed: ', change);
-      configData = await configCollection.findOne({});
-      configCache.set('configData', configData);
-    });
-  });
+  // set up the change stream outside the middleware function
+  const configCollection = db.getDb().collection('config');
 
   configData = configCache.get('configData');
   if (!configData) {
