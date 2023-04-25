@@ -7,11 +7,16 @@ class Config {
     webname,
     email,
     phone,
-    pickup,
     street,
     postal,
     city,
     country,
+    pickup,
+    pickupMessage,
+    pickupStreet,
+    pickupPostal,
+    pickupCity,
+    pickupCountry,
     facebook,
     instagram,
     id
@@ -19,12 +24,19 @@ class Config {
     this.webname = webname;
     this.email = email;
     this.phone = phone;
-    this.pickup = pickup;
     this.address = {
       street: street,
       postal: postal,
       city: city,
       country: country,
+    };
+    this.pickup = pickup;
+    this.pickupMessage = pickupMessage;
+    this.pickupAddress = {
+      pickupStreet: pickupStreet,
+      pickupPostal: pickupPostal,
+      pickupCity: pickupCity,
+      pickupCountry: pickupCountry,
     };
     this.social = {
       facebook: facebook,
@@ -51,8 +63,10 @@ class Config {
               webname: this.webname,
               email: this.email,
               phone: this.phone,
-              pickup: this.pickup,
               address: this.address,
+              pickup: this.pickup,
+              pickupMessage: this.pickupMessage,
+              pickupAddress: this.pickupAddress,
               social: this.social,
             },
           }
@@ -62,8 +76,10 @@ class Config {
         webname: this.webname,
         email: this.email,
         phone: this.phone,
-        pickup: this.pickup,
         address: this.address,
+        pickup: this.pickup,
+        pickupMessage: this.pickupMessage,
+        pickupAddress: this.pickupAddress,
         social: this.social,
       });
     }

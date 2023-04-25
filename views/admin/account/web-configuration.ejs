@@ -11,6 +11,8 @@
     <h4>Web Configuration</h4>
         <form action="/admin/config" method="POST">
         <input type="hidden" name="_id" value="<%= config && config._id ? config._id : null %>">
+        
+        <h4>Views Configuration</h4>
         <p>
         <label for="webname">Web Name</label>
         <input
@@ -42,13 +44,8 @@
         />
       </p>
 
-      <h4>Delivery</h4>
       <p>
-        <label for="pickup">Only pickup available?</label>
-        <input type="checkbox" id="pickup" name="pickup" <%= config && Boolean(config.pickup) ? 'checked' : '' %>>
-        </p>
-
-        <label for="street">Delivery Address</label>
+        <label for="street">Company Address</label>
         <input
           type="text"
           name="street"
@@ -58,7 +55,7 @@
         />
       </p>
       <p>
-        <label for="PLZ">PLZ</label>
+        <label for="postal">PLZ</label>
         <input
           type="number"
           name="postal"
@@ -84,8 +81,60 @@
         <input
           type="text"
           name="country"
-          id="contry"
+          id="country"
           value="<%= config && config.address ? config.address.country : '' %>"
+          required
+        />
+      </p>   
+<hr>
+      <h4>Delivery</h4>
+      <p>
+        <label for="pickup">Only pickup available?</label>
+        <input type="checkbox" id="pickup" name="pickup" <%= config && Boolean(config.pickup) ? 'checked' : false %>>
+      </p>
+      <p>
+        <label for="pickupMessage">Only pickup: message displayed</label>
+        <textarea id="pickupMessage" name="pickupMessage"><%= config && config.pickupMessage ? config.pickupMessage : ''%></textarea>
+      </p>
+      <p>
+        <label for="pickupStreet">Pickup Address</label>
+        <input
+          type="text"
+          name="pickupStreet"
+          id="pickupStreet"
+         value="<%= config && config.pickupAddress ? config.pickupAddress.pickupStreet : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="pickupPostal">PLZ</label>
+        <input
+          type="number"
+          name="pickupPostal"
+          id="pickupPostal"
+          minlength="5"
+          maxlength="5"
+          value="<%= config && config.pickupAddress ? config.pickupAddress.pickupPostal : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="pickupCity">City</label>
+        <input
+          type="text"
+          name="pickupCity"
+          id="pickupCity"
+         value="<%= config && config.pickupAddress ? config.pickupAddress.pickupCity : '' %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="pickupCountry">Country</label>
+        <input
+          type="text"
+          name="pickupCountry"
+          id="pickupCountry"
+          value="<%= config && config.pickupAddress ? config.pickupAddress.pickupCountry : '' %>"
           required
         />
       </p>   

@@ -46,48 +46,72 @@
           required
         />
       </p>
-      <p>
-        <label for="street">Delivery Address</label>
-        <input
-          type="text"
-          name="street"
-          id="street"
-         value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
-          required
-        />
-      </p>
-      <p>
-        <label for="PLZ">PLZ</label>
-        <input
-          type="number"
-          name="postal"
-          id="postal"
-          minlength="5"
-          maxlength="5"
-          value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
-          required
-        />
-      </p>
-      <p>
-        <label for="city">City</label>
-        <input
-          type="text"
-          name="city"
-          id="city"
-         value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
-          required
-        />
-      </p>
-      <p>
-        <label for="country">Country</label>
-        <input
-          type="text"
-          name="country"
-          id="contry"
-          value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
-          required
-        />
-      </p>
+      <% if (Boolean(locals.configData.pickup)) { %>
+        <p>
+          <%= locals.configData.pickupMessage %>
+        </p> 
+        <div>
+        <h5>Pickup Address:</h5>
+        <div>
+          <p><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupStreet : ''%></p>
+          <p><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupPostal: ''%> 
+            <%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCity: ''%></p>
+          <p><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCountry: '' %></p>
+        </div>
+        <hr>
+        </div>
+        <% } else { %>
+        <p>
+          <label for="street">Delivery Address</label>
+          <input
+            type="text"
+            name="street"
+            id="street"
+           value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
+            required
+          />
+        </p>
+        <p>
+          <label for="PLZ">PLZ</label>
+          <input
+            type="number"
+            name="postal"
+            id="postal"
+            minlength="5"
+            maxlength="5"
+            value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
+            required
+          />
+        </p>
+        <p>
+          <label for="city">City</label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+           value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
+            required
+          />
+        </p>
+        <p>
+          <label for="country">Country</label>
+          <input
+            type="text"
+            name="country"
+            id="contry"
+            value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
+            required
+          />
+        </p>
+        <p id="pickup-section">
+          <label for="pickup">Check the box below if you prefer to pick up your package at:
+            <br><span>
+              <%= locals.configData.pickupAddress.pickupStreet + ', ' + locals.configData.pickupAddress.pickupPostal + ', ' + locals.configData.pickupAddress.pickupCity + ', ' + locals.configData.pickupAddress.pickupCountry%>.
+            </span>
+            </label>
+         <input type="checkbox" name="pickup" id="pickup" />
+      <%}%>
+
       <p>
         <label for="deliveryDate">Delivery date</label>
         <input
@@ -99,13 +123,6 @@
         />
       </p>
       <hr>
-      <p id="pickup-section">
-        <label for="pickup">Check the box below if you prefer to pick up your package at:
-          <br><span>
-            <%= orderDataFlash.pickupAddress.street + ', ' + orderDataFlash.pickupAddress.postal + ', ' + orderDataFlash.pickupAddress.city + ', ' + orderDataFlash.pickupAddress.country%>.
-          </span>
-          </label>
-       <input type="checkbox" name="pickup" id="pickup" />
 
       </p>
       <p>

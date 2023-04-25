@@ -11,15 +11,10 @@ class Order {
     deliveryDate,
     pickup = false,
     request,
+    deliveryAddress = {},
     orderDate,
     orderId,
-    chefMessage = '',
-    pickupAddress = {
-      street: '2 Rue Genistre',
-      postal: '1623',
-      city: 'Luxembourg',
-      country: 'Luxembourg',
-    }
+    chefMessage = ''
   ) {
     this.productData = productData;
     this.userData = userData;
@@ -31,6 +26,7 @@ class Order {
     } else {
       this.request = '';
     }
+    this.deliveryAddress = { ...deliveryAddress };
     this.orderDate = orderDate;
     this.id = orderId;
     if (chefMessage) {
@@ -38,7 +34,6 @@ class Order {
     } else {
       this.chefMessage = '';
     }
-    this.pickupAddress = pickupAddress;
   }
 
   static async findAll() {
@@ -57,10 +52,10 @@ class Order {
         o.deliveryDate,
         o.pickup,
         o.request,
+        o.deliveryAddress,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage,
-        o.pickupAddress
+        o.chefMessage
       );
     });
 
@@ -83,10 +78,10 @@ class Order {
         o.deliveryDate,
         o.pickup,
         o.request,
+        o.deliveryAddress,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage,
-        o.pickupAddress
+        o.chefMessage
       );
     });
 
@@ -108,10 +103,10 @@ class Order {
         o.deliveryDate,
         o.pickup,
         o.request,
+        o.deliveryAddress,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage,
-        o.pickupAddress
+        o.chefMessage
       );
     });
 
@@ -145,10 +140,10 @@ class Order {
       order.deliveryDate,
       order.pickup,
       order.request,
+      order.deliveryAddress,
       order.orderDate,
       order._id.toString(),
-      order.chefMessage,
-      order.pickupAddress
+      order.chefMessage
     );
   }
 
@@ -203,6 +198,7 @@ class Order {
         }),
         pickup: this.pickup,
         request: this.request,
+        deliveryAddress: this.deliveryAddress,
         orderDate: new Date().toLocaleDateString('en-US', {
           hour: 'numeric',
           minute: 'numeric',

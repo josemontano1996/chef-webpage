@@ -17,7 +17,6 @@ async function storeConfigData(req, res, next) {
 
   res.locals.configData = configData;
 
-  console.log(res.locals.configData);
   next();
 }
 

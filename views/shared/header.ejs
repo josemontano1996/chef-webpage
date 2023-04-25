@@ -3,14 +3,15 @@
     <ul class="flexbox-container">
       <li>
         <a <% if (locals.isAdmin) { %>
-          href="/admin/menu" <% } else { %> href="/menu" <% } %>>Menu</a
-        >
+          href="/admin/menu" <% } 
+          else { %> href="/menu" <% } %>>Menu</a>
       </li>
+      
       <li><a href="/about">About</a></li>
     </ul>
   </nav>
   <h1>
-    <a href="/" id="main-title">Chef Bautista D'Arconso</a>
+    <a href="/" id="main-title"><%=locals.configData.webname%></a>
   </h1>
   <nav>
     <ul class="flexbox-container">
@@ -25,18 +26,19 @@
             alt="cart"
           />
           <% } else { %>
-          <img src="/img/cart-icon.png" alt="cart" />
+          <img src="/img/cart-icon.png" alt="cart"/>
           <% } %>
         </a>
       </li>
 
       <li>
         <a <% if (locals.isAdmin) { %>
-          href="/admin/account" <% } else if (locals.isAuth) { %>
+          href="/admin/config" <% } else if (locals.isAuth) { %>
           href="/customer/account" <% } else { %> href="/auth" <% } %>>
           <img src="/img/login-icon.png" alt="login-icon"
         /></a>
       </li>
+
       <% if (locals.isAuth) { %>
       <li>
         <form action="/logout" method="POST">

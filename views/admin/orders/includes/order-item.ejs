@@ -29,11 +29,14 @@
         </section>
 
         <section>
-        <% if(order.pickup) { %>
-          <p>Pickup at: <a href="https://www.google.com/maps?q=<%= order.pickupAddress.street %>, <%= order.pickupAddress.postal %>, <%= order.pickupAddress.city %>, <%= order.pickupAddress.country %>"><%= order.pickupAddress.street %>, <%= order.pickupAddress.postal %>, <%= order.pickupAddress.city %>, <%= order.pickupAddress.country %></a></p>
-        <% } else { %>
-          <p>Delivery Address: <a href="https://www.google.com/maps?q=<%= order.userData.street %>, <%= order.userData.postal %>, <%= order.userData.city %>, <%= order.userData.country %>"><%= order.userData.street %>, <%= order.userData.postal %>, <%= order.userData.city %>, <%= order.userData.country %></a></p>
-        <% } %>
+        <p>
+          <% if(order.pickup) { %>
+            Pickup at: 
+            <% } else { %>
+              Delivery Address: 
+            <% } %>
+        <a href="https://www.google.com/maps?q=<%= order.deliveryAddress.street %>, <%= order.deliveryAddress.postal %>, <%= order.deliveryAddress.city %>, <%= order.deliveryAddress.country %>"><%= order.deliveryAddress.street %>, <%= order.deliveryAddress.postal %>, <%= order.deliveryAddress.city %>, <%= order.deliveryAddress.country %></a></p>
+        </p>
        </div>
       <section>
         <h4>Customer Data</h4>

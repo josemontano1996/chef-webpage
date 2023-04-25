@@ -14,7 +14,8 @@ async function getOrders(req, res, next) {
   }
 }
 
-async function checkOut(req, res, next) { //I HAVE TO ADD THE DATE VALIDATION!!
+async function checkOut(req, res, next) {
+  //I HAVE TO ADD THE DATE VALIDATION!!
   let sessionData = sessionFlash.getSessionData(req);
 
   if (!sessionData) {
@@ -50,15 +51,36 @@ async function checkOut(req, res, next) { //I HAVE TO ADD THE DATE VALIDATION!!
 async function placeOrder(req, res, next) {
   const cart = res.locals.cart;
   const userId = res.locals.userid;
+  let deliveryAddress;
+
+  if (res.locals.configData.pickup || req.body.pickup) {
+    const address = res.locals.configData.pickupAddress;
+    deliveryAddress = {
+      street: address.pickupStreet,
+      postal: address.pickupPostal,
+      city: address.pickupCity,
+      country: address.pickupCountry,
+    };
+  } else {
+    deliveryAddress = {
+      street: req.body.street,
+      postal: req.body.postal,
+      city: req.body.city,
+      country: req.body.country,
+    };
+  }
+  console.log(res.locals.configData.pickup);
+  console.log(req.body.pickup);
+  console.log(deliveryAddress);
 
   const validationData = {
     name: req.body.fullname,
     email: req.body.email,
     phone: req.body.phone,
-    street: req.body.street,
-    postal: req.body.postal,
-    city: req.body.city,
-    country: req.body.country,
+    street: deliveryAddress.street,
+    postal: deliveryAddress.postal,
+    city: deliveryAddress.city,
+    country: deliveryAddress.country,
     deliveryDate: req.body.deliveryDate,
   };
   if (
@@ -66,10 +88,10 @@ async function placeOrder(req, res, next) {
       req.body.fullname,
       req.body.email,
       req.body.phone,
-      req.body.street,
-      req.body.postal,
-      req.body.city,
-      req.body.country,
+      deliveryAddress.street,
+      deliveryAddress.postal,
+      deliveryAddress.city,
+      deliveryAddress.country,
       req.body.deliveryDate
     )
   ) {
@@ -93,15 +115,12 @@ async function placeOrder(req, res, next) {
         fullname: req.body.fullname,
         email: req.body.email,
         phone: req.body.phone,
-        street: req.body.street,
-        postal: req.body.postal,
-        city: req.body.city,
-        country: req.body.country,
       },
       'pending',
       req.body.deliveryDate,
       req.body.pickup,
-      req.body.request
+      req.body.request,
+      deliveryAddress
     );
 
     await order.save();
