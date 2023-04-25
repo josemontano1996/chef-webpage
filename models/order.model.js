@@ -150,16 +150,16 @@ class Order {
 
   async editStatus() {
     const mongoId = new mongodb.ObjectId(this.id);
-
+    console.log(mongoId);
     const order = await db
       .getDb()
       .collection('orders')
       .findOne({ _id: mongoId });
-
+    console.log(order);
     if (
       order.status === this.status ||
-      order.status === 'Cancelled' ||
-      order.status === 'Fulfilled'
+      order.status === 'cancelled' ||
+      order.status === 'fullfilled'
     ) {
       return;
     }

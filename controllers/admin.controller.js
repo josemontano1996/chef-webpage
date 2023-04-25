@@ -10,7 +10,7 @@ const User = require('../models/user.model');
 async function getOrders(req, res) {
   try {
     const orders = await Order.findForQuery('pending');
-console.log(orders)
+
     res.render('admin/orders/pending', { orders: orders });
   } catch (error) {
     return next(error);

@@ -135,13 +135,13 @@ async function cancelRequest(req, res, next) {
     const cancellationOrder = new Order(
       undefined,
       undefined,
-      'Cancellation Requested',
+      'cancelreq',
+      undefined,
       undefined,
       undefined,
       undefined,
       undefined,
       req.params.id,
-      undefined,
       undefined
     );
     await cancellationOrder.editStatus();

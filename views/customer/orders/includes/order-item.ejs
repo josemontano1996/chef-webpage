@@ -17,7 +17,8 @@
           <% } %>
         </section>
       </div>
-      <section class="order-status">Status: <%= order.status %>.</section>
+      <section class="order-status">Status: <% if(order.status === 'cancelreq') { %>
+        Cancellation Requested <% } else { %> <%= order.status %><%}%>.</section>
       <section>
         <p>
           <% if(order.pickup) { %>
