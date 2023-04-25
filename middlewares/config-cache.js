@@ -4,7 +4,7 @@ const NodeCache = require('node-cache');
 async function storeConfigData(req, res, next) {
   let configData;
 
-  let configCache = new NodeCache({ stdTTL: 43200, checkperiod: 0 });
+  const configCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
 
   // set up the change stream outside the middleware function
   const configCollection = db.getDb().collection('config');
@@ -16,6 +16,8 @@ async function storeConfigData(req, res, next) {
   }
 
   res.locals.configData = configData;
+
+  console.log(res.locals.configData);
   next();
 }
 

@@ -1,5 +1,7 @@
 const sessionFlash = require('../util/session-flash');
 
+const NodeCache = require('node-cache');
+
 const Product = require('../models/product.model');
 const Order = require('../models/order.model');
 const Config = require('../models/config.model');
@@ -88,7 +90,11 @@ async function updateConfig(req, res, next) {
       req.body._id
     );
 
-    await admin.save();
+    const configData = await admin.save();
+
+    const configCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
+
+    configCache.set('configData', configData);
   } catch (error) {
     return next(error);
   }
