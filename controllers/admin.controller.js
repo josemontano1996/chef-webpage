@@ -11,7 +11,7 @@ async function getOrders(req, res) {
   try {
     const orders = await Order.findForQuery('pending');
 console.log(orders)
-    res.render('admin/orders/orders', { orders: orders });
+    res.render('admin/orders/pending', { orders: orders });
   } catch (error) {
     return next(error);
   }
@@ -23,7 +23,7 @@ async function getQueryOrders(req, res) {
   try {
     const orders = await Order.findForQuery(query);
 
-    res.render('admin/orders/orders', { orders: orders });
+    res.render('admin/orders/' + query, { orders: orders });
   } catch (error) {
     return next(error);
   }
