@@ -9,9 +9,9 @@ const User = require('../models/user.model');
 
 async function getOrders(req, res) {
   try {
-    const orders = await Order.findForQuery('Pending');
-
-    res.render('admin/orders/pending', { orders: orders });
+    const orders = await Order.findForQuery('pending');
+console.log(orders)
+    res.render('admin/orders/orders', { orders: orders });
   } catch (error) {
     return next(error);
   }
@@ -20,14 +20,10 @@ async function getOrders(req, res) {
 async function getQueryOrders(req, res) {
   let query = req.params.query;
 
-  if (query === 'CancelRequest') {
-    query = 'Cancellation Requested';
-  }
-
   try {
     const orders = await Order.findForQuery(query);
 
-    res.render('admin/orders/pending', { orders: orders });
+    res.render('admin/orders/orders', { orders: orders });
   } catch (error) {
     return next(error);
   }

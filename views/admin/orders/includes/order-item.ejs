@@ -17,11 +17,11 @@
             <input type="hidden" name="orderid" value="<%=order.id%>">
             <label for="status">Status:</label>
             <select name="status" id="status">
-              <option value="Pending" <% if(order.status === 'Pending'){ %> selected <%}%>>Pending</option>
-              <option value="Accepted" <% if(order.status === 'Accepted'){ %> selected <%}%>>Accepted</option>
-              <option value="Cancelled" <% if(order.status === 'Cancelled'){ %> selected <%}%>>Cancelled</option>
-              <option value="Fulfilled" <% if(order.status === 'Fulfilled'){ %> selected <%}%>>Fulfilled</option>
-              <option value="Cancellation Requested" <% if(order.status === 'Cancellation Requested'){ %> selected <%}%>>Cancellation Requested</option>
+              <option value="pending" <% if(order.status === 'pending'){ %> selected <%}%>>Pending</option>
+              <option value="accepted" <% if(order.status === 'accepted'){ %> selected <%}%>>Accepted</option>
+              <option value="cancelled" <% if(order.status === 'cancelled'){ %> selected <%}%>>Cancelled</option>
+              <option value="fulfilled" <% if(order.status === 'fulfilled'){ %> selected <%}%>>Fulfilled</option>
+              <option value="cancelreq" <% if(order.status === 'cancelreq'){ %> selected <%}%>>Cancellation Requested</option>
             </select>
             <button>Update Status</button>
           </form>

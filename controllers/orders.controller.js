@@ -69,10 +69,7 @@ async function placeOrder(req, res, next) {
       country: req.body.country,
     };
   }
-  console.log(res.locals.configData.pickup);
-  console.log(req.body.pickup);
-  console.log(deliveryAddress);
-
+  
   const validationData = {
     name: req.body.fullname,
     email: req.body.email,

@@ -7,7 +7,7 @@ class Order {
   constructor(
     productData,
     userData,
-    status = 'Pending',
+    status = 'pending',
     deliveryDate,
     pickup = false,
     request,
@@ -63,10 +63,11 @@ class Order {
   }
 
   static async findForQuery(query) {
+    console.log(query);
     const ordersArray = await db
       .getDb()
       .collection('orders')
-      .find({ status: query })
+      .find({ status: query.toString() })
       .sort({ deliveryDate: -1 })
       .toArray();
 
