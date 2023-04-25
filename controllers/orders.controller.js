@@ -69,7 +69,7 @@ async function placeOrder(req, res, next) {
       country: req.body.country,
     };
   }
-  
+
   const validationData = {
     name: req.body.fullname,
     email: req.body.email,
@@ -131,19 +131,13 @@ async function placeOrder(req, res, next) {
 }
 
 async function cancelRequest(req, res, next) {
+  
   try {
-    const cancellationOrder = new Order(
-      undefined,
-      undefined,
-      'cancelreq',
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      req.params.id,
-      undefined
-    );
+    const cancellationOrder = new Order();
+    cancellationOrder.id = req.params.id;
+    cancellationOrder.status = 'cancelreq';
+    console.log(cancellationOrder);
+
     await cancellationOrder.editStatus();
   } catch (error) {
     return next(error);
