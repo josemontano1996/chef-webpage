@@ -5,14 +5,29 @@ input {
   margin-bottom: 1rem;
 }
 
-.button{
-    font-weight: bold;
+.button {
+  font-weight: bold;
 }
 
-#pickup-section label span{
+#pickup-section label span {
   font-style: italic;
 }
 
-#request-section{
+#request-section {
   margin-bottom: 0.5rem;
+}
+
+#only-pickup h4 {
+  margin: 0 auto 1rem auto;
+}
+
+#only-pickup p {
+  font-size: 1.2rem;
+}
+
+#only-pickup a {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.1rem;
+  font-style: italic;
 }

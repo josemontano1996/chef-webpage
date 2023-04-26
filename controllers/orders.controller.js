@@ -38,7 +38,7 @@ async function checkOut(req, res, next) {
     if (!userData.name || !userData.phone) {
       saveData = true;
     }
-    if (!res.locals.configData.pickup && !userData.address.street) {
+    if (res.locals.configData.pickup !== 'only' && !userData.address.street) {
       saveData = true;
     }
 
@@ -61,8 +61,8 @@ async function placeOrder(req, res, next) {
   const cart = res.locals.cart;
   const userId = res.locals.userid;
   let deliveryAddress;
-  
-  if (res.locals.configData.pickup || req.body.pickup) {
+
+  if (res.locals.configData.pickup === 'only' || req.body.pickup) {
     const address = res.locals.configData.pickupAddress;
     deliveryAddress = {
       street: address.pickupStreet,
@@ -150,7 +150,6 @@ async function cancelRequest(req, res, next) {
     const cancellationOrder = new Order();
     cancellationOrder.id = req.params.id;
     cancellationOrder.status = 'cancelreq';
-    
 
     await cancellationOrder.editStatus();
   } catch (error) {

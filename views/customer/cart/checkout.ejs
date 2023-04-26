@@ -46,21 +46,26 @@
           required
         />
       </p>
-      <% if (Boolean(locals.configData.pickup)) { %>
-        <div>
-        <h4>Pickup Address:</h4>
-        <p>
-          <%= locals.configData.pickupMessage %>
-        </p> 
+      <% if (locals.configData && locals.configData.pickup === 'only') { %>
+        <section id="only-pickup">
+          <h4>Pickup Address:</h4>
+          <p>
+            <%= locals.configData.pickupMessage %>
+          </p> 
+          <a
+            target="_blank"
+            href="https://www.google.com/maps?q=<%= locals.configData ? locals.configData.pickupAddress.pickupStreet : '' %>, 
+            <%= locals.configData ? locals.configData.pickupAddress.pickupPostal : '' %>, 
+            <%= locals.configData ? locals.configData.pickupAddress.pickupCity : '' %>, <%=locals.configData ? locals.configData.pickupAddress.pickupCountry : ''%>">
+            <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupStreet : ''%></li>
+            <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupPostal: ''%>,
+             <%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCity: ''%></li>
+            <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCountry: '' %></li>
+          </a>
         <ol>
-          <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupStreet : ''%></li>
-          <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupPostal: ''%>,
-           <%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCity: ''%></li>
-          <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCountry: '' %></li>
         </ol>
-        </div>
+        </section>
       
-        </div>
         <% } else { %>
         <p>
           <label for="street">Delivery Address</label>
@@ -104,14 +109,25 @@
             required
           />
         </p>
-        <p id="pickup-section">
-          <label for="pickup">Check the box below if you prefer to pick up your package at:
-            <br><span>
-              <%= locals.configData.pickupAddress.pickupStreet + ', ' + locals.configData.pickupAddress.pickupPostal + ', ' + locals.configData.pickupAddress.pickupCity + ', ' + locals.configData.pickupAddress.pickupCountry%>.
-            </span>
-            </label>
-         <input type="checkbox" name="pickup" id="pickup" />
+
+        <% if (locals.configData && locals.configData.pickup === 'active') { %> 
+          <p id="pickup-section">
+            <label for="pickup">Check the box below if you prefer to pick up your package at:
+              <br> <a
+            target="_blank"
+            href="https://www.google.com/maps?q=<%= locals.configData ? locals.configData.pickupAddress.pickupStreet : '' %>, 
+            <%= locals.configData ? locals.configData.pickupAddress.pickupPostal : '' %>, 
+            <%= locals.configData ? locals.configData.pickupAddress.pickupCity : '' %>, <%=locals.configData ? locals.configData.pickupAddress.pickupCountry : ''%>">
+            <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupStreet : ''%></li>
+            <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupPostal: ''%>,
+             <%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCity: ''%></li>
+            <li><%= locals.configData.pickupAddress ? locals.configData.pickupAddress.pickupCountry: '' %></li>
+          </a>
+              </label>
+           <input type="checkbox" name="pickup" id="pickup" />
+          <% } %>
       <%}%>
+
       <% if (saveData){ %> 
         <p>
           <label for="saveData">Do you wanna save your data for future orders?</label>

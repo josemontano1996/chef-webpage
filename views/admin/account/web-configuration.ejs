@@ -90,7 +90,11 @@
       <h4>Delivery</h4>
       <p>
         <label for="pickup">Only pickup available?</label>
-        <input type="checkbox" id="pickup" name="pickup" <%= config && Boolean(config.pickup) ? 'checked' : false %>>
+        <select name="pickup" id="pickup">
+          <option value="disabled" <% if (locals.configData.pickup === 'disabled') { %> selected <% } %>>Disable</option>
+          <option value="active" <% if (locals.configData.pickup === 'active') { %> selected <% } %>>Active</option>
+          <option value="only" <% if (locals.configData.pickup === 'only') { %> selected <% } %>>Only pickup available</option>
+        </select>
       </p>
       <p>
         <label for="pickupMessage">Only pickup: message displayed</label>

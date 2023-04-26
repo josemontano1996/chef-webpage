@@ -9,25 +9,25 @@
         <address>
           <a
             target="_blank"
-            href="https://www.google.com/maps?q=<%= locals.configData.address.street %>, 
-            <%= locals.configData.address.postal %>, 
-            <%= locals.configData.address.city %>, <%= locals.configData.address.country %>">
-            <p> <%=locals.configData.address.street%></p>
-            <p><%=locals.configData.address.postal%> <%=locals.configData.address.city%></p>
-            <p><%=locals.configData.address.country%></p>
+            href="https://www.google.com/maps?q=<%= locals.configData ? locals.configData.address.street : '' %>, 
+            <%=locals.configData ? locals.configData.address.postal : '' %>, 
+            <%=locals.configData ? locals.configData.address.city : '' %>, <%=locals.configData ? locals.configData.address.country : '' %>">
+            <p> <%=locals.configData ? locals.configData.address.street : '' %></p>
+            <p><%=locals.configData ? locals.configData.address.postal : '' %> <%=locals.configData ? locals.configData.address.city : ''%></p>
+            <p><%=locals.configData ? locals.configData.address.country : ''%></p>
           </a>
         </address>
         <div>
-          <p><a href="tel:<%=locals.configData.phone%>"><%= locals.configData.phone%></a></p>
-          <p><a href="mailto:<%= locals.configData.email%>"><%=locals.configData.email%></a></p>
+          <p><a href="tel:<%=locals.configData ? locals.configData.phone : '' %>"><%=locals.configData ? locals.configData.phone : ''%></a></p>
+          <p><a href="mailto:<%=locals.configData ? locals.configData.email : '' %>"><%=locals.configData ? locals.configData.email : ''%></a></p>
         </div>
       </section>
       <div>
         <nav>
           <p><a href="">Menu</a></p>
           <p><a href="/customer/account">My Account</a></p>
-          <p><a href="<%=locals.configData.social.facebook%>">Facebook</a></p>
-          <p><a href="<%=locals.configData.social.instagram%>">Instagram</a></p>
+          <p><a href="<%=locals.configData ? locals.configData.social.facebook : '' %>">Facebook</a></p>
+          <p><a href="<%=locals.configData ? locals.configData.social.instagram : ''%>">Instagram</a></p>
         </nav>
       </div>
     </footer>
