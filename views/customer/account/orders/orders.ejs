@@ -1,11 +1,12 @@
-<%- include("../../shared/head", {pageTitle: "Orders"}) %>
+<%- include("../../../shared/head", {pageTitle: "Orders"}) %>
 <link rel="stylesheet" href="/css/orders.css" />
 <script src="/scripts/user-cancel-order.js" defer></script>
 <script src="/scripts/user-confirm-cancel-order.js" defer></script>
 </head>
 <body>
-    <%- include("../../shared/header") %>
+    <%- include("../../../shared/header") %>
     <main >
+      <%- include ('../includes/sort-nav' , {urlPath: 'orders'}) %>
        <h3 id="order">All your orders</h3>
        <ol>
         <% for (const order of orders) {%>
@@ -14,4 +15,4 @@
        </ol>
         
     </main>
-<%- include("../../shared/footer") %>
+<%- include("../../../shared/footer") %>
