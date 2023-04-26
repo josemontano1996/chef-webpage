@@ -13,14 +13,14 @@
   <% } %>
      <section>
         <h4>Your Personal Information</h4>
-        <form id="updateInfoForm" data-userid="<%=user._id%>">
+        <form id="updateInfoForm">
       <p>
         <label for="fullname">Your Name</label>
         <input
           type="text"
           name="fullname"
           id="fullname"
-          value="<%= inputData.errorMessage ? inputData.name : user.name %>"
+          value="<%= inputData.errorMessage ? inputData.name : user.name ?? '' %>"
           required
         />
       </p>
@@ -40,7 +40,7 @@
           type="tel"
           name="phone"
           id="phone"
-          value="<%= inputData.errorMessage ? inputData.phone : user.phone %>"
+          value="<%= inputData.errorMessage ? inputData.phone : user.phone ?? '' %>"
           required
         />
       </p>
@@ -50,7 +50,7 @@
           type="text"
           name="street"
           id="street"
-         value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
+         value="<%= inputData.errorMessage ? inputData.street : user.address ? user.address.street : '' %>"
           required
         />
       </p>
@@ -62,7 +62,7 @@
           id="postal"
           minlength="5"
           maxlength="5"
-          value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
+          value="<%= inputData.errorMessage ? inputData.postal : user.address ? user.address.postal : '' %>"
           required
         />
       </p>
@@ -72,7 +72,7 @@
           type="text"
           name="city"
           id="city"
-         value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
+         value="<%= inputData.errorMessage ? inputData.city : user.address ? user.address.city : '' %>"
           required
         />
       </p>
@@ -82,7 +82,7 @@
           type="text"
           name="country"
           id="country"
-          value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
+          value="<%= inputData.errorMessage ? inputData.country : user.address ? user.address.country : '' %>"
           required
         />
       </p>   

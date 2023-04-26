@@ -32,10 +32,8 @@ async function getAccount(req, res, next) {
 }
 
 async function updateUserData(req, res, next) {
-  if (req.params.id !== req.session.userid) {
-    return res.status(403).render('shared/errors/403');
-  }
-
+  let userId = res.locals.userid
+  
   if (
     !inputValidation.updatedUserDetailsAreValid(
       req.body.email,
@@ -52,7 +50,7 @@ async function updateUserData(req, res, next) {
     });
   }
 
-  const result = await User.editUser(req);
+  const result = await User.editUser(req, userId);
   return res.json({
     statusMessage: result.statusMessage,
   });

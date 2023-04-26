@@ -4,18 +4,7 @@ const mongodb = require('mongodb');
 const db = require('../data/database');
 
 class User {
-  constructor(
-    email,
-    password,
-    name,
-    phone,
-    street,
-    postal,
-    city,
-    country,
-    facebook,
-    instagram
-  ) {
+  constructor(email, password, name, phone, street, postal, city, country) {
     (this.email = email),
       (this.password = password),
       (this.name = name),
@@ -25,10 +14,6 @@ class User {
         postal: postal,
         city: city,
         country: country,
-      }),
-      (this.social = {
-        facebook: facebook,
-        instagram: instagram,
       });
   }
 
@@ -38,9 +23,6 @@ class User {
     await db.getDb().collection('users').insertOne({
       email: this.email,
       password: hashedPassword,
-      name: this.name,
-      phone: this.phone,
-      address: this.address,
     });
   }
 
@@ -70,8 +52,8 @@ class User {
     return bcrypt.compare(this.password, hashedPassword);
   }
 
-  static async editUser(req) {
-    const mongoId = new mongodb.ObjectId(req.params.id);
+  static async editUser(req, userId) {
+    const mongoId = new mongodb.ObjectId(userId);
 
     const currentUser = await db
       .getDb()
@@ -100,17 +82,11 @@ class User {
             name: req.body.fullname,
             phone: req.body.phone,
             address: {
-              street: req.body.street,
-              postal: req.body.postal,
-              city: req.body.city,
-              country: req.body.country,
+              street: req.body.street ?? '',
+              postal: req.body.postal ?? '',
+              city: req.body.city ?? '',
+              country: req.body.country ?? '',
             },
-            social: req.body.facebook
-              ? {
-                  facebook: req.body.facebook,
-                  instagram: req.body.instagram,
-                }
-              : {},
           },
         }
       );

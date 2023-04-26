@@ -5,11 +5,10 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const formData = new FormData(form);
-  const userId = event.target.dataset.userid;
-
+  
   let response;
   try {
-    response = await fetch('/customer/account/' + userId, {
+    response = await fetch('/customer/account', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ async function getOrders(req, res, next) {
 }
 
 async function checkOut(req, res, next) {
-  //I HAVE TO ADD THE DATE VALIDATION!!
+  // TODO I HAVE TO ADD THE DATE VALIDATION!!
   let sessionData = sessionFlash.getSessionData(req);
 
   if (!sessionData) {
@@ -34,6 +34,14 @@ async function checkOut(req, res, next) {
     const userid = res.locals.userid;
     const userData = await User.getUserWithSameId(userid);
 
+    let saveData = false;
+    if (!userData.name || !userData.phone) {
+      saveData = true;
+    }
+    if (!res.locals.configData.pickup && !userData.address.street) {
+      saveData = true;
+    }
+
     const orderDataFlash = new Order();
     //I use the orderDataFlash to create a new Order instance
     //and pass to the template the Pickup Address data.
@@ -42,6 +50,7 @@ async function checkOut(req, res, next) {
       user: userData,
       inputData: sessionData,
       orderDataFlash: orderDataFlash,
+      saveData: saveData,
     });
   } catch (error) {
     return next(error);
@@ -52,7 +61,7 @@ async function placeOrder(req, res, next) {
   const cart = res.locals.cart;
   const userId = res.locals.userid;
   let deliveryAddress;
-
+  
   if (res.locals.configData.pickup || req.body.pickup) {
     const address = res.locals.configData.pickupAddress;
     deliveryAddress = {
@@ -104,7 +113,13 @@ async function placeOrder(req, res, next) {
     );
     return;
   }
+
   try {
+    //Saving user Data in the database if it is incompleted and user checked the ckebox
+    if (req.body.saveData) {
+      await User.editUser(req, userId);
+    }
+
     const order = new Order(
       cart,
       {
@@ -131,12 +146,11 @@ async function placeOrder(req, res, next) {
 }
 
 async function cancelRequest(req, res, next) {
-  
   try {
     const cancellationOrder = new Order();
     cancellationOrder.id = req.params.id;
     cancellationOrder.status = 'cancelreq';
-    console.log(cancellationOrder);
+    
 
     await cancellationOrder.editStatus();
   } catch (error) {

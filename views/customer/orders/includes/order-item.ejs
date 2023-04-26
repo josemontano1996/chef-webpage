@@ -37,7 +37,7 @@
         </div>
         <% if(order.status === "fulfilled") { %>
           <button class="button" class="comment-button">Share your experience!</button>
-        <% } else if (order.status === "cancelled" || order.status === "Cancellation Requested") { %>
+        <% } else if (order.status === "cancelled" || order.status === "cancelreq") { %>
        <% } else { %>
           <button class="cancel-button" data-orderid="<%= order.id %>">Cancel Order</button>
           <button class="confirm-cancel-button" data-orderid="<%= order.id %>">Click again for canceling your order</button>

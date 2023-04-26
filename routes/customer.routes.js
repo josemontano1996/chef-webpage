@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get('/account', customerController.getAccount);
 
-router.patch('/account/:id', customerController.updateUserData)
+router.patch('/account', customerController.updateUserData)
 
 module.exports = router;

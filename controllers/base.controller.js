@@ -12,20 +12,13 @@ function getAbout(req, res) {
 }
 
 function getAuth(req, res) {
- 
- const sessionData = {
-      email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
-      name: '',
-      phone: '',
-      street: '',
-      postal: '',
-      city: '',
-      country: '',
-    };
-  
+  const sessionData = {
+    email: '',
+    confirmEmail: '',
+    password: '',
+    confirmPassword: '',
+  };
+
   res.render('customer/auth/auth', { inputData: sessionData });
 }
 
@@ -38,12 +31,6 @@ function getSignup(req, res) {
       confirmEmail: '',
       password: '',
       confirmPassword: '',
-      name: '',
-      phone: '',
-      street: '',
-      postal: '',
-      city: '',
-      country: '',
     };
   }
 
@@ -68,25 +55,10 @@ async function signup(req, res, next) {
     confirmEmail: req.body['confirm-email'],
     password: req.body.password,
     confirmPassword: req.body['confirm-password'],
-    name: req.body.fullname,
-    phone: req.body.phone,
-    street: req.body.street,
-    postal: req.body.postal,
-    city: req.body.city,
-    country: req.body.country,
   };
 
   if (
-    !inputValidation.userDetailsAreValid(
-      req.body.email,
-      req.body.password,
-      req.body.fullname,
-      req.body.phone,
-      req.body.street,
-      req.body.postal,
-      req.body.city,
-      req.body.country
-    ) ||
+    !inputValidation.signupDetailsAreValid(req.body.email, req.body.password) ||
     !inputValidation.emailsPasswordsMatch(
       req.body.email,
       req.body['confirm-email'],
@@ -109,16 +81,7 @@ async function signup(req, res, next) {
     return;
   }
 
-  const user = new User(
-    req.body.email,
-    req.body.password,
-    req.body.fullname,
-    req.body.phone,
-    req.body.street,
-    req.body.postal,
-    req.body.city,
-    req.body.country
-  );
+  const user = new User(req.body.email, req.body.password);
 
   try {
     const userExistsAlready = await user.userExistsAlready();
