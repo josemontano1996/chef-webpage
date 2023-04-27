@@ -1,10 +1,8 @@
 <nav class="sort-nav">
           <ul class="flexbox-container">
-            <li <% if(page === "pending"){ %> class="highligthed" <%}%>><a href="/admin/orders/pending">Pending orders</a></li>
-              <li <% if(page === "cancelreq"){ %> class="highligthed" <%}%>><a href="/admin/orders/cancelreq">Cancel requests</a></li>
-              <li <% if(page === "accepted"){ %> class="highligthed" <%}%>><a href="/admin/orders/accepted">Accepted Orders</a></li>
-              <li <% if(page === "fulfilled"){ %> class="highligthed" <%}%>><a href="/admin/orders/fulfilled">Fulfilled</a></li>
-              <li <% if(page === "cancelled"){ %> class="highligthed" <%}%>><a href="/admin/orders/cancelled">Cancelled</a></li>
-            </ul>
-              <hr>
-        </nav>
+            <li <% if(page === "active"){ %> class="highligthed" <%}%>><a href="/orders/active">Active Orders</a></li>
+            <li <% if(page === "inactive"){ %> class="highligthed" <%}%>><a href="/orders/inactive">Archived Orders</a></li>
+            <li <% if(page === "fullfilled"){ %> class="highligthed" <%}%>><a href="/orders/fullfilled">Comments</a></li>
+          </ul>
+          <hr>
+    </nav>

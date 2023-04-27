@@ -1,0 +1,18 @@
+<%- include("../../../shared/head", {pageTitle: "Active Orders"}) %>
+<link rel="stylesheet" href="/css/orders.css">
+<link rel="stylesheet" href="/css/sort-nav.css">
+</head>
+<body>
+    <%- include("../../../shared/header") %>
+    <main>
+      <%- include ("../includes/sort-nav", {urlPath: 'orders'}) %>
+      <%- include("includes/orders-nav", {page:'fullfilled'}) %>
+       <section>
+         <ol>
+          <% for (const order of orders) {%>
+           <%- include('includes/comment-order-item', {order:order})%>
+           <% } %>
+         </ol>
+       </section>
+    </main>
+<%- include("../../../shared/footer") %>

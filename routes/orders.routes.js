@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', ordersController.getOrders);
 router.get('/checkout', ordersController.checkOut);
+router.get('/:query', ordersController.getOrderForQueries);
 
 router.post('/', ordersController.placeOrder);
 

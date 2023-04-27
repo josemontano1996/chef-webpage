@@ -1,9 +1,10 @@
 const mongodb = require('mongodb');
 
 const db = require('../data/database');
+const { query } = require('express');
 
 class Order {
-  //status => Pending, Accepted, Fulfilled, Cancellation Requested, Cancelled
+  //status => Pending, Accepted, Fullfilled, Cancellation Requested, Cancelled
   constructor(
     productData,
     userData,
@@ -14,7 +15,8 @@ class Order {
     deliveryAddress = {},
     orderDate,
     orderId,
-    chefMessage = ''
+    chefMessage = '',
+    commented
   ) {
     this.productData = productData;
     this.userData = userData;
@@ -34,6 +36,7 @@ class Order {
     } else {
       this.chefMessage = '';
     }
+    this.commented = commented;
   }
 
   static async findAll() {
@@ -63,11 +66,10 @@ class Order {
   }
 
   static async findForQuery(query) {
-    console.log(query);
     const ordersArray = await db
       .getDb()
       .collection('orders')
-      .find({ status: query.toString() })
+      .find({ status: query })
       .sort({ deliveryDate: -1 })
       .toArray();
 
@@ -82,7 +84,35 @@ class Order {
         o.deliveryAddress,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage
+        o.chefMessage,
+        o.commented
+      );
+    });
+
+    return orders;
+  }
+
+  static async findForMultipleQueries(userid, queryArray) {
+    const ordersArray = await db
+      .getDb()
+      .collection('orders')
+      .find({ 'userData._id': userid, status: { $in: queryArray } })
+      .sort({ deliveryDate: -1 })
+      .toArray();
+    
+    const orders = ordersArray.map((o) => {
+      return new Order(
+        o.productData,
+        o.userData,
+        o.status,
+        o.deliveryDate,
+        o.pickup,
+        o.request,
+        o.deliveryAddress,
+        o.orderDate,
+        (o.orderId = o._id.toString()),
+        o.chefMessage,
+        o.commented
       );
     });
 
@@ -107,7 +137,8 @@ class Order {
         o.deliveryAddress,
         o.orderDate,
         (o.orderId = o._id.toString()),
-        o.chefMessage
+        o.chefMessage,
+        o.commented
       );
     });
 
@@ -144,18 +175,19 @@ class Order {
       order.deliveryAddress,
       order.orderDate,
       order._id.toString(),
-      order.chefMessage
+      order.chefMessage,
+      order.commented
     );
   }
 
   async editStatus() {
     const mongoId = new mongodb.ObjectId(this.id);
-    console.log(mongoId);
+
     const order = await db
       .getDb()
       .collection('orders')
       .findOne({ _id: mongoId });
-    console.log(order);
+
     if (
       order.status === this.status ||
       order.status === 'cancelled' ||

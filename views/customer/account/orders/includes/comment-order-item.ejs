@@ -35,13 +35,11 @@
           <p>Order ref: <span class="order-number"><%= order.id %></span></p>
           <h4 class="buttom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
         </div>
-        <% if(order.status === "fulfilled") { %>
+
+        <% if(order.status === "fullfilled" && !order.commented) { %>
           <button class="button" class="comment-button">Share your experience!</button>
-        <% } else if (order.status === "cancelled" || order.status === "cancelreq") { %>
-       <% } else { %>
-          <button class="cancel-button" data-orderid="<%= order.id %>">Cancel Order</button>
-          <button class="confirm-cancel-button" data-orderid="<%= order.id %>">Click again for canceling your order</button>
         <% } %>
+      
       </section>
       <section class="message-section">
         <div>
@@ -59,15 +57,21 @@
             </ol>
           <% } %>
         </div>
-        <div class="chef-messages">
-          <h4>Chef messages:</h4>
-          <ol>
-            <li>
-              <p class="italic">14febreto 303014</p>
-              <p>Okay todo perfecto</p>
-            </li>
-          </ol>
-        </div>
+        <% if (order.chefMessage) {%>
+          <div class="chef-messages">
+            <h4>Chef messages:</h4>
+            <ol>
+              <% for (const chefMessage of order.chefMessage.slice(1)) { %>
+                  <% if (chefMessage) { %>
+                    <li class="li-p">
+                      <p class="italic"><%= chefMessage[0] ? chefMessage[0].toLocaleString() : '' %></p>
+                      <p><%= chefMessage[1] ? chefMessage[1] : '' %></p>
+                    </li>
+                  <% } %>
+                <% } %>
+            </ol>
+          </div>
+       <% }%>
       </section>
       <hr>
     </div>

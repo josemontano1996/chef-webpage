@@ -1,0 +1,20 @@
+<%- include("../../../shared/head", {pageTitle: "Active Orders"}) %>
+<link rel="stylesheet" href="/css/orders.css">
+<link rel="stylesheet" href="/css/sort-nav.css">
+<script defer src="/scripts/user-cancel-order.js"></script>
+<script defer src="/scripts/user-confirm-cancel-order.js"></script>
+</head>
+<body>
+    <%- include("../../../shared/header") %>
+    <main>
+      <%- include ("../includes/sort-nav", {urlPath: 'orders'}) %>
+      <%- include("includes/orders-nav", {page:'active'}) %>
+       <section>
+         <ol>
+          <% for (const order of orders) {%>
+           <%- include('includes/active-order-item', {order:order})%>
+           <% } %>
+         </ol>
+       </section>
+    </main>
+<%- include("../../../shared/footer") %>

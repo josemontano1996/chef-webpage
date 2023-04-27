@@ -6,9 +6,48 @@ const Order = require('../models/order.model');
 
 async function getOrders(req, res, next) {
   try {
-    const orders = await Order.findAllForUser(res.locals.userid);
+    const orders = await Order.findForMultipleQueries(res.locals.userid, [
+      'pending',
+      'cancelreq',
+      'accepted',
+    ]);
 
-    res.render('customer/account/orders/orders', { orders: orders });
+    res.render('customer/account/orders/active', { orders: orders });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function getOrderForQueries(req, res, next) {
+  //active pending, cancelreq, accepted\
+  //inactive cancelled, fullfilled
+  //fullfilled fullfilled: orders free for commenting
+  let queriesArray;
+  let path
+
+  if (req.params.query === 'active') {
+    queriesArray = ['accepted', 'pending', 'cancelreq'];
+    path = 'active'
+  }
+  if (req.params.query === 'inactive') {
+    queriesArray = ['fullfilled', 'cancelled'];
+    path='inactive'
+  }
+  if (req.params.query === 'fullfilled') {
+    queriesArray = ['fullfilled'];
+    path='comment'
+  }
+  if (!queriesArray) {
+    return res.status(404).render('shared/errors/404');
+  }
+
+  try {
+    const orders = await Order.findForMultipleQueries(
+      res.locals.userid,
+      queriesArray
+    );
+
+    return res.render('customer/account/orders/' + path , { orders: orders });
   } catch (error) {
     return next(error);
   }
@@ -42,14 +81,9 @@ async function checkOut(req, res, next) {
       saveData = true;
     }
 
-    const orderDataFlash = new Order();
-    //I use the orderDataFlash to create a new Order instance
-    //and pass to the template the Pickup Address data.
-
     res.render('customer/cart/checkout', {
       user: userData,
       inputData: sessionData,
-      orderDataFlash: orderDataFlash,
       saveData: saveData,
     });
   } catch (error) {
@@ -164,4 +198,5 @@ module.exports = {
   checkOut: checkOut,
   getOrders: getOrders,
   cancelRequest: cancelRequest,
+  getOrderForQueries: getOrderForQueries,
 };

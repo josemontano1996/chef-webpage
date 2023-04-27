@@ -5,30 +5,21 @@
       <div>
         <section>
           <h4>Order placed for: <span class="underline"><%= order.deliveryDate %></span></h4>
-          <p>Order ref: <span class="order-number"><%= order.id %></span></p>
+        </section>
+        <section>
           <% for(let i=0; i<order.productData.items.length; i++) { %>
-            <li> 
-              <%= order.productData.items[i].quantity %> <%= order.productData.items[i].product.name %>
-            </li> 
+            <%= order.productData.items[i].quantity %> <%= order.productData.items[i].product.name %>
+            <% if(i === order.productData.items.length - 1) { %>
+              .
+            <% } else { %>
+              ,
+            <% } %>
           <% } %>
         </section>
-        <section>
-          <form class="order-status">
-            <input type="hidden" name="orderid" value="<%=order.id%>">
-            <label for="status">Status:</label>
-            <select name="status" id="status">
-              <option value="pending" <% if(order.status === 'pending'){ %> selected <%}%>>Pending</option>
-              <option value="accepted" <% if(order.status === 'accepted'){ %> selected <%}%>>Accepted</option>
-              <option value="cancelled" <% if(order.status === 'cancelled'){ %> selected <%}%>>Cancelled</option>
-              <option value="fullfilled" <% if(order.status === 'fullfilled'){ %> selected <%}%>>Fullfilled</option>
-              <option value="cancelreq" <% if(order.status === 'cancelreq'){ %> selected <%}%>>Cancellation Requested</option>
-            </select>
-            <button>Update Status</button>
-          </form>
-
-        </section>
-
-        <section>
+      </div>
+      <section class="order-status">Status: <% if(order.status === 'cancelreq') { %>
+        cancellation requested <% } else { %> <%= order.status %><%}%>.</section>
+      <section>
         <p>
           <% if(order.pickup) { %>
             Pickup at: 
@@ -37,27 +28,23 @@
             <% } %>
         <a href="https://www.google.com/maps?q=<%= order.deliveryAddress.street %>, <%= order.deliveryAddress.postal %>, <%= order.deliveryAddress.city %>, <%= order.deliveryAddress.country %>"><%= order.deliveryAddress.street %>, <%= order.deliveryAddress.postal %>, <%= order.deliveryAddress.city %>, <%= order.deliveryAddress.country %></a></p>
         </p>
-       </div>
-      <section>
-        <h4>Customer Data</h4>
-        <p>Name: <%=order.userData.fullname%></p>
-        <p>Email: <a class="underline" href="mailto:<%=order.userData.email%>"><%=order.userData.email%></a></p>
-        <p>Phone: <a class="underline" href="tel:<%=order.userData.phone%>"><%=order.userData.phone%></a></p>
+
       </section>
       <section class="flexbox-container order-management">
         <div>
+          <p>Order ref: <span class="order-number"><%= order.id %></span></p>
           <h4 class="buttom-h4">Total amount: <%= order.productData.totalPrice %> &euro;</h4>
         </div>
-        <% if(order.status === "fullfilled" || order.status === "cancelled") { %>
-        <% } else { %>
-          <form class="send"></form>
-          <button class="button" data-orderid="<%= order.id %>">Send message to user.</button>
+        <% if (order.status === "cancelled" || order.status === "cancelreq") { %>
+       <% } else { %>
+          <button class="cancel-button" data-orderid="<%= order.id %>">Cancel Order</button>
+          <button class="confirm-cancel-button" data-orderid="<%= order.id %>">Click again for canceling your order</button>
         <% } %>
       </section>
       <section class="message-section">
         <div>
           <% if(order.request) { %>
-            <h4>Customer requests:</h4>
+            <h4>Your requests:</h4>
             <ol>
               <% for (const orderRequest of order.request.slice(1)) { %>
                 <% if (orderRequest) { %>
@@ -72,7 +59,7 @@
         </div>
         <% if (order.chefMessage) {%>
           <div class="chef-messages">
-            <h4>Your messages:</h4>
+            <h4>Chef messages:</h4>
             <ol>
               <% for (const chefMessage of order.chefMessage.slice(1)) { %>
                   <% if (chefMessage) { %>
