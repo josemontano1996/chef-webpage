@@ -31,3 +31,14 @@ input {
   font-size: 1.1rem;
   font-style: italic;
 }
+
+.flatpickr-calendar {
+  position: absolute;
+  display: block;
+  left: 10%;
+  max-width: 80%;
+}
+
+.flatpickr-calendar .flatpickr-disabled {
+  color: red;
+}
