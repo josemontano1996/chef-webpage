@@ -24,6 +24,9 @@ const flatpickConfig = {
       return date.getDay() === 0;
     },
   ],
+  disable: [
+    
+  ]
 };
 
 flatpickr(dateInputElement, flatpickConfig);

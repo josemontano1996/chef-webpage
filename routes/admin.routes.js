@@ -10,6 +10,7 @@ router.get('/config', adminController.getConfig);
 router.get('/menu', adminController.getMenu);
 router.get('/menu/new', adminController.getNewProduct);
 router.get('/menu/:id', adminController.getUpdateProduct);
+router.get('/schedule', adminController.getSchedule)
 
 router.post('/menu/new', adminController.addNewProduct);
 router.post('/menu/:id', adminController.updateProduct);

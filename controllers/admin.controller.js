@@ -6,12 +6,23 @@ const Product = require('../models/product.model');
 const Order = require('../models/order.model');
 const Config = require('../models/config.model');
 const User = require('../models/user.model');
+const Schedule = require('../models/schedule.model');
 
-async function getOrders(req, res) {
+async function getOrders(req, res, next) {
   try {
     const orders = await Order.findForQuery('pending');
 
     res.render('admin/orders/pending', { orders: orders });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function getSchedule(req, res, next) {
+  try {
+    const schedule = await Schedule.getSchedule();
+    console.log(schedule);
+    return res.render('admin/account/schedule', { schedule: schedule });
   } catch (error) {
     return next(error);
   }
@@ -202,6 +213,7 @@ async function deleteProduct(req, res, next) {
 
 module.exports = {
   getOrders: getOrders,
+  getSchedule: getSchedule,
   getAccount: getAccount,
   getMenu: getMenu,
   getNewProduct: getNewProduct,

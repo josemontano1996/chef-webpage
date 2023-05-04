@@ -1,0 +1,43 @@
+<section>
+       <form action="/admin/schedule" method="POST">
+      <p>
+      <h4>Working Schedule</h4>
+      <p>
+          <h5>Working hours</h5>
+          <label for="start">Day starts at: </label>
+          <input type="time" id="start" name = "startingTime"
+          value="<%= schedule && schedule.clockIn ? schedule.clockIn : '' %>">
+        
+           <label for="finish">Day finishes at: </label>
+          <input type="time" id="finish" name = "finishingTime"
+          value="<%= schedule && schedule.clockOut ? schedule.clockOut : '' %>">
+        </p>
+      <p>
+        <h5>Workdays</h5>
+        <div>
+          <label for="monday">Monday</label>
+          <input type="checkbox" id="monday" name="monday"
+          value="<%= schedule && schedule.workingDays[0] ? schedule.workingDays[0] : false %>">
+          <label for="tuesday">Tuesday</label>
+          <input type="checkbox" id="tuesday" name="tuesday"
+          value="<%= schedule && schedule.workingDays[1] ? schedule.workingDays[1] : false %>">
+        <label for="wednesday">Wednesday</label>
+          <input type="checkbox" id="wednesday" name="wednesday"
+          value="<%= schedule && schedule.workingDays[2] ? schedule.workingDays[2] : false %>">
+        <label for="thursday">Thursday</label>
+          <input type="checkbox" id="thursday" name="thursday"
+          value=" <%= schedule && schedule.workingDays[3]  ? schedule.workingDays[3] : false %>">
+        <label for="friday">Friday</label>
+          <input type="checkbox" id="friday" name="friday"
+          value="<%= schedule && schedule.workingDays[4]? schedule.workingDays[4] : false %>">
+        <label for="saturday">Saturday</label>
+          <input type="checkbox" id="saturday" name="saturday"
+          value="<%= schedule && schedule.workingDays[5] ? schedule.workingDays[5]: false %>">
+        <label for="sunday">Sunday</label>
+          <input type="checkbox" id="sunday" name="sunday"
+          value="<%= schedule && schedule.workingDays[6]? schedule.workingDays[6]: false %>">
+        </div>
+      </p>
+      <button>Save schedule</button>
+        </form>
+     </section>

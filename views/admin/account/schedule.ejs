@@ -1,0 +1,16 @@
+<%- include("../../shared/head", {pageTitle: "Admin account"}) %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/sort-nav.css">
+</head>
+<body>
+    <%- include("../../shared/header") %>
+<main>
+
+<%- include("includes/sort-nav", {urlPath:'schedule'}) %>
+
+<%- include("includes/schedule-form", {schedule: schedule})%>
+
+<%- include("includes/holidays-form", {schedule: schedule})%>
+
+</main>
+<%- include("../../shared/footer") %>
