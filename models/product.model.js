@@ -21,6 +21,29 @@ class Product {
       (this.id = _id);
   }
 
+  static async findMultiple(ids) {
+    const productIds = ids.map(function (id) {
+      return new mongodb.ObjectId(id);
+    });
+    const products = await db
+      .getDb()
+      .collection('products')
+      .find({ _id: { $in: productIds } })
+      .toArray();
+
+    return products.map(function (product) {
+      return new Product(
+        product.name,
+        product.description,
+        product.price,
+        product.cuisine,
+        product.type,
+        product.minQuantity,
+        product._id.toString()
+      );
+    });
+  }
+
   static async findById(productId) {
     let objectId;
     try {

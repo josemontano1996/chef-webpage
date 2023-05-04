@@ -15,7 +15,8 @@ const errorHandlerMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 const protectRoutesMiddeware = require('./middlewares/protect-routes');
 const cartMiddleware = require('./middlewares/cart');
- const storeConfigData = require('./middlewares/config-cache');
+const storeConfigData = require('./middlewares/config-cache');
+const updateCartPricesMiddleware = require('./middlewares/update-cart-middleware');
 
 /* const csrfProtection = require('./middlewares/customs-csrf-protection'); */
 
@@ -56,11 +57,12 @@ app.use(expressSession(sessionConfig));
 /* app.use(csrfProtection); */
 
 app.use(cartMiddleware);
+app.use(updateCartPricesMiddleware);
 
 app.use(checkAuthStatusMiddleware);
 
 //serving config files from cache
-app.use(storeConfigData); 
+app.use(storeConfigData);
 
 //UNPROTECTED ROUTES
 app.use(baseRoutes);

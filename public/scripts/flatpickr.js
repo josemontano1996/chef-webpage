@@ -1,8 +1,10 @@
 const dateInputElement = document.getElementById('deliveryDate');
 
+//create a ajax get request for getting the configuration information from the db
+
 const flatpickConfig = {
   /* appendTo: document.getElementById('calendar-container'), */
-  disableMobile: 'true',
+  /* disableMobile: 'true', */ //TODO check this for production, see if is neccesary to for disableMobile
   enableTime: true,
   altInput: true,
   altFormat: 'F j, (h:S K) ',
