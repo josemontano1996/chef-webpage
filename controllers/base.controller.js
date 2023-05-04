@@ -1,4 +1,6 @@
 const User = require('../models/user.model');
+const Cart = require('../models/cart.model');
+
 const authUtil = require('../util/authentication');
 const inputValidation = require('../util/input-validation');
 const sessionFlash = require('../util/session-flash');
@@ -166,9 +168,20 @@ async function login(req, res, next) {
   });
 }
 
-function logout(req, res) {
-  authUtil.destroyUserAuthSession(req);
-  res.redirect('/');
+async function logout(req, res, next) {
+  try {
+    await Cart.saveCartinDb(res);
+
+    return req.session.destroy((err) => {
+      if (err) {
+        throw err;
+      } else {
+        res.redirect('/');
+      }
+    });
+  } catch (error) {
+    return next(error);
+  }
 }
 
 module.exports = {

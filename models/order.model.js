@@ -1,7 +1,6 @@
 const mongodb = require('mongodb');
 
 const db = require('../data/database');
-const { query } = require('express');
 
 class Order {
   //status => Pending, Accepted, Fullfilled, Cancellation Requested, Cancelled
@@ -99,7 +98,7 @@ class Order {
       .find({ 'userData._id': userid, status: { $in: queryArray } })
       .sort({ deliveryDate: -1 })
       .toArray();
-    
+
     const orders = ordersArray.map((o) => {
       return new Order(
         o.productData,
@@ -200,6 +199,21 @@ class Order {
       .getDb()
       .collection('orders')
       .updateOne({ _id: mongoId }, { $set: { status: this.status } });
+  }
+
+  static async deleteUserDbCart(res) {
+    const mongoId = new mongodb.ObjectId(res.locals.id);
+    return await db
+      .getDb()
+      .collection('orders')
+      .updateOne(
+        { _id: mongoId },
+        {
+          $set: {
+            cart: '',
+          },
+        }
+      );
   }
 
   async save() {

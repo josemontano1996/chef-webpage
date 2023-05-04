@@ -4,7 +4,17 @@ const mongodb = require('mongodb');
 const db = require('../data/database');
 
 class User {
-  constructor(email, password, name, phone, street, postal, city, country) {
+  constructor(
+    email,
+    password,
+    name,
+    phone,
+    street,
+    postal,
+    city,
+    country,
+    cart = {}
+  ) {
     (this.email = email),
       (this.password = password),
       (this.name = name),
@@ -14,7 +24,8 @@ class User {
         postal: postal,
         city: city,
         country: country,
-      });
+      }),
+      (this.cart = cart);
   }
 
   async signup() {

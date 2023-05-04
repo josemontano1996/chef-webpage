@@ -1,4 +1,9 @@
+const mongodb = require('mongodb');
+
+const db = require('../data/database');
+
 const Product = require('./product.model');
+const User = require('./user.model');
 
 class Cart {
   constructor(items = [], totalQuantity = 0, totalPrice = 0) {
@@ -7,13 +12,21 @@ class Cart {
     this.totalPrice = +totalPrice;
   }
 
+  static async saveCartinDb(res) {
+    const mongoId = new mongodb.ObjectId(res.locals.userid);
+    await db
+      .getDb()
+      .collection('users')
+      .updateOne({ _id: mongoId }, { $set: { cart: res.locals.cart } });
+  }
+
   async updatePrices() {
     const productIds = this.items.map(function (item) {
       return item.product.id;
     });
 
     const products = await Product.findMultiple(productIds);
-    console.log(products);
+
     const deletableCartItemProductIds = [];
 
     for (const cartItem of this.items) {

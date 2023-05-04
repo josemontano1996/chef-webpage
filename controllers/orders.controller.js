@@ -23,19 +23,19 @@ async function getOrderForQueries(req, res, next) {
   //inactive cancelled, fullfilled
   //fullfilled fullfilled: orders free for commenting
   let queriesArray;
-  let path
+  let path;
 
   if (req.params.query === 'active') {
     queriesArray = ['accepted', 'pending', 'cancelreq'];
-    path = 'active'
+    path = 'active';
   }
   if (req.params.query === 'inactive') {
     queriesArray = ['fullfilled', 'cancelled'];
-    path='inactive'
+    path = 'inactive';
   }
   if (req.params.query === 'fullfilled') {
     queriesArray = ['fullfilled'];
-    path='comment'
+    path = 'comment';
   }
   if (!queriesArray) {
     return res.status(404).render('shared/errors/404');
@@ -47,7 +47,7 @@ async function getOrderForQueries(req, res, next) {
       queriesArray
     );
 
-    return res.render('customer/account/orders/' + path , { orders: orders });
+    return res.render('customer/account/orders/' + path, { orders: orders });
   } catch (error) {
     return next(error);
   }
@@ -170,13 +170,15 @@ async function placeOrder(req, res, next) {
     );
 
     await order.save();
+
+    //deleting order from session and user database
+    req.session.cart = null;
+    await Order.deleteUserDbCart(res);
+
+    res.redirect('/orders');
   } catch (error) {
     return next(error);
   }
-
-  req.session.cart = null;
-
-  res.redirect('/orders');
 }
 
 async function cancelRequest(req, res, next) {
