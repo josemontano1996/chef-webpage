@@ -1,29 +1,26 @@
 <section>
-       <form action="/admin/schedule" method="POST">
+       <form action="/admin/holidays" method="POST">
       
       <h4>Holidays</h4>
       <p>
           <h5>Add a new holiday</h5>
-          <label for="start">Day starts at: </label>
-          <input type="time" id="start" name = "startingTime"
-          value="<%= schedule && schedule.clockIn ? schedule.clockIn : '' %>">
+          <label for="holidayFrom">Holidays from: </label>
+          <input type="hidden" name="documentId" value="<%=schedule._id%>">
+          <input type="date" id="holidayFrom" name = "holidayFrom" required>
         
-           <label for="finish">Day finishes at: </label>
-          <input type="time" id="finish" name = "finishingTime"
-          value="<%= schedule && schedule.clockOut ? schedule.clockOut : '' %>">
+           <label for="holidayTo">Holidays until: </label>
+          <input type="date" id="holidayTo" name = "holidayTo" required>
         </p>
         <button>Submit holiday</button>
       
     </form>
-    <% if (schedule && shedule.holidays){ %>
-
+    <% if (schedule && schedule.holidays){ %>
         <ul>
             <% for (const holiday of schedule.holidays) { %>
-                <p>Holiday from: <%= holiday.from %>, until <%= holiday.to %></p>
-                <button data-holidayId = <%= holiday.holidayId %>>Delete holiday</button>
+                <p>Holiday from: <%= holiday.holidayFrom %>, until <%= holiday.holidayTo %></p>
+                <button data-holidayId ="<%= holiday.holidayId %>">Delete holiday</button>
     
             <% } %>
         </ul>
-
     <% } %>
      </section>

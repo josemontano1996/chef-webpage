@@ -4,12 +4,12 @@
       <h4>Working Schedule</h4>
       <p>
           <h5>Working hours</h5>
-          <label for="start">Day starts at: </label>
-          <input type="time" id="start" name = "startingTime"
+          <label for="clockIn">Day starts at: </label>
+          <input required type="time" id="clockIn" name = "clockIn"
           value="<%= schedule && schedule.clockIn ? schedule.clockIn : '' %>">
         
-           <label for="finish">Day finishes at: </label>
-          <input type="time" id="finish" name = "finishingTime"
+           <label for="clockOut">Day finishes at: </label>
+          <input required type="time" id="clockOut" name = "clockOut"
           value="<%= schedule && schedule.clockOut ? schedule.clockOut : '' %>">
         </p>
       <p>
@@ -17,25 +17,25 @@
         <div>
           <label for="monday">Monday</label>
           <input type="checkbox" id="monday" name="monday"
-          value="<%= schedule && schedule.workingDays[0] ? schedule.workingDays[0] : false %>">
+          <%= schedule && schedule.workingDays[0] ? 'checked' : '' %>>
           <label for="tuesday">Tuesday</label>
           <input type="checkbox" id="tuesday" name="tuesday"
-          value="<%= schedule && schedule.workingDays[1] ? schedule.workingDays[1] : false %>">
+          <%= schedule && schedule.workingDays[1] ? 'checked' : '' %>>
         <label for="wednesday">Wednesday</label>
           <input type="checkbox" id="wednesday" name="wednesday"
-          value="<%= schedule && schedule.workingDays[2] ? schedule.workingDays[2] : false %>">
+          <%= schedule && schedule.workingDays[2] ? 'checked' : '' %>>
         <label for="thursday">Thursday</label>
           <input type="checkbox" id="thursday" name="thursday"
-          value=" <%= schedule && schedule.workingDays[3]  ? schedule.workingDays[3] : false %>">
+           <%= schedule && schedule.workingDays[3]  ? 'checked' : '' %>>
         <label for="friday">Friday</label>
           <input type="checkbox" id="friday" name="friday"
-          value="<%= schedule && schedule.workingDays[4]? schedule.workingDays[4] : false %>">
+          <%= schedule && schedule.workingDays[4]? 'checked' : '' %>>
         <label for="saturday">Saturday</label>
           <input type="checkbox" id="saturday" name="saturday"
-          value="<%= schedule && schedule.workingDays[5] ? schedule.workingDays[5]: false %>">
+          <%= schedule && schedule.workingDays[5] ? 'checked' : '' %>>
         <label for="sunday">Sunday</label>
           <input type="checkbox" id="sunday" name="sunday"
-          value="<%= schedule && schedule.workingDays[6]? schedule.workingDays[6]: false %>">
+          <%= schedule && schedule.workingDays[6]? 'checked' : '' %>>
         </div>
       </p>
       <button>Save schedule</button>

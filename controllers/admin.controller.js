@@ -1,6 +1,7 @@
 const sessionFlash = require('../util/session-flash');
 
 const NodeCache = require('node-cache');
+const { v4: uuidv4 } = require('uuid');
 
 const Product = require('../models/product.model');
 const Order = require('../models/order.model');
@@ -23,6 +24,47 @@ async function getSchedule(req, res, next) {
     const schedule = await Schedule.getSchedule();
     console.log(schedule);
     return res.render('admin/account/schedule', { schedule: schedule });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function postSchedule(req, res, next) {
+  try {
+    const r = req.body;
+    const schedule = new Schedule(r.clockIn, r.clockOut, [
+      r.monday,
+      r.tuesday,
+      r.wednesday,
+      r.thursday,
+      r.friday,
+      r.saturday,
+      r.sunday,
+    ]);
+
+    await schedule.saveSchedule();
+
+    res.redirect('/admin/schedule');
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function postHolidays(req, res, next) {
+  try {
+    const r = req.body;
+    const holiday = new Schedule(
+      null,
+      null,
+      null,
+      uuidv4(),
+      r.holidayFrom,
+      r.holidayTo,
+      r.documentId
+    );
+
+    await holiday.saveHoliday();
+    res.redirect('/admin/schedule');
   } catch (error) {
     return next(error);
   }
@@ -214,6 +256,8 @@ async function deleteProduct(req, res, next) {
 module.exports = {
   getOrders: getOrders,
   getSchedule: getSchedule,
+  postSchedule: postSchedule,
+  postHolidays: postHolidays,
   getAccount: getAccount,
   getMenu: getMenu,
   getNewProduct: getNewProduct,
