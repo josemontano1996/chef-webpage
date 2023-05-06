@@ -20,6 +20,8 @@ router.post('/holidays', adminController.postHolidays);
 
 router.patch('/orders/status/:id', adminController.updateOrderStatus);
 
+//DELETION ROUTES
 router.delete('/menu/:id', adminController.deleteProduct);
+router.post('/holidays/delete/:holidayId', adminController.deleteHolidays);
 
 module.exports = router;

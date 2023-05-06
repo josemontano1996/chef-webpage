@@ -3,6 +3,7 @@ const sessionFlash = require('../util/session-flash');
 
 const User = require('../models/user.model');
 const Order = require('../models/order.model');
+const Schedule = require('../models/schedule.model');
 
 async function getOrders(req, res, next) {
   try {
@@ -72,6 +73,8 @@ async function checkOut(req, res, next) {
   try {
     const userid = res.locals.userid;
     const userData = await User.getUserWithSameId(userid);
+    const workDay = await Schedule.getSchedule();
+    const scheduleData = JSON.stringify(workDay);
 
     let saveData = false;
     if (!userData.name || !userData.phone) {
@@ -85,6 +88,8 @@ async function checkOut(req, res, next) {
       user: userData,
       inputData: sessionData,
       saveData: saveData,
+      workDay: workDay,
+      scheduleData: scheduleData,
     });
   } catch (error) {
     return next(error);

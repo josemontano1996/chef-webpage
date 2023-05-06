@@ -22,7 +22,7 @@ async function getOrders(req, res, next) {
 async function getSchedule(req, res, next) {
   try {
     const schedule = await Schedule.getSchedule();
-    console.log(schedule);
+   
     return res.render('admin/account/schedule', { schedule: schedule });
   } catch (error) {
     return next(error);
@@ -59,11 +59,21 @@ async function postHolidays(req, res, next) {
       null,
       uuidv4(),
       r.holidayFrom,
-      r.holidayTo,
-      r.documentId
+      r.holidayTo
     );
 
     await holiday.saveHoliday();
+    res.redirect('/admin/schedule');
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function deleteHolidays(req, res, next) {
+  try {
+    const holidayId = req.params.holidayId;
+    Schedule.deleteHolidays(holidayId);
+
     res.redirect('/admin/schedule');
   } catch (error) {
     return next(error);
@@ -258,6 +268,7 @@ module.exports = {
   getSchedule: getSchedule,
   postSchedule: postSchedule,
   postHolidays: postHolidays,
+  deleteHolidays: deleteHolidays,
   getAccount: getAccount,
   getMenu: getMenu,
   getNewProduct: getNewProduct,

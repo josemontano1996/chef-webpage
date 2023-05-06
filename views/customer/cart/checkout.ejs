@@ -5,7 +5,7 @@
 
 <!-- Flatpickr and calendar config -->
 <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script defer src="/scripts/flatpickr.js"></script>
+<script defer src="/scripts/flatpickr.js" data-scheduledata = "<%= scheduleData %>"></script>
 </head>
 <body>
     <%- include("../../shared/header") %>
@@ -140,15 +140,19 @@
         </p>
       <%} %>
 <hr>
-      <p id="calendar-container">
+      <p id="calendar-container" >
         <label for="deliveryDate">Delivery date</label>
-        <input
-          type="text"
-          name="deliveryDate"
-          id="deliveryDate"
-          <% if (inputData.errorMessage) { %> value="<%= inputData.deliveryDate %>" <% } %>
-          required
-        />
+        <p>From: <%=workDay.clockIn%> to : <%=workDay.clockOut %></p>
+        <div>
+          <input
+            type="text"
+            name="deliveryDate"
+            id="deliveryDate"
+            <% if (inputData.errorMessage) { %> value="<%= inputData.deliveryDate %>" <% } %>
+            required
+          />
+          <a>✔️</a>
+        </div>
       </p>
 
       </p>

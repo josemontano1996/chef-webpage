@@ -9,8 +9,7 @@ class Schedule {
     workingDays = [],
     holidayId,
     holidayFrom,
-    holidayTo,
-    documentId
+    holidayTo
   ) {
     (this.clockIn = clockIn),
       (this.clockOut = clockOut),
@@ -19,8 +18,7 @@ class Schedule {
         holidayId: holidayId,
         holidayFrom: holidayFrom,
         holidayTo: holidayTo,
-      }),
-      (this.documentId = documentId);
+      });
   }
 
   static async getSchedule() {
@@ -29,11 +27,33 @@ class Schedule {
   }
 
   async saveHoliday() {
-    const mongoId = new mongodb.ObjectId(this.documentId);
+    this.holidays.holidayFrom = new Date(
+      this.holidays.holidayFrom
+    ).toLocaleDateString('en-US', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+    this.holidays.holidayTo = new Date(
+      this.holidays.holidayTo
+    ).toLocaleDateString('en-US', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
     await db
       .getDb()
       .collection('schedule')
-      .updateOne({ _id: mongoId }, { $addToSet: { holidays: this.holidays } });
+      .updateOne({}, { $addToSet: { holidays: this.holidays } });
+  }
+
+  static async deleteHolidays(holidayId) {
+    await db
+      .getDb()
+      .collection('schedule')
+      .updateOne({}, { $pull: { holidays: { holidayId: holidayId } } });
   }
 
   async saveSchedule() {

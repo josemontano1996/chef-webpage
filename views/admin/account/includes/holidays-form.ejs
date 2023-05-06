@@ -5,7 +5,6 @@
       <p>
           <h5>Add a new holiday</h5>
           <label for="holidayFrom">Holidays from: </label>
-          <input type="hidden" name="documentId" value="<%=schedule._id%>">
           <input type="date" id="holidayFrom" name = "holidayFrom" required>
         
            <label for="holidayTo">Holidays until: </label>
@@ -15,10 +14,14 @@
       
     </form>
     <% if (schedule && schedule.holidays){ %>
+        <hr>
+        <h4>Holiday list</h4>
         <ul>
             <% for (const holiday of schedule.holidays) { %>
-                <p>Holiday from: <%= holiday.holidayFrom %>, until <%= holiday.holidayTo %></p>
-                <button data-holidayId ="<%= holiday.holidayId %>">Delete holiday</button>
+                <form action="/admin/holidays/delete/<%=holiday.holidayId%>" method="POST">
+                    <p>Holiday from: <%= holiday.holidayFrom %>, until <%= holiday.holidayTo %></p>
+                    <button>Delete holiday</button>
+                </form>
     
             <% } %>
         </ul>
