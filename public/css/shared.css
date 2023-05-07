@@ -13,7 +13,7 @@ html {
   --color-black: black;
   --color-white: white;
   --color-backgroundtext: #fff8e7;
-  --color-background: #f5deb3;
+  --color-background:  rgb(255, 255, 240) ;
 }
 
 body {
@@ -32,7 +32,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #f5deb3;
+  background-color: var(--color-background);
 }
 
 header nav {

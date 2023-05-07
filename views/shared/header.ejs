@@ -3,15 +3,18 @@
     <ul class="flexbox-container">
       <li>
         <a <% if (locals.isAdmin) { %>
-          href="/admin/menu" <% } 
-          else { %> href="/menu" <% } %>>Menu</a>
+          href="/admin/menu" <% } else { %> href="/menu" <% } %>>Menu</a
+        >
       </li>
-      
+
       <li><a href="/about">About</a></li>
     </ul>
   </nav>
   <h1>
-    <a href="/" id="main-title"><%=locals.configData ? locals.configData.webname : `Chef Bautista D'Arconso`%></a>
+    <a href="/" id="main-title"
+      ><%=locals.configData ? locals.configData.webname : `Chef Bautista
+      D'Arconso`%></a
+    >
   </h1>
   <nav>
     <ul class="flexbox-container">
@@ -21,21 +24,29 @@
           href="/admin/orders" <% } else { %> href="/cart" <% } %>> <%
           if(locals.cart.totalPrice !== 0 && !locals.isAdmin ) { %>
           <img
+            crossorigin="anonymous"
             id="cart-header-img"
-            src="/img/cart-icon-button.png"
+            src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683448568/ingrid-chef-webpage/icons/icons8-shopping-cart-24_2_layoi5.png"
             alt="cart"
           />
           <% } else { %>
-          <img src="/img/cart-icon.png" alt="cart"/>
+          <img
+            crossorigin="anonymous"
+            src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683448568/ingrid-chef-webpage/icons/icons8-shopping-cart-24_2_layoi5.png"
+            alt="cart"
+          />
           <% } %>
         </a>
       </li>
 
       <li>
         <a <% if (locals.isAdmin) { %>
-          href="/admin/config" <% } else if (locals.isAuth) { %>
-          href="/orders" <% } else { %> href="/auth" <% } %>>
-          <img src="/img/login-icon.png" alt="login-icon"
+          href="/admin/config" <% } else if (locals.isAuth) { %> href="/orders"
+          <% } else { %> href="/auth" <% } %>>
+          <img
+            crossorigin="anonymous"
+            src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683448180/ingrid-chef-webpage/icons/icons8-user-24_zezo1w.png"
+            alt="login-icon"
         /></a>
       </li>
 
