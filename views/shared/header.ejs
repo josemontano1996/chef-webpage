@@ -19,20 +19,20 @@
   <nav>
     <ul class="flexbox-container">
       <li>
-        <img src="" alt="" />
         <a <% if (locals.isAdmin) { %>
           href="/admin/orders" <% } else { %> href="/cart" <% } %>> <%
           if(locals.cart.totalPrice !== 0 && !locals.isAdmin ) { %>
           <img
+          id="cart-gif"
             crossorigin="anonymous"
-            id="cart-header-img"
-            src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683448568/ingrid-chef-webpage/icons/icons8-shopping-cart-24_2_layoi5.png"
+            src="https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452202/ingrid-chef-webpage/icons/output-onlinegiftools_vsk4pz.gif"
             alt="cart"
           />
           <% } else { %>
           <img
+            id="cart-img"
             crossorigin="anonymous"
-            src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683448568/ingrid-chef-webpage/icons/icons8-shopping-cart-24_2_layoi5.png"
+            src="https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452335/ingrid-chef-webpage/icons/icons8-shopping-cart-50_i1ci9x.png"
             alt="cart"
           />
           <% } %>
@@ -54,7 +54,11 @@
       <li>
         <form action="/logout" method="POST">
           <button class="neutral-button">
-            <img src="/img/log-out.png" alt="log-out-icon" />
+            <img
+              crossorigin="anonymous"
+              src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683450839/ingrid-chef-webpage/icons/icons8-logout-24_lx092g.png"
+              alt="log-out-icon"
+            />
           </button>
         </form>
       </li>
