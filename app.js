@@ -64,8 +64,7 @@ app.use(checkAuthStatusMiddleware);
 app.use(storeConfigData);
 
 //creating csrfToken
-app.use(csrfMiddleware.createCSRFToken);
-app.use(csrfMiddleware.csrfTokenValidation);
+app.use(csrfMiddleware);
 
 //UNPROTECTED ROUTES
 app.use(baseRoutes);
