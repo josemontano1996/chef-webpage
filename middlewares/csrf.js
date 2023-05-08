@@ -3,6 +3,9 @@ const Tokens = require('csrf');
 const tokens = new Tokens();
 
 function createCSRFToken(req, res, next) {
+  if (req.method !== 'GET') {
+    return next();
+  }
   const secret = tokens.secretSync();
   req.session.csrfSecret = secret;
 
@@ -13,17 +16,16 @@ function createCSRFToken(req, res, next) {
 }
 
 function csrfTokenValidation(req, res, next) {
-  if (req.method === 'GET' || req.path === '/logout') {
+  if (req.method === 'GET') {
     return next();
   }
-
   const secret = req.session.csrfSecret;
   let token;
 
-  if (req.params.csrf) {
-    token = req.params.csrf;
-  } else {
+  if (req.body._csrf) {
     token = req.body._csrf;
+  } else {
+    token = req.params.csrf;
   }
 
   if (!tokens.verify(secret, token)) {

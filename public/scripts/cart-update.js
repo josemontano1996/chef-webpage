@@ -8,7 +8,7 @@ async function updateCartItem(event) {
 
   const form = event.target;
   const productId = form.dataset.productid;
-  //csrf token should be here and in html
+  const csrfToken = form.dataset.csrf;
   const quantity = form.firstElementChild.value;
 
   let response;
@@ -18,7 +18,7 @@ async function updateCartItem(event) {
       body: JSON.stringify({
         productId: productId,
         quantity: quantity,
-        //_csrf; csfToken,
+        _csrf: csrfToken,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ async function updateCartItem(event) {
   const responseData = await response.json();
 
   const newTotalPrice = responseData.updatedCartData.newTotalPrice;
-  console.log(responseData);
+  
   // stopping gif animation
   if (newTotalPrice == 0) {
     //creating gif

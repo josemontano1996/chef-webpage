@@ -55,7 +55,6 @@ app.use(
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
 
-
 app.use(cartMiddleware);
 app.use(updateCartPricesMiddleware);
 
@@ -64,6 +63,8 @@ app.use(checkAuthStatusMiddleware);
 //serving config files from cache
 app.use(storeConfigData);
 
+//creating csrfToken
+app.use(csrfMiddleware.createCSRFToken);
 app.use(csrfMiddleware.csrfTokenValidation);
 
 //UNPROTECTED ROUTES

@@ -1,4 +1,5 @@
 <form action="<%= submitPath %>" method="POST">
+    <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
            <p>
                <label for="name">Dish name</label>
                <input type="text" id="name" name="name" value="<%= product.name %>"  required>

@@ -10,6 +10,6 @@ router.get('/:query', ordersController.getOrderForQueries);
 
 router.post('/', ordersController.placeOrder);
 
-router.patch('/:id', ordersController.cancelRequest)
+router.patch('/:id', ordersController.cancelRequest);
 
 module.exports = router;

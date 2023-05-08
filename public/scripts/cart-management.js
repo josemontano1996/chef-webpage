@@ -4,13 +4,14 @@ const cartPriceElement = document.querySelector('.cart-price');
 
 async function addToCart(event) {
   const productId = event.target.dataset.productid;
-
+  const csrfToken = event.target.dataset.csrf;
   let response;
   try {
     response = await fetch('/cart/items', {
       method: 'POST',
       body: JSON.stringify({
         productId: productId,
+         _csrf: csrfToken, 
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -30,13 +31,14 @@ async function addToCart(event) {
 
   const newTotalPrice = responseData.newTotalPrice;
 
-  console.log(newTotalPrice);
   //creating dinamic gif and badge
   if (newTotalPrice > 0) {
     //creating gif
     const cartElement = document.getElementById('cart-img');
-    cartElement.src =
-      'https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452202/ingrid-chef-webpage/icons/output-onlinegiftools_vsk4pz.gif';
+    if (cartElement) {
+      cartElement.src =
+        'https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452202/ingrid-chef-webpage/icons/output-onlinegiftools_vsk4pz.gif';
+    }
 
     //creating badge
     const newSectionElement = document.createElement('section');

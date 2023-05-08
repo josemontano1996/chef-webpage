@@ -2,7 +2,7 @@
   <h3><%= item.product.name %></h3>
   <div class="cart-item-info">
     <label for="quantity">Quantity</label>
-    <form class="cart-item-management"  data-productid="<%= item.product.id %>">
+    <form class="cart-item-management"  data-productid="<%= item.product.id %>" data-csrf="<%= locals.csrfToken %>">
       <input
         type="number"
         id="quantity"

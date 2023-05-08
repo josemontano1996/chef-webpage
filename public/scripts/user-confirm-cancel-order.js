@@ -5,12 +5,18 @@ const confirmCancelProductButtonElements = document.querySelectorAll(
 async function cancelOrder(event) {
   event.preventDefault();
   const orderId = event.target.dataset.orderid;
+  const csrfToken = event.target.dataset.csrf;
 
   let response;
-
   try {
     response = await fetch('/orders/' + orderId, {
       method: 'PATCH',
+      body: JSON.stringify({
+        _csrf: csrfToken,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   } catch (error) {
     alert('Something went wrong');
