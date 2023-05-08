@@ -1,16 +1,46 @@
 const express = require('express');
 const adminController = require('../controllers/admin.controller');
 
+const csrfMiddleware = require('../middlewares/csrf');
+
 const router = express.Router();
 
-router.get('/orders', adminController.getOrders);
-router.get('/orders/:query', adminController.getQueryOrders);
-router.get('/account', adminController.getAccount);
-router.get('/config', adminController.getConfig);
-router.get('/menu', adminController.getMenu);
-router.get('/menu/new', adminController.getNewProduct);
-router.get('/menu/:id', adminController.getUpdateProduct);
-router.get('/schedule', adminController.getSchedule);
+router.get(
+  '/orders',
+  csrfMiddleware.createCSRFToken,
+  adminController.getOrders
+);
+router.get(
+  '/orders/:query',
+  csrfMiddleware.createCSRFToken,
+  adminController.getQueryOrders
+);
+router.get(
+  '/account',
+  csrfMiddleware.createCSRFToken,
+  adminController.getAccount
+);
+router.get(
+  '/config',
+  csrfMiddleware.createCSRFToken,
+  adminController.getConfig
+);
+router.get('/menu', csrfMiddleware.createCSRFToken, adminController.getMenu);
+router.get(
+  '/menu/new',
+  csrfMiddleware.createCSRFToken,
+  adminController.getNewProduct
+);
+router.get(
+  '/menu/:id',
+  csrfMiddleware.createCSRFToken,
+  adminController.getUpdateProduct
+);
+router.get(
+  '/schedule',
+  csrfMiddleware.createCSRFToken,
+  adminController.getSchedule
+);
 
 router.post('/menu/new', adminController.addNewProduct);
 router.post('/menu/:id', adminController.updateProduct);

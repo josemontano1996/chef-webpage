@@ -1,4 +1,5 @@
 <form action="/login" method="POST" id="login-form">
+  <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
   <p>
     <label for="email">Email</label>
     <input type="text" name="email" id="email" required <% if (inputData.errorMessage) { %> value="<%= inputData.email %>" <% } %> />
