@@ -1,5 +1,7 @@
 const sessionFlash = require('../util/session-flash');
 
+const csrfMiddleware = require('../middlewares/csrf');
+
 const NodeCache = require('node-cache');
 const { v4: uuidv4 } = require('uuid');
 
@@ -22,7 +24,7 @@ async function getOrders(req, res, next) {
 async function getSchedule(req, res, next) {
   try {
     const schedule = await Schedule.getSchedule();
-   
+
     return res.render('admin/account/schedule', { schedule: schedule });
   } catch (error) {
     return next(error);

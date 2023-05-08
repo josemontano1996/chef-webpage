@@ -1,6 +1,6 @@
 <section>
        <form action="/admin/holidays" method="POST">
-      
+       <input type="hidden" name="_csrf" value="<%= locals.csrfToken%>" />
       <h4>Holidays</h4>
       <p>
           <h5>Add a new holiday</h5>
@@ -19,6 +19,7 @@
         <ul>
             <% for (const holiday of schedule.holidays) { %>
                 <form action="/admin/holidays/delete/<%=holiday.holidayId%>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken%>" />
                     <p>Holiday from: <%= holiday.holidayFrom %>, until <%= holiday.holidayTo %></p>
                     <button>Delete holiday</button>
                 </form>

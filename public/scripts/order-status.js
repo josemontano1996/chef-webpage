@@ -10,12 +10,15 @@ for (const updateStatusFormElement of updateStatusFormElements) {
     const newStatus = formData.get('status');
     const orderId = formData.get('orderid');
 
+    const csrfToken = form.dataset.csrf;
+
     let response;
     try {
       response = await fetch('/admin/orders/status/' + orderId, {
         method: 'PATCH',
         body: JSON.stringify({
           newStatus: newStatus,
+          _csrf: csrfToken,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +33,7 @@ for (const updateStatusFormElement of updateStatusFormElements) {
       alert('Something went wrong - could not update status.');
       return;
     }
-   
+
     const formLi = form.closest('.order-li');
     formLi.style.display = 'none';
   });

@@ -1,6 +1,7 @@
 <section>
        <form action="/admin/schedule" method="POST">
-      <p>
+       <input type="hidden" name="_csrf" value="<%= locals.csrfToken%>" />
+        <p>
       <h4>Working Schedule</h4>
       <p>
           <h5>Working hours</h5>

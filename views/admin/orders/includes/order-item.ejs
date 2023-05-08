@@ -13,7 +13,7 @@
           <% } %>
         </section>
         <section>
-          <form class="order-status">
+          <form class="order-status" data-csrf="<%= locals.csrfToken %>">
             <input type="hidden" name="orderid" value="<%=order.id%>">
             <label for="status">Status:</label>
             <select name="status" id="status">

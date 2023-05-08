@@ -17,6 +17,7 @@ const protectRoutesMiddeware = require('./middlewares/protect-routes');
 const cartMiddleware = require('./middlewares/cart');
 const storeConfigData = require('./middlewares/config-cache');
 const updateCartPricesMiddleware = require('./middlewares/update-cart-middleware');
+const csrfMiddleware = require('./middlewares/csrf');
 
 /* const csrfProtection = require('./middlewares/customs-csrf-protection'); */
 
@@ -29,6 +30,7 @@ const cartRoutes = require('./routes/cart.routes');
 const ordersRoutes = require('./routes/orders.routes');
 
 const app = express();
+
 app.use(
   helmet({
     contentSecurityPolicy: false,
@@ -53,8 +55,6 @@ app.use(
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
 
-//here goes the csrf protection
-/* app.use(csrfProtection); */
 
 app.use(cartMiddleware);
 app.use(updateCartPricesMiddleware);
@@ -63,6 +63,8 @@ app.use(checkAuthStatusMiddleware);
 
 //serving config files from cache
 app.use(storeConfigData);
+
+app.use(csrfMiddleware.csrfTokenValidation);
 
 //UNPROTECTED ROUTES
 app.use(baseRoutes);

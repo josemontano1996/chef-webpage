@@ -19,12 +19,8 @@ router.get(
   baseController.getLogin
 );
 
-router.post('/login', csrfMiddleware.csrfTokenValidation, baseController.login);
-router.post(
-  '/signup',
-  csrfMiddleware.csrfTokenValidation,
-  baseController.signup
-);
+router.post('/login', baseController.login);
+router.post('/signup', baseController.signup);
 router.post('/logout', baseController.logout);
 
 //error routes

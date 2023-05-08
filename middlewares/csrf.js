@@ -7,18 +7,21 @@ function createCSRFToken(req, res, next) {
   req.session.csrfSecret = secret;
 
   const token = tokens.create(secret);
-
   res.locals.csrfToken = token;
 
   next();
 }
 
 function csrfTokenValidation(req, res, next) {
+  if (req.method === 'GET' || req.path === '/logout') {
+    return next();
+  }
+
   const secret = req.session.csrfSecret;
   let token;
 
-  if (req.headers['x-csrf-token']) {
-    token = req.headers['x-csrf-token'];
+  if (req.params.csrf) {
+    token = req.params.csrf;
   } else {
     token = req.body._csrf;
   }

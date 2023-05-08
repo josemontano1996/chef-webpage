@@ -9,7 +9,7 @@
     <a href="/admin/menu/<%= product.id %>" class="button">View & Edit</a>
     <button
       class="button"
-      data-productid="<%= product.id%>"
+      data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>"
     >
       Delete
     </button>

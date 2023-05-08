@@ -19,7 +19,8 @@
      <section>
         <h4>Your Personal Information</h4>
         <form id="updateInfoForm" data-userid="<%=user._id%>">
-      <p>
+       <input type="hidden" name="_csrf" value="<%= locals.csrfToken%>" />
+          <p>
         <label for="fullname">Your Name</label>
         <input
           type="text"

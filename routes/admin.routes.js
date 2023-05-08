@@ -42,16 +42,33 @@ router.get(
   adminController.getSchedule
 );
 
-router.post('/menu/new', adminController.addNewProduct);
-router.post('/menu/:id', adminController.updateProduct);
-router.post('/config', adminController.updateConfig);
-router.post('/schedule', adminController.postSchedule);
-router.post('/holidays', adminController.postHolidays);
+router.post(
+  '/menu/new',
+  adminController.addNewProduct
+);
+router.post(
+  '/menu/:id',
+  adminController.updateProduct
+);
+router.post(
+  '/config',
+  adminController.updateConfig
+);
+router.post(
+  '/schedule',
+  adminController.postSchedule
+);
+router.post(
+  '/holidays',
+  adminController.postHolidays
+);
+router.post(
+  '/holidays/delete/:holidayId',
+  adminController.deleteHolidays
+);
 
 router.patch('/orders/status/:id', adminController.updateOrderStatus);
 
-//DELETION ROUTES
-router.delete('/menu/:id', adminController.deleteProduct);
-router.post('/holidays/delete/:holidayId', adminController.deleteHolidays);
+router.delete('/menu/:id/:csrf', adminController.deleteProduct);
 
 module.exports = router;
