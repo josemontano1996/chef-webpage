@@ -1,3 +1,5 @@
+checking for css styles
+
 //EXTERNAL PACKAGE IMPORTS
 const path = require('path');
 const express = require('express');
