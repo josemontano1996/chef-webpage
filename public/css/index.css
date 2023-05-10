@@ -44,3 +44,22 @@ text-align: right;
 #services-section li {
   margin-bottom: 1rem;
 }
+
+#call-to-action {
+  margin-bottom: 2rem;
+}
+
+#call-to-action p{
+  text-align: center;
+  font-weight: bold;
+}
+
+#call-to-action a{
+  display: block;
+  width: fit-content;
+  margin: 0.5rem auto;
+}
+
+#reference-link{
+  text-decoration: underline;
+}
