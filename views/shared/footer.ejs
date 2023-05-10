@@ -1,11 +1,10 @@
  <footer>
    <section>
-   <h1>
-         <a href="/"><%=locals.configData.webname%></a>
-       </h1>
-         <a href="https://de.linkedin.com/in/josemanuelmontanomengual697745171">Developed with &hearts; by <span id="reference-link">j3</span> </a>
-  </section>
-      <section>
+     <h1>
+       <a href="/"><%=locals.configData.webname%></a>
+      </h1></section>
+
+      <div class="flexbox-container">
         <address>
           <a
             target="_blank"
@@ -17,19 +16,22 @@
             <p><%=locals.configData ? locals.configData.address.country : ''%></p>
           </a>
         </address>
-        <div>
-          <p><a href="tel:<%=locals.configData ? locals.configData.phone : '' %>"><%=locals.configData ? locals.configData.phone : ''%></a></p>
-          <p><a href="mailto:<%=locals.configData ? locals.configData.email : '' %>"><%=locals.configData ? locals.configData.email : ''%></a></p>
-        </div>
-      </section>
-      <div>
-        <nav>
-          <p><a href="">Menu</a></p>
-          <p><a href="/customer/account">My Account</a></p>
-          <p><a href="<%=locals.configData ? locals.configData.social.facebook : '' %>">Facebook</a></p>
-          <p><a href="<%=locals.configData ? locals.configData.social.instagram : ''%>">Instagram</a></p>
-        </nav>
-      </div>
+   </section>
+       <section class="child-2">
+         </section>
+         <section>
+         <div class="child-3">
+           <p><a href="tel:<%=locals.configData ? locals.configData.phone : '' %>"><%=locals.configData ? locals.configData.phone : ''%></a></p>
+           <p><a href="mailto:<%=locals.configData ? locals.configData.email : '' %>"><%=locals.configData ? locals.configData.email : ''%></a></p>
+         <p><a href="<%=locals.configData ? locals.configData.social.facebook : '' %>">Facebook</a></p>
+           <p><a href="<%=locals.configData ? locals.configData.social.instagram : ''%>">Instagram</a></p>
+         </div>
+        </section>
+  </div>
+  <div>
+<hr>
+    <a id="developer-ref" href="https://de.linkedin.com/in/josemanuelmontanomengual697745171">Developed with &hearts; by <span id="reference-link">j3</span> </a>
+  </div>
     </footer>
 </body>
 </html>

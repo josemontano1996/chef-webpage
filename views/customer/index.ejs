@@ -1,74 +1,67 @@
 <%- include("../shared/head", {pageTitle: "Index"}) %>
-  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/index.css">
   </head>
 
 <body>
     <%- include("../shared/header") %>
 <main>
-  <section id="main-section">
+  <section id="hero-section">
+    <img crossorigin="anonymous" src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683731316/ingrid-chef-webpage/paella-1-min_nuxq03.jpg" alt="paella">
     <div>
-      <h2>
-        Chef Bautista D"Arconso for an unforgetable authentic Spanish culinary
-        experience.
-      </h2>
-      <a href="" class="button">Check the menu</a>
+      <h1>
+        Chef <span> Bautista D'Arconso </span> 
+      </h1>
+      <p>For an unforgetable authentic mediterranean culinary
+        experience.</p>
+      <p>Embark on a culinary journey to the sun-kissed shores of the Mediterranean and treat your taste buds to an extraordinary experience like no other.
+      <a href="" class="btn">Check our specialities</a>
+      <a target="_blank" href="/about" class="btn alt">About me</a>
     </div>
-    <img src="/img/chef-ejecutivo.jpg" alt="chef-photo" />
+
+  </section>
+  
+<section id="reviews-section">
+      <h3>TESTIMONIES</h3>
+      <div>
+        <h4>Dolores Maria</h4>
+        <p>
+          La Chef Ingrid es simplemente excepcional. Su dominio de la cocina mediterránea es evidente en cada bocado que crea. Sus paellas son auténticas obras maestras, y su especialización en la comida española e italiana muestra su versatilidad culinaria.
+        </p>
+      </div>
   </section>
 
-  <section id="about-section">
-    <div class="flexbox-container">
-      <h3><a href="/about">ABOUT</a></h3>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum dolore
-        quam at iste quidem eligendi et dolor magni officiis doloribus, quis
-        culpa dolorem aliquid reiciendis dolores minima! Odio, non dolorum.
-      </p>
-    </div>
-  </section>
-
-  <section id="specialities-section">
-    <div>
+  <section id="services-section">
       <h3><a href="">MY SERVICES</a></h3>
-    </div>
     <div>
       <ul>
-        <li class="flexbox-container">
-          <img src="/img/paella.jpg" alt="paella" id="img-1" />
+        <li id="service-1">
+          <h4>Private chef for your favourite events</h4>
           <div>
-            <h4>Private group up to 10 people</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <img crossorigin="anonymous" src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683735650/ingrid-chef-webpage/private-events-min_rtruvk.jpg" alt="private-event"  />
+            <p>Ingrid offers a private chef service that caters to a range of events, including weddings, birthdays, and company meals. From intimate gatherings to large celebrations, she provides a personalized culinary experience that is tailored to your tastes and preferences.</p>
+            <a target="_blank" href="" class="btn">More Information</a>
           </div>
         </li>
-        <li class="flexbox-container">
+        <li id="service-2">
+          <h4>Cooking Classes and Demonstrations</h4>
           <div>
-            <h4>Exclusive secret recipes</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <img crossorigin="anonymous" src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683735650/ingrid-chef-webpage/private-events-min_rtruvk.jpg" alt="private-event"  />
+            <p>Discover the art of culinary excellence with Ingrid's immersive cooking classes and captivating demonstrations. Unleash your inner chef as you learn the secrets of Mediterranean cuisine under her expert guidance. Elevate you and your friends culinary skills and embark on a flavorful journey that will leave you inspired and hungry for more.</p>
+            <a target="_blank" href="" class="btn">More Information</a>
           </div>
-          <img src="/img/croquetas.jpg" alt="croquetas" id="img-2" />
         </li>
-        <li class="flexbox-container">
-          <img src="/img/focaccia.jpg" alt="focaccia" id="img-1" />
+        <li id="service-3">
+          <h4>Private chef for your favourite events</h4>
           <div>
-            <h4>Ask the chef directly via DMs</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <img crossorigin="anonymous" src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683735650/ingrid-chef-webpage/private-events-min_rtruvk.jpg" alt="private-event"  />
+            <p>Ingrid offers a private chef service that caters to a range of events, including weddings, birthdays, and company meals. From intimate gatherings to large celebrations, she provides a personalized culinary experience that is tailored to your tastes and preferences.</p>
+          <a target="_blank" href="" class="btn">More Information</a>
           </div>
         </li>
       </ul>
     </div>
   </section>
-  <section id="reviews-section">
-    <div class="flexbox-container">
-      <h3>TESTIMONIES</h3>
-      <div>
-        <h4>Dolores Maria</h4>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum dolore
-          quam at iste quidem eligendi et dolor magni officiis doloribus.
-        </p>
-      </div>
-    </div>
-  </section>
+  
   <section id="call-to-action">
     What are you waiting for! <a href="/auth">Sign up</a> or
     <a href="/auth">Log in</a> and make your first order!

@@ -1,69 +1,56 @@
-<header class="flexbox-container">
-  <nav>
-    <ul class="flexbox-container">
-      <li>
-        <a <% if (locals.isAdmin) { %>
-          href="/admin/menu" <% } else { %> href="/menu" <% } %>>Menu</a
-        >
-      </li>
-
-      <li><a href="/about">About</a></li>
-    </ul>
-  </nav>
-  <h1>
-    <a href="/" id="main-title"
-      ><%=locals.configData ? locals.configData.webname : `Chef Bautista
-      D'Arconso`%></a
-    >
-  </h1>
-  <nav>
-    <ul class="flexbox-container">
-      <li>
-        <a <% if (locals.isAdmin) { %>
-          href="/admin/orders" <% } else { %> href="/cart" <% } %>> <%
-          if(locals.cart.totalPrice !== 0 && !locals.isAdmin ) { %>
-          <img
-            id="cart-gif"
-            crossorigin="anonymous"
-            src="https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452202/ingrid-chef-webpage/icons/output-onlinegiftools_vsk4pz.gif"
-            alt="cart"
-          />
+<header>
+  <div class="flexbox-container">
+    <div>
+      <a href="/" id="main-title"><img src="img/logo.png" alt="logo" /></a>
+    </div>
+    <ul class="side-icons">
+        <% if (locals.isAdmin) { %>
+         <a href="/admin/menu" class="btn alt"> Manage Menu </a> <% } else { %> <a href="/menu"  class="btn alt" >Check our Menu!</a><% } %>
+     <li>
+        <a 
+          <% if (locals.isAdmin) { %>
+            href="/admin/orders"
           <% } else { %>
-          <img
-            id="cart-img"
-            crossorigin="anonymous"
-            src="https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452335/ingrid-chef-webpage/icons/icons8-shopping-cart-50_i1ci9x.png"
-            alt="cart"
-          />
+            href="/cart"
+          <% } %>>
+          <% if (locals.cart.totalPrice !== 0 && !locals.isAdmin) { %>
+            <i class="bi bi-bag-fill"></i>
+          <% } else { %>
+            <i class="bi bi-bag"></i>
           <% } %>
         </a>
       </li>
-
       <li>
         <a <% if (locals.isAdmin) { %>
           href="/admin/config" <% } else if (locals.isAuth) { %> href="/orders"
           <% } else { %> href="/auth" <% } %>>
-          <img
-            crossorigin="anonymous"
-            src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683448180/ingrid-chef-webpage/icons/icons8-user-24_zezo1w.png"
-            alt="login-icon"
-        /></a>
+          <i class="bi bi-person-circle"></i></a>
       </li>
-
       <% if (locals.isAuth) { %>
-      <li>
+      <li id="log-out">
         <form action="/logout" method="POST">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
-          <button class="neutral-button">
-            <img
-              crossorigin="anonymous"
-              src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683450839/ingrid-chef-webpage/icons/icons8-logout-24_lx092g.png"
-              alt="log-out-icon"
-            />
+          <button>
+              <i class="bi bi-box-arrow-right"></i>
           </button>
         </form>
-      </li>
-      <% } %>
+        </li>
+        <% } %>
+
+      <div id="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </ul>
+  </div>
+  <nav id="side-nav">
+    <ul>
+      <li><a>About </a></li>
+      <li><a>Services </a></li>
+      <li><a>Orders </a></li>
+      <li><a>Account </a></li>
     </ul>
   </nav>
 </header>
+

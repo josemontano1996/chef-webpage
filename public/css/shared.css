@@ -3,212 +3,169 @@
 }
 
 html {
-  font-family: 'Cormorant Garamond', serif;
-  --color-1: #563b25;
-  --color-2: #a34d21;
-  --color-3: #c8672c;
-  --color-4: #d19b3c;
-  --color-button: #ff8c00;
-  --color-button-alt: #ffa500;
-  --color-black: black;
-  --color-white: white;
+  --color-1: black;
+  --color-2: white;
+  --color-3: red;
+  --color-button: #04aa6d;
+  --color-button-alt:  #a0d8b6;
   --color-backgroundtext: #fff8e7;
-  --color-background:  rgb(255, 255, 240) ;
+  --color-background: white;
+  --font-title: 'Great Vibes', serif;
+  --font-main: 'Cormorant Garamond', serif;
 }
 
 body {
+  font-family: var(--font-main);
+}
+
+h1{
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
   color: var(--color-1);
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.btn {
+  background-color: var(--color-button);
+  color: var(--color-2);
+  font-size: 1rem;
+  padding: 0.2rem;
   margin: 0;
-  background-color: var(--color-background);
+}
+
+.btn.alt{
+  background-color: transparent;
+  border: 1px solid var(--color-button);
+  color: var(--color-button);
+}
+ul,
+ol {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.flexbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header {
   z-index: 999;
-  height: 9vh;
-  width: 100vw;
-  min-height: 70px;
-  align-items: center;
-  margin: 0;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   background-color: var(--color-background);
+  padding: 0.5rem;
 }
 
-header nav {
-  margin: 0 5%;
-}
-header nav ul {
-  margin: 0;
-  padding: 0;
-}
+/* MOBILE SIDE ICONS */
 
-header nav li {
-  display: inline-block;
-  padding: 0.3rem;
-}
-
-header h1 {
-  width: 20%;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: bold;
+.side-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: center;
+  height: 2rem;
 }
 
-#cart-header-img {
-  padding: 2px;
-  border-radius: 10px;
-  background-color: var(--color-button);
+.side-icons li {
+  padding: 0.1rem;
+  margin: auto 0.3rem;
+}
+
+a.btn {
+  margin-right: 0.8rem;
+}
+
+.bi {
+  color: black;
+}
+
+#log-out {
+  margin-right: 0;
+}
+
+form button .log-out-btn {
+  background-color: white;
+  border: none;
+}
+
+/* HAMBURGER STYLES */
+#hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.3rem;
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  /* display: none; */
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-1);
+  margin: 2px 0;
+}
+
+/* HAMBURGER NAV DISPLAY */
+
+#side-nav {
+  display: none;
+  position: absolute;
+  right: 0;
+  width: 50%;
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  background-color: var(--color-background);
+  border-end-start-radius: 10px;
+}
+
+#side-nav li {
+  margin-bottom: 0.5rem;
 }
 
 main {
-  margin: 0 5%;
-  margin-top: 11vh;
-  min-height: 72.5vh;
-  margin-bottom: 3rem;
+  margin: 8vh 1rem auto 1rem;
 }
 
 footer {
-  height: 11vh;
-  margin: 0 5%;
-  margin-bottom: 2vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  margin: 1rem 5%;
 }
 
-footer nav {
-  margin: auto 1rem;
-  padding: 0 0.5rem;
-  gap: 0.5rem;
-}
-
-footer h1 a {
-  display: block;
+footer h1 {
+  text-align: left;
   font-size: 1.2rem;
 }
 
+footer .child-3 {
+  text-align: right;
+}
 footer p {
   margin: 0;
   padding: 0.2rem;
   font-size: 0.8rem;
 }
 
-h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
+footer hr {
+  width: 80%;
+  margin: 0.5rem auto;
 }
 
-h4 {
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-ul,
-ol {
-  padding-left: 0;
-}
-
-li {
-  text-decoration: none;
-  list-style: none;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-a:hover,
-a:active {
-  cursor: pointer;
-}
-
-hr {
-  border-color: var(--color-button-alt);
-  margin: 15px auto;
-}
-
-.flexbox-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button,
-button {
-  color: var(--color-black);
-  border: none;
-  background-color: var(--color-button);
-  margin: 0;
-  padding: 0.3rem;
-  border-radius: 3px;
-}
-
-.button-alt {
-  color: var(--color-black);
-  border: none;
-  background-color: var(--color-background);
-  margin: 0 auto;
-  margin-bottom: 1rem;
-  padding: 0.3rem;
-  border-radius: 3px;
-}
-
-input,
-textarea {
-  font: inherit;
-  border-radius: 2px;
-  border: 0.7px solid black;
-}
-
-button {
-  font: inherit;
-}
-
-.neutral-button {
-  background-color: var(--color-background);
-  border: none;
-  margin: inherit;
-  padding: inherit;
-}
-
-.alert {
-  background-color: var(--color-2);
-  color: var(--color-white);
-}
-
-.success {
-  background-color: green;
-  color: var(--color-white);
-}
-
-.pop-up {
-  color: white;
-  background-color: green;
-  transition: var(--color-background) 0.5s ease-in-out;
-}
-
-.pop-up.done {
-  background-color: initial;
-  transition-delay: 0.5s;
-  transition-duration: 1s;
-  transition-timing-function: ease-out;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.italic {
-  text-decoration: none;
-  font-style: italic;
-}
-
-.highligthed {
-  background-color: var(--color-button-alt);
-  font-weight: bold;
+#developer-ref {
+  display: block;
+  text-align: center;
 }
