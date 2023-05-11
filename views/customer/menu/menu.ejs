@@ -1,16 +1,27 @@
  <%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/scroll-bar.css">
-<script src="/scripts/menu-scroll.js" defer></script>
-<script src="/scripts/cart-management.js" defer></script>
+<script defer src="/scripts/menu-scroll.js" ></script>
+<script defer src="/scripts/cart-management.js" ></script>
+<script defer src="/scripts/menu-display.js"></script>
+<script defer src="/scripts/cart-update.js" ></script>
+<script defer src="/scripts/toggle-cart.js"></script>
 </head>
 <body>
   <%- include("../../shared/header") %>
   <main> 
 
-  <nav id="side-scroll-nav">
+    <section id="intro">
+      <h1>Menu</h1>
+      <h2>Check Our Tasty Menu</h2>
+      <p>Welcome to Ingrid's culinary haven, where the enchanting allure of Mediterranean cuisine takes center stage. Immerse yourself in a symphony of tastes inspired by the sun-drenched lands of Spain and the rustic charm of Italy.</p>
+    <img crossorigin="anonymous" src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683812848/ingrid-chef-webpage/hummus_bi68by.jpg" alt="hummus">
+ 
+  </section>
+
+  <nav id="side-scroll-nav" class="hidden">
     <ul class="side-scroll">
-      <li ><a href="#main-title">&#8962;</a></li>
+      <li ><a href="#main-icon"><i class="bi bi-house"></i></a></li>
       <li><a href="#starters">Starters</a></li>
         <li><a href="#main-dishes">Main Dishes</a></li>
         <li><a href="#side-dishes">Side Dishes</a></li>
@@ -53,18 +64,37 @@
         <% } %>
        </ul>
     </section>
-
+    
+    <section id="cart-section"> 
+      <div id="cart-container">
+        <div class="flexbox-container">
+          <h2>Your cart</h2>
+          <button class="btn alt" id="close-cart">Close Cart</button>
+        </div>
+             <ul id="cart-items">
+                <% for (const cartItem of locals.cart.items){ %>
+                <li class="cart-item"><%- include("includes/cart-item", {item: cartItem}) %></li>
+                <% } %>
+            </ul>
+             <div id="cart-total"> Total: <span id="cart-total-price"><%= locals.cart.totalPrice %></span> &euro; </div>
+             <% if(!locals.isAuth){ %>
+                <p class="disclaimer">You must  <a href="/auth"> <span>log in </span> or <span>create an account</span> </a> to make an order </p>
+             <% } else if (locals.cart.totalPrice) { %>
+                <h4> <button class="button"><a href="/orders/checkout">To checkout</a></button> </h4>
+             <% } else { %>
+                <p class="disclaimer">Your cart is empty, <a href="/menu"> check our Menu </a>to make an order </p>
+                <% } %>
+      </div> 
+       </section>
+       
  <% if (cart.totalPrice) { %>
-    <section class="cart">
-        <a href="/cart" ><span>
-           <img
-              src="/img/cart-icon-button.png"
-              alt="cart"
-            />
+    <section class="cart" id="open-cart">
+        <a><span>
+           <i class="bi bi-bag-fill"></i>
               <h4>Your Cart (<span class="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4></a>
         </span>
     </section>
   <% } %>
-    
+ <section>  
   </main>
     <%- include("../../shared/footer") %> 

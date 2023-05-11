@@ -20,7 +20,7 @@ body {
 
 
 header {
-  z-index: 999;
+  z-index: 2;
   position: fixed;
   width: 100%;
   top: 0;
@@ -31,6 +31,7 @@ header {
 
 #main-icon img{
   height: 5vh;
+  width: 100%;
 }
 
 /* MOBILE SIDE ICONS */
@@ -103,7 +104,7 @@ form button .log-out-btn {
 }
 
 main {
-  margin: 8vh 1rem auto 1rem;
+  margin: 10vh 1rem auto 1rem;
 }
 
 footer {
@@ -134,7 +135,20 @@ footer hr {
   text-align: center;
 }
 
+img{
+  width: 70%;
+}
 
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hidden.show {
+  opacity: 1;
+  visibility: visible;
+}
 
 .italic {
   font-style: italic;
@@ -149,10 +163,6 @@ h1 {
   font-weight: 700;
 }
 
-a {
-  text-decoration: none;
-  color: var(--color-1);
-}
 
 button {
   border: none;
@@ -162,6 +172,7 @@ button {
 .btn {
   background-color: var(--color-button);
   color: var(--color-2);
+  border: 1px solid var(--color-button);
   font-size: 1rem;
   padding: 0.2rem;
   margin: 0;
@@ -172,11 +183,29 @@ button {
   border: 1px solid var(--color-button);
   color: var(--color-button);
 }
+
+.btn:hover{
+border: 1px solid var(--color-button);
+  background-color: var(--color-background);
+  color: var(--color-button);
+}
+
+.btn.alt:hover{
+border: 1px solid var(--color-button);
+  background-color: var(--color-button);
+  color: var(--color-2);
+}
+
 ul,
 ol {
   list-style: none;
   margin-bottom: 0;
   padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-1);
 }
 
 .flexbox-container {

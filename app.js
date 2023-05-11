@@ -56,7 +56,7 @@ const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
 
 app.use(cartMiddleware);
-app.use(updateCartPricesMiddleware);
+ app.use(updateCartPricesMiddleware); 
 
 app.use(checkAuthStatusMiddleware);
 

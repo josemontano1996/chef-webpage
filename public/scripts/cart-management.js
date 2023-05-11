@@ -28,24 +28,17 @@ async function addToCart(event) {
   }
 
   const responseData = await response.json();
-
+console.log(responseData)
   const newTotalPrice = responseData.newTotalPrice;
 
   //creating dinamic gif and badge
   if (newTotalPrice > 0) {
-    //creating gif
-    const cartElement = document.getElementById('cart-img');
-    if (cartElement) {
-      cartElement.src =
-        'https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452202/ingrid-chef-webpage/icons/output-onlinegiftools_vsk4pz.gif';
-    }
-
     //creating badge
     const newSectionElement = document.createElement('section');
     newSectionElement.classList.add('cart');
     newSectionElement.innerHTML = `
         <a href="/cart"><span>
-          <img src="/img/cart-icon-button.png" alt="cart" />
+          <i class="bi bi-bag"></i>
           <h4>Your Cart (<span class="cart-price">${newTotalPrice}</span>&euro;)</h4>
         </span></a>
       `;
