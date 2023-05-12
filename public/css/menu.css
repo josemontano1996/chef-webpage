@@ -77,8 +77,10 @@ font-size: 0.9rem;
   width: 100%;
   position: fixed;
   bottom: 0;
+  left: 0;
   background-color: var(--color-background);
   z-index: 6;
+ 
 }
 
 .cart a {
@@ -86,16 +88,23 @@ font-size: 0.9rem;
   justify-content: center;
   align-items: center;
   height: 9vh;
+   
 }
+
+.cart i {
+  margin: auto 0.2rem;
+}
+
 .cart span,
 .cart h4 {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+  color: var(--color-1);
 }
 
-.cart span {
+.cart .badge {
   height: 60%;
   padding: 6px;
   border-radius: 30px;

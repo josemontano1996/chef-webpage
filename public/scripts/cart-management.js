@@ -11,7 +11,7 @@ async function addToCart(event) {
       method: 'POST',
       body: JSON.stringify({
         productId: productId,
-         _csrf: csrfToken, 
+        _csrf: csrfToken,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -28,21 +28,35 @@ async function addToCart(event) {
   }
 
   const responseData = await response.json();
-console.log(responseData)
+  console.log(responseData);
   const newTotalPrice = responseData.newTotalPrice;
 
   //creating dinamic gif and badge
   if (newTotalPrice > 0) {
     //creating badge
+    const closeCartButton = document.getElementById('close-cart');
+    const cartSectionElement = document.getElementById('cart-section');
+
     const newSectionElement = document.createElement('section');
     newSectionElement.classList.add('cart');
+    newSectionElement.classList.add('open-cart');
     newSectionElement.innerHTML = `
-        <a href="/cart"><span>
-          <i class="bi bi-bag"></i>
-          <h4>Your Cart (<span class="cart-price">${newTotalPrice}</span>&euro;)</h4>
-        </span></a>
+        <a><span class="badge">
+           <i class="bi bi-bag-fill"></i>
+            <h4>Your Cart (<span class="cart-price">${newTotalPrice}</span>&euro;)</h4>
+            </span>
+          </a>
       `;
+
     document.body.appendChild(newSectionElement);
+
+    newSectionElement.addEventListener('click', () => {
+      cartSectionElement.style.display = 'block';
+    });
+
+    closeCartButton.addEventListener('click', () => {
+      cartSectionElement.style.display = 'none';
+    });
   } else {
     cartPriceElement.textContent = newTotalPrice;
   }

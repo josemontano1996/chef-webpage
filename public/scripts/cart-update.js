@@ -36,15 +36,6 @@ async function updateCartItem(event) {
 
   const responseData = await response.json();
 
-  const newTotalPrice = responseData.updatedCartData.newTotalPrice;
-  
-  // stopping gif animation
-  if (newTotalPrice == 0) {
-    //creating gif
-    const cartElement = document.getElementById('cart-gif');
-    cartElement.src =
-      'https://res.cloudinary.com/dfupfbnez/image/upload/c_scale,w_24/v1683452335/ingrid-chef-webpage/icons/icons8-shopping-cart-50_i1ci9x.png';
-  }
   if (responseData.updatedCartData.updatedItemPrice === 0) {
     form.closest('.cart-item').remove();
   } else {

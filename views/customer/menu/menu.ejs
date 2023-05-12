@@ -2,10 +2,9 @@
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/scroll-bar.css">
 <script defer src="/scripts/menu-scroll.js" ></script>
-<script defer src="/scripts/cart-management.js" ></script>
 <script defer src="/scripts/menu-display.js"></script>
-<script defer src="/scripts/cart-update.js" ></script>
 <script defer src="/scripts/toggle-cart.js"></script>
+<script defer src="/scripts/cart-management.js" ></script>
 </head>
 <body>
   <%- include("../../shared/header") %>
@@ -69,7 +68,7 @@
       <div id="cart-container">
         <div class="flexbox-container">
           <h2>Your cart</h2>
-          <button class="btn alt" id="close-cart">Close Cart</button>
+          <button class="btn alt" id="close-cart">Close</button>
         </div>
              <ul id="cart-items">
                 <% for (const cartItem of locals.cart.items){ %>
@@ -88,11 +87,12 @@
        </section>
        
  <% if (cart.totalPrice) { %>
-    <section class="cart" id="open-cart">
-        <a><span>
+    <section class="cart open-cart">
+        <a><span class="badge">
            <i class="bi bi-bag-fill"></i>
-              <h4>Your Cart (<span class="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4></a>
-        </span>
+            <h4>Your Cart (<span class="cart-price"><%= locals.cart.totalPrice %></span>&euro;)</h4>
+            </span>
+          </a>
     </section>
   <% } %>
  <section>  

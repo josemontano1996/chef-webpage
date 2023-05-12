@@ -16,6 +16,7 @@ async function addCartItem(req, res, next) {
   req.session.cart = cart; //overwriting cart in the session
   res.status(201).json({
     message: 'Cart updated',
+    cart: cart,
     newTotalItems: cart.totalQuantity,
     newTotalPrice: cart.totalPrice,
   });
