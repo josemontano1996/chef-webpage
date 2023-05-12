@@ -73,7 +73,7 @@ font-size: 0.9rem;
 }
 
 
-.cart {
+.cart-banner {
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -83,7 +83,7 @@ font-size: 0.9rem;
  
 }
 
-.cart a {
+.cart-banner a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,12 +91,12 @@ font-size: 0.9rem;
    
 }
 
-.cart i {
+.cart-banner i {
   margin: auto 0.2rem;
 }
 
-.cart span,
-.cart h4 {
+.cart-banner span,
+.cart-banner h4 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,13 +104,13 @@ font-size: 0.9rem;
   color: var(--color-1);
 }
 
-.cart .badge {
+.cart-banner .badge {
   height: 60%;
   padding: 6px;
   border-radius: 30px;
   background-color: var(--color-button);
 }
-.cart h4 {
+.cart-banner h4 {
   font-size: 1.3rem;
 }
 
