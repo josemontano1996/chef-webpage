@@ -3,27 +3,31 @@ const Tokens = require('csrf');
 const tokens = new Tokens();
 
 function csrfMiddleware(req, res, next) {
-  if (req.method === 'GET') {
-    const secret = tokens.secretSync();
-    req.session.csrfSecret = secret;
-
-    const token = tokens.create(secret);
-    res.locals.csrfToken = token;
+  if (req.path != '/cart/flash') {
+    next();
   } else {
-    const secret = req.session.csrfSecret;
-    let token;
+    if (req.method === 'GET') {
+      const secret = tokens.secretSync();
+      req.session.csrfSecret = secret;
 
-    if (req.body._csrf) {
-      token = req.body._csrf;
+      const token = tokens.create(secret);
+      res.locals.csrfToken = token;
     } else {
-      token = req.params.csrf;
-    }
+      const secret = req.session.csrfSecret;
+      let token;
 
-    if (!tokens.verify(secret, token)) {
-      return res.status(403).render('shared/errors/403');
+      if (req.body._csrf) {
+        token = req.body._csrf;
+      } else {
+        token = req.params.csrf;
+      }
+
+      if (!tokens.verify(secret, token)) {
+        return res.status(403).render('shared/errors/403');
+      }
     }
+    next();
   }
-  next();
 }
 
 module.exports = csrfMiddleware;

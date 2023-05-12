@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="/css/scroll-bar.css">
 <script defer src="/scripts/menu-scroll.js" ></script>
 <script defer src="/scripts/menu-display.js"></script>
-<script id="script-1" defer src="/scripts/menu-cart-management-1.js" ></script>
+<script defer src="/scripts/menu-cart-management.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/ejs.min.js"></script>
 </head>
 <body>
   <%- include("../../shared/header") %>
@@ -69,7 +70,7 @@
           <h2>Your cart</h2>
           <button class="btn alt" id="close-cart">Close</button>
           </div>
-          <div>
+          <div id="cart-data">
             <ul id="cart-items">
                <% for (const cartItem of locals.cart.items){ %>
                <li class="cart-item"><%- include("includes/cart-item", {item: cartItem}) %></li>
@@ -78,9 +79,7 @@
             <div id="cart-total"> Total: <span id="cart-total-price"><%= locals.cart.totalPrice %></span> &euro; </div>
             <% if(!locals.isAuth){ %>
                <p class="disclaimer">You must  <a href="/auth"> <span>log in </span> or <span>create an account</span> </a> to make an order </p>
-            <% } else if (locals.cart.totalPrice) { %>
-               <h4><a class="btn" href="/orders/checkout">To checkout</a></h4>
-            <% } else { %>
+            <% } else if (locals.cart.totalPrice === 0) { %>
                <p class="disclaimer">Your cart is empty, <a href="/menu"> check our Menu </a>to make an order </p>
                <% } %>
           </div> 

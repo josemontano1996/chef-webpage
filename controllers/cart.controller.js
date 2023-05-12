@@ -4,6 +4,16 @@ function getCart(req, res) {
   res.render('customer/cart/cart');
 }
 
+function flashCart(req, res, next) {
+  try {
+    res.json({
+      locals: res.locals,
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 async function addCartItem(req, res, next) {
   let product;
   try {
@@ -16,7 +26,7 @@ async function addCartItem(req, res, next) {
   req.session.cart = cart; //overwriting cart in the session
   res.status(201).json({
     message: 'Cart updated',
-    locals: res.locals
+    locals: res.locals,
   });
 }
 
@@ -44,4 +54,5 @@ module.exports = {
   addCartItem: addCartItem,
   getCart: getCart,
   updateCartItem: updateCartItem,
+  flashCart: flashCart,
 };

@@ -24,8 +24,9 @@ const openCartButton = document.querySelector('.cart-banner');
 //for obtaining the cart data, and res.locals data for then using it for creating the html
 //content when openCartButton executes
 
-let locals;
 let cartDisplay;
+
+let cartHelper;
 
 if (closeCartButton) {
   closeCartButton.addEventListener('click', () => {
@@ -35,42 +36,16 @@ if (closeCartButton) {
 }
 
 if (openCartButton) {
-  openCartButton.addEventListener('click', () => {
+  openCartButton.addEventListener('click', (event) => {
+    const cartItems = document.querySelector('#cart-items');
+    cartSectionElement.style.display = 'block';
+    if (cartHelper || cartItems) {
+      event.target.closest('h4').textContent = 'To Checkout';
+    }
     if (cartDisplay === true) {
       return (window.location.href = '/orders/checkout');
     }
-
-    cartSectionElement.style.display = 'block';
     cartDisplay = true;
-    const cartContentElement = document.createElement('div');
-    cartContentElement.innerHTML = `
-        <ul id="cart-items" class="imworking">
-          <% for (const cartItem of ${locals.cart.items}){ %>
-            <li class="cart-item"><%- include("includes/cart-item", {item: cartItem}) %></li>
-          <% } %>
-        </ul>
-        <div id="cart-total"> Total: <span id="cart-total-price"><%= ${locals.cart.totalPrice} %></span> &euro; </div>
-        <% if(!${locals.isAuth}){ %>
-          <p class="disclaimer">You must  <a href="/auth"> <span>log in </span> or <span>create an account</span> </a> to make an order </p>
-        <% } else if (${locals.cart.totalPrice}) { %>
-          <h4><a class="btn" href="/orders/checkout">To checkout</a></h4>
-        <% } else { %>
-          <p class="disclaimer">Your cart is empty, <a href="/menu"> check our Menu </a>to make an order </p>
-        <% } %>
-          `;
-
-    cartSectionElement.appendChild(cartContentElement);
-    
-    const previousScript = document.getElementById('script-1');
-    if (previousScript) {
-      previousScript.remove();
-    }
-
-    const scriptElement = document.createElement('script');
-    scriptElement.id = 'script-2'
-    scriptElement.src = '/scripts/menu-cart-management-2.js';
-    scriptElement.defer = true;
-    document.head.appendChild(scriptElement);
   });
 }
 
@@ -113,7 +88,9 @@ async function updateCartItem(event) {
   const cartBadgePrice = document.querySelector('.cart-price');
   const newTotalPrice = responseData.updatedCartData.newTotalPrice;
 
-  cartBadgePrice.textContent = newTotalPrice.toFixed(2);
+  if (cartBadgePrice) {
+    cartBadgePrice.textContent = newTotalPrice.toFixed(2);
+  }
 
   if (newTotalPrice === 0) {
     cartBadgeElement.style.display = 'none';
@@ -163,9 +140,9 @@ async function addToCart(event) {
 
   const responseData = await response.json();
 
-  locals = responseData.locals;
+  const locals = responseData.locals;
 
-  console.log(locals.cart);
+  cartHelper = responseData.locals.cart;
 
   const newTotalPrice = responseData.locals.cart.totalPrice;
 
@@ -188,26 +165,72 @@ async function addToCart(event) {
 
     document.body.appendChild(newSectionElement);
 
-    newSectionElement.addEventListener('click', () => {
-      cartSectionElement.style.display = 'block';
+    newSectionElement.addEventListener('click', (event) => {
+      let locals;
+
+      fetch('/cart/flash', {
+        method: 'GET',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          locals = data.locals;
+          cartSectionElement.style.display = 'block';
+          event.target.closest('h4').textContent = 'To Checkout';
+          if (cartDisplay === true) {
+            return (window.location.href = '/orders/checkout');
+          }
+          cartDisplay = true;
+
+          const cartDataElement = document.getElementById('cart-data');
+
+          const cartTemplate = `
+        <ul id="cart-items">
+          <% for (const item of cart.items) { %>
+            <li class="cart-item">
+            <article>
+            <h3><%= item.product.name %></h3>
+            <div class="cart-item-info">
+              <label for="quantity">Quantity</label>
+              <form class="cart-item-management"  data-productid="<%= item.product.id %>" data-csrf="<%= locals.csrfToken %>">
+                <input
+                  type="number"
+                  id="quantity"
+                  value="<%= item.quantity %>"
+                  min="0"
+                  step="1"
+                  required
+                />
+                <button class="btn">Update</button>
+              </form>
+              <p>
+      <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
+      &euro;<span>(<%= item.product.price %> &euro; per por.)</span>
+    </p>
+  </div>
+</article>
+</li>
+          <% } %>
+        </ul>
+        <div id="cart-total">Total: <span id="cart-total-price"><%= cart.totalPrice %></span> &euro;</div>
+        <% if (!isAuth) { %>
+          <p class="disclaimer">You must <a href="/auth"><span>log in</span> or <span>create an account</span></a> to make an order</p>
+        <% } else if (cart.totalPrice === 0) { %>
+          <p class="disclaimer">Your cart is empty, <a href="/menu">check our Menu</a> to make an order</p>
+        <% } %>
+      `;
+
+          const renderedHTML = ejs.render(cartTemplate, locals);
+          cartDataElement.innerHTML = renderedHTML;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
 
     //Updating or deleting bottom badge element
     closeCartButton.addEventListener('click', () => {
       cartSectionElement.style.display = 'none';
     });
-
-    const previousScript = document.getElementById('script-1');
-    if (previousScript) {
-      previousScript.remove();
-    }
-
-    const scriptElement = document.createElement('script');
-    scriptElement.id= 'script-2'
-    scriptElement.src = '/scripts/menu-cart-management-2.js';
-    scriptElement.defer = true;
-    document.head.appendChild(scriptElement);
-
   } else {
     cartPriceElement.textContent = newTotalPrice;
   }
