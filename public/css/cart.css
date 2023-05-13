@@ -1,15 +1,24 @@
 ul {
   padding: 0;
 }
+
+.cart-item {
+  margin: 0.5rem auto;
+}
 .cart-item-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.cart-item-info p {
+  margin-bottom: 0;
+}
+
 input {
-  width: 4rem;
+  width: 3rem;
   text-align: center;
+  margin: auto 0.1rem;
 }
 
 .cart-item-info p {
@@ -17,14 +26,29 @@ input {
   width: 45%;
 }
 
-#disclaimer {
-  text-align: center;
+#cart-total {
+  font-size: 1.3rem;
 }
 
-#disclaimer a {
+#cart-total span {
+  font-size: 1.1rem;
+}
+
+.disclaimer {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.disclaimer a {
   text-decoration: underline;
   font-weight: bold;
   font-size: 1.05rem;
+}
+
+#checkout {
+
+  margin: 1rem auto;
+  margin-bottom: 2rem;
 }
 
 .flexbox-container h3 a {
@@ -33,6 +57,6 @@ input {
   border-radius: 30px;
 }
 
-h2{
+h2 {
   text-align: center;
 }

@@ -204,15 +204,15 @@ async function addToCart(event) {
               </form>
               <p>
       <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
-      &euro;<span>(<%= item.product.price %> &euro; per por.)</span>
+      &euro;<span>(<%= item.product.price %> &euro; per ud.)</span>
     </p>
   </div>
 </article>
 </li>
           <% } %>
         </ul>
-        <div id="cart-total">Total: <span id="cart-total-price"><%= cart.totalPrice %></span> &euro;</div>
-        <% if (!isAuth) { %>
+        <div id="cart-total">Total: <span id="cart-total-price"><%= cart.totalPrice %> &euro;</span></div>
+        <% if (typeof isAuth === 'undefined' || !isAuth) { %>
           <p class="disclaimer">You must <a href="/auth"><span>log in</span> or <span>create an account</span></a> to make an order</p>
         <% } else if (cart.totalPrice === 0) { %>
           <p class="disclaimer">Your cart is empty, <a href="/menu">check our Menu</a> to make an order</p>

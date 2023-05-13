@@ -1,5 +1,6 @@
  <%- include("../../shared/head", {pageTitle: "Manage Menu"}) %>
 <link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/cart.css">
 <link rel="stylesheet" href="/css/scroll-bar.css">
 <script defer src="/scripts/menu-scroll.js" ></script>
 <script defer src="/scripts/menu-display.js"></script>
@@ -76,7 +77,7 @@
                <li class="cart-item"><%- include("includes/cart-item", {item: cartItem}) %></li>
                <% } %>
            </ul>
-            <div id="cart-total"> Total: <span id="cart-total-price"><%= locals.cart.totalPrice %></span> &euro; </div>
+            <div id="cart-total">Total: <span id="cart-total-price"><%= locals.cart.totalPrice %> &euro;</span></div>
             <% if(!locals.isAuth){ %>
                <p class="disclaimer">You must  <a href="/auth"> <span>log in </span> or <span>create an account</span> </a> to make an order </p>
             <% } else if (locals.cart.totalPrice === 0) { %>
