@@ -48,3 +48,9 @@ input {
   font-size: 1.5rem;
   padding: 0.3rem;
 }
+
+.form-control{
+  width: 70%;
+  display: inline-block;
+  text-align: center;
+}

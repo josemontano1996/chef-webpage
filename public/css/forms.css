@@ -5,14 +5,16 @@ main p {
   margin: 0 5%;
 }
 
-main section {
-  max-width: 70%;
+.form-section {
+  max-width: 80%;
   margin: 0.5rem auto;
-  background-color: var(--color-backgroundtext);
+  border: 1px solid var(--color-button);
+  box-shadow: 0 0 10px var(--color-button);
   border-radius: 30px;
   padding: 0.25rem;
   margin-bottom: 0.5rem;
 }
+
 
 label {
   margin-top: 0.5rem;
@@ -44,6 +46,6 @@ textarea {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#allergens input{
+#allergens input {
   width: 1rem;
 }

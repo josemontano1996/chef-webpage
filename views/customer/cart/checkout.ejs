@@ -15,9 +15,8 @@
     <p><%= inputData.errorMessage %></p>
   </section>
   <% } %>
-     <section>
+     <section class="form-section">
       <h2>Checkout</h2>
-      <h3> <p>Total order price: <span><%= locals.cart.totalPrice %></span> &euro;</p></h3>
       <hr>
         <h4>Your delivery data</h4>
         <form action="/orders" method="POST">
@@ -110,12 +109,13 @@
           <input
             type="text"
             name="country"
-            id="contry"
+            id="country"
             value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
             required
           />
         </p>
-
+        <h5>anadir logica sobre envios y precios, aqui va texto explantorio envios</h5>
+        <h5> <p>Total order price: <span><%= locals.cart.totalPrice %></span> &euro;</p></h5>
         <% if (locals.configData && locals.configData.pickup === 'active') { %> 
           <p id="pickup-section">
             <label for="pickup">Check the box below if you prefer to pick up your package at:
@@ -162,7 +162,7 @@
        <textarea name="request" id="request" rows="5"></textarea>
 
       </p>
-            <button class="button">Place order</button>
+            <button class="btn">Place order</button>
         </form>
      </section>
 </main>

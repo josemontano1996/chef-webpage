@@ -37,7 +37,8 @@ const flatpickConfig = {
   disableMobile: 'true', //TODO check this for production, see if is neccesary to for disableMobile
   enableTime: true,
   altInput: true,
-  altFormat: 'F j, (h:S K) ',
+  time_24hr: true,
+  altFormat: 'M j. Y, (H:i) ',
   locale: {
     firstDayOfWeek: 1,
   },
