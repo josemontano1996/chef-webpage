@@ -55,7 +55,7 @@ async function getOrderForQueries(req, res, next) {
 }
 
 async function checkOut(req, res, next) {
-  // TODO I HAVE TO ADD THE DATE VALIDATION!!
+ 
   let sessionData = sessionFlash.getSessionData(req);
 
   if (!sessionData) {

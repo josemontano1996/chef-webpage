@@ -19,7 +19,7 @@ section {
   margin-bottom: 1rem;
 }
 
-.cancel-button{
+.cancel-button {
   background-color: transparent;
   border: 1px solid var(--color-button);
   color: var(--color-button);
@@ -27,7 +27,7 @@ section {
 
 .confirm-cancel-button {
   display: none;
-   background-color: transparent;
+  background-color: transparent;
   border: 1px solid var(--color-3);
   color: var(--color-3);
 }
@@ -42,10 +42,9 @@ section {
   text-align: right;
 }
 
-.messages-hr{
+.messages-hr {
   margin: auto 0;
 }
-
 
 .order-number {
   -webkit-user-select: all;
@@ -56,6 +55,17 @@ section {
   font-style: italic;
 }
 
-.highligthed{
-  background-color: orange;
+.highlight-animation {
+  animation: highlight 1.5s ease-in-out;
+}
+@keyframes highlight {
+  0% {
+    background-color: var(--color-background);
+  }
+  50% {
+    background-color: var(--color-button);
+  }
+  100% {
+    background-color: var(--color-background);
+  }
 }

@@ -20,6 +20,7 @@
         <h4>Your delivery data</h4>
         <form action="/orders" method="POST" class="form">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+      <div class="personal-data">
       <p class="flexbox-container">
         <label for="fullname">Name</label>
         <input
@@ -104,7 +105,7 @@
           />
         </p>
          <p class="flexbox-container">
-          <label for="country">Country</label>
+          <label for="country" >Country</label>
           <input
             type="text"
             name="country"
@@ -113,8 +114,10 @@
             required
           />
         </p>
+
+      </div>
         <% if (locals.configData && locals.configData.pickup === 'active') { %> 
-          <p id="pickup-section">
+          <div id="pickup-section">
             <label for="pickup">Check the box below if you prefer to pick up your package at:
               <br> <a
             target="_blank"
@@ -128,6 +131,7 @@
           </a>
               </label>
            <input type="checkbox" name="pickup" id="pickup" />
+           </div>
           <% } %>
       <%}%>
 
@@ -156,8 +160,8 @@
           <h5>Total order price: 150 &euro;</h5>
         </div>
         <hr>
-      <p id="calendar-container" >
-        <label for="deliveryDate">Delivery date</label>
+      <div id="calendar-container" >
+        <label for="deliveryDate"><h5>Delivery date</h5></label>
         <p>From: <%=workDay.clockIn%> to : <%=workDay.clockOut %></p>
         <div>
           <input
@@ -169,14 +173,12 @@
           />
           <a class="check-a">&#x2713</a>
         </div>
-      </p>
-
-      </p>
-      <p>
+      </div>
+      <div>
         <label for="request" id="request-section" >If you have any special request please write it here.</label>
        <textarea name="request" id="request" rows="5"></textarea>
 
-      </p>
+      </div>
             <button class="btn">Place order</button>
         </form>
      </section>

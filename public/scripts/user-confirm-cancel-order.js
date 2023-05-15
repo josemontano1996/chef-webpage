@@ -30,12 +30,13 @@ async function cancelOrder(event) {
     return;
   }
 
+  event.target.style.display = 'none';
   const listItemElement = event.target.closest('.order-li');
   const statusElement = listItemElement.querySelector('.order-status');
 
   statusElement.innerHTML = 'Status: cancellation requested';
 
-  alert('Cancellation succesfully requested.')
+  statusElement.classList.add('highlight-animation');
 }
 
 for (const confirmCancelProductButtonElement of confirmCancelProductButtonElements) {

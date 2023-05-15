@@ -6,8 +6,17 @@ main {
   margin: 2rem 2%;
 }
 
-main p {
-  margin: 1.3rem 1rem;
+.personal-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  gap: 0.7rem;
+  margin: auto 2%;
+}
+
+form .flexbox-container {
+  height: 2rem;
 }
 
 label {
@@ -21,7 +30,6 @@ label {
   box-shadow: 0 0 10px var(--color-button);
   border-radius: 30px;
   padding: 0.25rem;
-  margin-bottom: 0.5rem;
 }
 .form input {
   height: 1.5rem;
@@ -29,11 +37,11 @@ label {
   padding-left: 0.5rem;
   /* margin-right: 0.5rem; */
 }
-.form label,.form input,
+.form label,
+.form input,
 textarea {
   display: inline-block;
 }
-
 
 textarea {
   resize: none;
@@ -48,6 +56,9 @@ textarea {
 
 #pickup-section label span {
   font-style: italic;
+}
+#pickup-section input {
+  margin-top: 0.3rem;
 }
 
 #only-pickup h4 {
@@ -74,7 +85,7 @@ textarea {
 .form .flatpickr-rContainer {
   display: block;
   margin: 0 auto;
- 
+
   overflow-x: scroll;
 }
 

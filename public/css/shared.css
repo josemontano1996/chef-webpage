@@ -108,7 +108,7 @@ main {
 }
 
 footer {
-  margin: 1rem 5%;
+  margin: 2rem 5% 1rem 5%;
 }
 
 footer h1 {
@@ -216,4 +216,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.highligthed {
+  border-bottom: 2px solid var(--color-button);
 }

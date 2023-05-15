@@ -16,9 +16,9 @@ ul {
 }
 
 input {
-  width: 3rem;
+  width: 2rem;
   text-align: center;
-  margin: auto 0.1rem;
+  margin: 0.2rem 0.2rem;
 }
 
 .cart-item-info p {
@@ -46,7 +46,6 @@ input {
 }
 
 #checkout {
-
   margin: 1rem auto;
   margin-bottom: 2rem;
 }
@@ -59,4 +58,19 @@ input {
 
 h2 {
   text-align: center;
+}
+
+
+h3 {
+  font-size: 1.7rem;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+.btn{
+  margin-left: 0.5rem;
 }

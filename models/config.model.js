@@ -17,6 +17,9 @@ class Config {
     pickupPostal,
     pickupCity,
     pickupCountry,
+    minDelivery,
+    deliveryPrice,
+    freeDelivery,
     facebook,
     instagram,
     id
@@ -38,6 +41,9 @@ class Config {
       pickupCity: pickupCity,
       pickupCountry: pickupCountry,
     };
+    this.minDelivery = minDelivery;
+    this.deliveryPrice = deliveryPrice;
+    this.freeDelivery = freeDelivery;
     this.social = {
       facebook: facebook,
       instagram: instagram,
@@ -67,6 +73,9 @@ class Config {
               pickup: this.pickup,
               pickupMessage: this.pickupMessage,
               pickupAddress: this.pickupAddress,
+              minDelivery: this.minDelivery,
+              deliveryPrice: this.deliveryPrice,
+              freeDelivery: this.freeDelivery,
               social: this.social,
             },
           }
@@ -80,6 +89,9 @@ class Config {
         pickup: this.pickup,
         pickupMessage: this.pickupMessage,
         pickupAddress: this.pickupAddress,
+        minDelivery: this.minDelivery,
+        deliveryPrice: this.deliveryPrice,
+        freeDelivery: this.freeDelivery,
         social: this.social,
       });
     }

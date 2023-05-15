@@ -127,6 +127,7 @@ async function getAccount(req, res, next) {
 async function getConfig(req, res, next) {
   try {
     const config = await Config.getConfig();
+    console.log(config);
     res.render('admin/account/web-configuration', {
       config: config,
     });
@@ -151,6 +152,9 @@ async function updateConfig(req, res, next) {
       req.body.pickupPostal,
       req.body.pickupCity,
       req.body.pickupCountry,
+      req.body.minDelivery,
+      req.body.deliveryPrice,
+      req.body.freeDelivery,
       req.body.facebook,
       req.body.instagram,
       req.body._id

@@ -26,7 +26,7 @@ form button {
 }
 
 form input {
-  margin-top: 0.2rem;
+  margin: 1rem auto;
   height: 2rem;
   width: 70%;
 }
@@ -36,8 +36,8 @@ textarea {
   width: 70%;
 }
 
-.button-alt,
-.button {
+.btn-alt,
+.btn {
   margin: 1rem auto;
 }
 
