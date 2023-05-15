@@ -1,6 +1,5 @@
 <%- include("../../shared/head", {pageTitle: "Checkout"}) %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/confetti.css">
-<link rel="stylesheet" href="/css/forms.css">
 <link rel="stylesheet" href="/css/checkout.css">
 
 <!-- Flatpickr and calendar config -->
@@ -19,10 +18,10 @@
       <h2>Checkout</h2>
       <hr>
         <h4>Your delivery data</h4>
-        <form action="/orders" method="POST">
+        <form action="/orders" method="POST" class="form">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
-      <p>
-        <label for="fullname">Your Name</label>
+      <p class="flexbox-container">
+        <label for="fullname">Name</label>
         <input
           type="text"
           name="fullname"
@@ -31,7 +30,7 @@
           required
         />
       </p>
-      <p>
+       <p class="flexbox-container">
         <label for="email">Email</label>
         <input
           type="email"
@@ -41,8 +40,8 @@
           required
         />
       </p>
-      <p>
-        <label for="phone">Contact Phone</label>
+       <p class="flexbox-container">
+        <label for="phone">Phone</label>
         <input
           type="tel"
           name="phone"
@@ -72,8 +71,8 @@
         </section>
       
         <% } else { %>
-        <p>
-          <label for="street">Delivery Address</label>
+         <p class="flexbox-container">
+          <label for="street">Address</label>
           <input
             type="text"
             name="street"
@@ -82,7 +81,7 @@
             required
           />
         </p>
-        <p>
+         <p class="flexbox-container">
           <label for="PLZ">PLZ</label>
           <input
             type="number"
@@ -94,7 +93,7 @@
             required
           />
         </p>
-        <p>
+         <p class="flexbox-container">
           <label for="city">City</label>
           <input
             type="text"
@@ -104,7 +103,7 @@
             required
           />
         </p>
-        <p>
+         <p class="flexbox-container">
           <label for="country">Country</label>
           <input
             type="text"
@@ -114,8 +113,6 @@
             required
           />
         </p>
-        <h5>anadir logica sobre envios y precios, aqui va texto explantorio envios</h5>
-        <h5> <p>Total order price: <span><%= locals.cart.totalPrice %></span> &euro;</p></h5>
         <% if (locals.configData && locals.configData.pickup === 'active') { %> 
           <p id="pickup-section">
             <label for="pickup">Check the box below if you prefer to pick up your package at:
@@ -139,8 +136,26 @@
           <label for="saveData">Do you wanna save your data for future orders?</label>
           <input type="checkbox" name="saveData" id="saveData">
         </p>
-      <%} %>
-<hr>
+        <%} %>
+        <hr>
+        <!-- <h5>anadir logica sobre envios y precios, aqui va texto explantorio envios</h5> -->
+        <div class="price">
+          <h5>Pricing</h5>
+          <div>
+            <p>Delivery: 4 &euro; (min 150 eur order for free delivery)</p>
+          </div>
+          <div>
+            <p>Delivery: You selected pickup (free)</p>
+          </div>
+          <div>
+            <p>Delivery: 0 &euro; (you qualify for free delivery)</p>
+          </div>
+          <div>
+            <p>Order: <span><%= locals.cart.totalPrice %> &euro;</span></p>
+          </div>
+          <h5>Total order price: 150 &euro;</h5>
+        </div>
+        <hr>
       <p id="calendar-container" >
         <label for="deliveryDate">Delivery date</label>
         <p>From: <%=workDay.clockIn%> to : <%=workDay.clockOut %></p>

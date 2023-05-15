@@ -33,16 +33,9 @@ async function cancelOrder(event) {
   const listItemElement = event.target.closest('.order-li');
   const statusElement = listItemElement.querySelector('.order-status');
 
-  statusElement.innerHTML = 'Status: Cancellation Requested';
+  statusElement.innerHTML = 'Status: cancellation requested';
 
-  event.target.style.display = 'none';
-
-  statusElement.classList.add('pop-up');
-
-  setTimeout(() => {
-    statusElement.classList.add('done');
-    statusElement.classList.remove('pop-up');
-  }, 500);
+  alert('Cancellation succesfully requested.')
 }
 
 for (const confirmCancelProductButtonElement of confirmCancelProductButtonElements) {
