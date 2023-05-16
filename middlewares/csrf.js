@@ -3,7 +3,7 @@ const Tokens = require('csrf');
 const tokens = new Tokens();
 
 function csrfMiddleware(req, res, next) {
-  if (req.path != '/cart/flash') {
+  if (req.path === '/cart/flash') {
     next();
   } else {
     if (req.method === 'GET') {

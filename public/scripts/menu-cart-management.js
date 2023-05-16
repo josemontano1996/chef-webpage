@@ -8,10 +8,10 @@ for (const formElement of cartItemUpdateFormElements) {
   formElement.addEventListener('submit', updateCartItem);
 }
 //For adding items to the cart from the menu
-const addItemButtonElements = document.querySelectorAll('#product-item-button');
+const addItemForms = document.querySelectorAll('.add-item-form');
 
-for (const addItemButtonElement of addItemButtonElements) {
-  addItemButtonElement.addEventListener('click', addToCart);
+for (const addItemForm of addItemForms) {
+  addItemForm.addEventListener('submit', addToCart);
 }
 
 //For toggling cart display
@@ -114,14 +114,21 @@ async function updateCartItem(event) {
 //Function for cartItemUpdateFormElements
 
 async function addToCart(event) {
-  const productId = event.target.dataset.productid;
-  const csrfToken = event.target.dataset.csrf;
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+  const productId = formData.get('productId');
+  const quantity = formData.get('quantity');
+  const csrfToken = formData.get('csrf');
+
   let response;
   try {
     response = await fetch('/cart/items', {
       method: 'POST',
       body: JSON.stringify({
         productId: productId,
+        quantity: quantity,
         _csrf: csrfToken,
       }),
       headers: {
@@ -129,7 +136,7 @@ async function addToCart(event) {
       },
     });
   } catch (error) {
-    alert('Something went wrong');
+    alert('Something went wrong 1');
     return;
   }
 
@@ -139,8 +146,6 @@ async function addToCart(event) {
   }
 
   const responseData = await response.json();
-
-  const locals = responseData.locals;
 
   cartHelper = responseData.locals.cart;
 

@@ -16,16 +16,23 @@ function flashCart(req, res, next) {
 
 async function addCartItem(req, res, next) {
   let product;
+  const exception = 'description';
+
   try {
-    product = await Product.findById(req.body.productId);
+    product = await Product.findById(req.body.productId, exception);
   } catch (error) {
     return next(error);
   }
+  if (product.minQuantity > req.body.quantity) {
+    return res.status(422).json({
+      errorMessage: 'Min. quantity not reached',
+    });
+  }
   const cart = res.locals.cart;
-  cart.addItem(product);
+  cart.addItem(product, req.body.quantity);
+  console.log(res.locals.cart.items[0].product);
   req.session.cart = cart; //overwriting cart in the session
   res.status(201).json({
-    message: 'Cart updated',
     locals: res.locals,
   });
 }

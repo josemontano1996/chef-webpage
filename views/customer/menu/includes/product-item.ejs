@@ -7,9 +7,14 @@
     <% if(product.minQuantity) { %>
     <p>Min. <%= product.minQuantity %> uds.</p>
     <% } %>
-    <p>Min. 3 uds.</p>
     <div>
     <p class="price"><%= product.price %> &euro; <span class="price-span">per u.</span> </p>
-    <button class="btn" id="product-item-button" data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>">Add to cart</button>
+    <form class="add-item-form">
+      <input type="hidden" name="productId" value="<%= product.id %>">
+      <input type="hidden" name= "csrf" value="<%= locals.csrfToken %>">
+      <label for="quantity">Quantity</label>
+      <input type="number" name= "quantity" id="quantity" min="<%=product.minQuantity%>" placeholder="0">
+    <button class="btn">Add to cart</button>
+  </form>
   </div>
 </article>

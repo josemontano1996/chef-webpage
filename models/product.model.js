@@ -11,9 +11,8 @@ class Product {
     minQuantity = null,
     _id = null
   ) {
-    (this.name = name.charAt(0).toUpperCase() + name.slice(1)),
-      (this.description =
-        description.charAt(0).toUpperCase() + description.slice(1)),
+    (this.name = name),
+      (this.description = description),
       (this.price = +price),
       (this.cuisine = cuisine),
       (this.type = type),
@@ -44,34 +43,56 @@ class Product {
     });
   }
 
-  static async findById(productId) {
-    let objectId;
+  static async findById(productId, exception) {
+    const objectId = new mongodb.ObjectId(productId);
+    let product;
+
     try {
-      objectId = new mongodb.ObjectId(productId);
+      if (exception) {
+        product = await db
+          .getDb()
+          .collection('products')
+          .findOne({ _id: objectId }, { projection: { exception: 0 } });
+        if (!product) {
+          const error = new Error('Could not find product with provided id.');
+          error.code = 404;
+          throw error;
+        }
+
+        return new Product(
+          product.name,
+          null,
+          product.price,
+          null,
+          null,
+          product.minQuantity,
+          product._id.toString()
+        );
+      } else {
+        product = await db
+          .getDb()
+          .collection('products')
+          .findOne({ _id: objectId });
+        if (!product) {
+          const error = new Error('Could not find product with provided id.');
+          error.code = 404;
+          throw error;
+        }
+
+        return new Product(
+          product.name,
+          product.description,
+          product.price,
+          product.cuisine,
+          product.type,
+          product.minQuantity,
+          product._id.toString()
+        );
+      }
     } catch (error) {
       error.code = 404;
       throw error;
     }
-    const product = await db
-      .getDb()
-      .collection('products')
-      .findOne({ _id: objectId });
-
-    if (!product) {
-      const error = new Error('Could not find product with provided id.');
-      error.code = 404;
-      throw error;
-    }
-
-    return new Product(
-      product.name,
-      product.description,
-      product.price,
-      product.cuisine,
-      product.type,
-      product.minQuantity,
-      product._id.toString()
-    );
   }
 
   static async findAll() {
@@ -175,8 +196,10 @@ class Product {
           { _id: mongoId },
           {
             $set: {
-              name: this.name,
-              description: this.description,
+              name: this.name.charAt(0).toUpperCase() + this.name.slice(1),
+              description:
+                this.description.charAt(0).toUpperCase() +
+                this.description.slice(1),
               cuisine: this.cuisine,
               type: this.type,
               minQuantity: this.minQuantity,
