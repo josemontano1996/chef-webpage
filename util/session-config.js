@@ -5,8 +5,8 @@ function createSessionStore() {
   const MongoDBStore = mongoDbStore(expressSession);
 
   const store = new MongoDBStore({
-    uri: 'mongodb://127.0.0.1:27017',
-    databaseName: 'chef-webpage',
+    uri: process.env.DATABASE_URI,
+    databaseName: process.env.DATABASE_NAME,
     collection: 'sessions',
   });
 
@@ -15,7 +15,7 @@ function createSessionStore() {
 
 function createSessionConfig() {
   return {
-    secret: 'super-secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: createSessionStore(),

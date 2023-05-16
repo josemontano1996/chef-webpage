@@ -1,8 +1,10 @@
+//ENVIROMENTAL VARIABLES
+require('dotenv').config();
+
 //EXTERNAL PACKAGE IMPORTS
 const path = require('path');
 const express = require('express');
 const expressSession = require('express-session');
-const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const NodeCache = require('node-cache');
 
@@ -46,12 +48,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//creating a session
-app.use(
-  cookieParser('super-secret', {
-    httpOnly: true,
-  })
-);
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
 
@@ -81,7 +77,7 @@ app.use(errorHandlerMiddleware);
 
 db.connectToDatabase()
   .then(function () {
-    app.listen(3000);
+    app.listen(process.env.PORT);
   })
   .catch(function (error) {
     console.log('Failed to connect to db');

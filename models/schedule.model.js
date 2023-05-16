@@ -1,7 +1,5 @@
 const db = require('../data/database');
 
-const mongodb = require('mongodb');
-
 class Schedule {
   constructor(
     clockIn,
