@@ -10,7 +10,7 @@
            <label for="holidayTo">Holidays until: </label>
           <input type="date" id="holidayTo" name = "holidayTo" required>
         </p>
-        <button>Submit holiday</button>
+        <button class="btn">Submit holiday</button>
       
     </form>
     <% if (schedule && schedule.holidays){ %>
@@ -21,7 +21,7 @@
                 <form action="/admin/holidays/delete/<%=holiday.holidayId%>" method="POST">
                     <input type="hidden" name="_csrf" value="<%= locals.csrfToken%>" />
                     <p>Holiday from: <%= holiday.holidayFrom %>, until <%= holiday.holidayTo %></p>
-                    <button>Delete holiday</button>
+                    <button class="btn alt">Delete holiday</button>
                 </form>
     
             <% } %>

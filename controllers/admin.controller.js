@@ -127,7 +127,6 @@ async function getAccount(req, res, next) {
 async function getConfig(req, res, next) {
   try {
     const config = await Config.getConfig();
-    console.log(config);
     res.render('admin/account/web-configuration', {
       config: config,
     });

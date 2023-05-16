@@ -6,9 +6,9 @@
   <% } %>
   <p class="price"><%= product.price %> &euro;</p>
   <div class="flexbox-container">
-    <a href="/admin/menu/<%= product.id %>" class="button">View & Edit</a>
+    <a href="/admin/menu/<%= product.id %>" class="btn">View & Edit</a>
     <button
-      class="button"
+      class="btn alt"
       data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>"
     >
       Delete
