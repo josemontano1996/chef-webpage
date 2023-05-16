@@ -19,22 +19,26 @@ async function addCartItem(req, res, next) {
   const exception = 'description';
 
   try {
+    if (!req.body.quantity) {
+      return;
+    }
+
     product = await Product.findById(req.body.productId, exception);
+    if (product.minQuantity > req.body.quantity) {
+      return res.status(422).json({
+        errorMessage: 'Min. quantity not reached',
+      });
+    }
+    const cart = res.locals.cart;
+    cart.addItem(product, req.body.quantity);
+    console.log(res.locals.cart.items[0]);
+    req.session.cart = cart; //overwriting cart in the session
+    res.status(201).json({
+      locals: res.locals,
+    });
   } catch (error) {
     return next(error);
   }
-  if (product.minQuantity >= req.body.quantity) {
-    return res.status(422).json({
-      errorMessage: 'Min. quantity not reached',
-    });
-  }
-  const cart = res.locals.cart;
-  cart.addItem(product, req.body.quantity);
-  console.log(res.locals.cart.items[0]);
-  req.session.cart = cart; //overwriting cart in the session
-  res.status(201).json({
-    locals: res.locals,
-  });
 }
 
 async function updateCartItem(req, res, next) {
@@ -42,7 +46,7 @@ async function updateCartItem(req, res, next) {
     const cart = res.locals.cart;
     const product = await Product.findById(req.body.productId);
 
-    if (product.minQuantity >= req.body.quantity) {
+    if (product.minQuantity > req.body.quantity) {
       return res.status(422).json({
         errorMessage: 'Min. quantity not reached',
       });
@@ -67,9 +71,31 @@ async function updateCartItem(req, res, next) {
   }
 }
 
+async function deleteCartItem(req, res, next) {
+  try {
+    const cart = res.locals.cart;
+
+    const updatedItemData = cart.updateItem(req.body.productId, 0);
+
+    req.session.cart = cart;
+
+    res.json({
+      message: 'Item updated',
+      updatedCartData: {
+        newTotalQuantity: cart.totalQuantity,
+        newTotalPrice: cart.totalPrice,
+        updatedItemPrice: updatedItemData.updatedItemPrice,
+      },
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   addCartItem: addCartItem,
   getCart: getCart,
   updateCartItem: updateCartItem,
+  deleteCartItem: deleteCartItem,
   flashCart: flashCart,
 };

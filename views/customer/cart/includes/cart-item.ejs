@@ -12,10 +12,11 @@
         required
       />
       <button class="btn">Update</button>
+      <a class="btn alt delete-button" data-productid="<%= item.product.id %>" data-csrf="<%= locals.csrfToken %>">Delete</a>
     </form>
-    <p>
-      <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
-      &euro;<span>(<%= item.product.price %> &euro; per ud.)</span>
-    </p>
   </div>
+  <p>
+    <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
+    &euro;<span>(<%= item.product.price %> &euro; per ud.)</span>
+  </p>
 </article>

@@ -3,9 +3,7 @@ const Tokens = require('csrf');
 const tokens = new Tokens();
 
 function csrfMiddleware(req, res, next) {
-  if (req.path === '/cart/flash') {
-    next();
-  } else {
+  
     if (req.method === 'GET') {
       const secret = tokens.secretSync();
       req.session.csrfSecret = secret;
@@ -27,7 +25,7 @@ function csrfMiddleware(req, res, next) {
       }
     }
     next();
-  }
+  
 }
 
 module.exports = csrfMiddleware;

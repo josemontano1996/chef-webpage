@@ -1,12 +1,19 @@
 //For managing cart from the menu badge display
-
-const cartItemUpdateFormElements = document.querySelectorAll(
+let cartItemUpdateFormElements = document.querySelectorAll(
   '.cart-item-management'
 );
 
 for (const formElement of cartItemUpdateFormElements) {
   formElement.addEventListener('submit', updateCartItem);
 }
+
+//Deleting items from cart
+let deleteItemButtons = document.querySelectorAll('.delete-button');
+
+for (const deleteItemButton of deleteItemButtons) {
+  deleteItemButton.addEventListener('click', deleteCartItem);
+}
+
 //For adding items to the cart from the menu
 const addItemForms = document.querySelectorAll('.add-item-form');
 
@@ -19,6 +26,7 @@ const closeCartButton = document.getElementById('close-cart');
 const cartSectionElement = document.getElementById('cart-section');
 
 const openCartButton = document.querySelector('.cart-banner');
+function initializeEventListeners() {}
 
 //I am creating a locals helper variable, this variable will be set uppon ajax request
 //for obtaining the cart data, and res.locals data for then using it for creating the html
@@ -47,6 +55,60 @@ if (openCartButton) {
     }
     cartDisplay = true;
   });
+}
+
+async function deleteCartItem(event) {
+  const productId = event.target.dataset.productid;
+  const csrfToken = event.target.dataset.csrf;
+
+  let response;
+  try {
+    response = await fetch('/cart/items/delete', {
+      method: 'PATCH',
+      body: JSON.stringify({
+        productId: productId,
+        _csrf: csrfToken,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    return alert('Something went wrong');
+  }
+
+  if (!response.ok) {
+    alert('Something went wrong');
+    return;
+  }
+  const responseData = await response.json();
+
+  const cartTotalPriceElement = document.querySelector('#cart-total-price');
+  const cartBadgeElement = document.querySelector('.cart-banner');
+  const cartBadgePrice = document.querySelector('.cart-price');
+  const newTotalPrice = responseData.updatedCartData.newTotalPrice;
+
+  if (cartBadgePrice) {
+    cartBadgePrice.textContent = newTotalPrice.toFixed(2);
+  }
+
+  if (newTotalPrice === 0) {
+    cartBadgeElement.style.display = 'none';
+  }
+
+  if (responseData.updatedCartData.updatedItemPrice === 0) {
+    event.target.closest('.cart-item').remove();
+  } else {
+    const cartItemTotalPriceElement = event.target
+      .closest('.cart-item')
+      .querySelector('.cart-item-price');
+
+    cartItemTotalPriceElement.textContent =
+      responseData.updatedCartData.updatedItemPrice.toFixed(2);
+  }
+
+  cartTotalPriceElement.textContent =
+    responseData.updatedCartData.newTotalPrice.toFixed(2);
 }
 
 //Function for cartItemUpdateElements
@@ -100,7 +162,7 @@ async function updateCartItem(event) {
     form.closest('.cart-item').remove();
   } else {
     const cartItemTotalPriceElement = form
-      .closest('.cart-item-info')
+      .closest('.cart-item')
       .querySelector('.cart-item-price');
 
     cartItemTotalPriceElement.textContent =
@@ -201,19 +263,21 @@ async function addToCart(event) {
                   type="number"
                   id="quantity"
                   value="<%= item.quantity %>"
-                  min="0"
+                   min="<%=item.product.minQuantity %>"
                   step="1"
                   required
                 />
                 <button class="btn">Update</button>
+                 <a class="btn alt delete-button" data-productid="<%= item.product.id %>" data-csrf="<%= locals.csrfToken %>">Delete</a>
               </form>
+              </div>
               <p>
-      <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
-      &euro;<span>(<%= item.product.price %> &euro; per ud.)</span>
-    </p>
-  </div>
-</article>
-</li>
+                <span class="cart-item-price"> <%= item.totalPrice.toFixed(2) %> </span>
+                &euro;<span>(<%= item.product.price %> &euro; per ud.)</span>
+              </p>
+              <hr>
+          </article>
+          </li>
           <% } %>
         </ul>
         <div id="cart-total">Total: <span id="cart-total-price"><%= cart.totalPrice %> &euro;</span></div>
@@ -223,9 +287,23 @@ async function addToCart(event) {
           <p class="disclaimer">Your cart is empty, <a href="/menu">check our Menu</a> to make an order</p>
         <% } %>
       `;
-
           const renderedHTML = ejs.render(cartTemplate, locals);
           cartDataElement.innerHTML = renderedHTML;
+
+          cartItemUpdateFormElements = document.querySelectorAll(
+            '.cart-item-management'
+          );
+
+          for (const formElement of cartItemUpdateFormElements) {
+            formElement.addEventListener('submit', updateCartItem);
+          }
+
+         deleteItemButtons = document.querySelectorAll('.delete-button');
+
+          for (const deleteItemButton of deleteItemButtons) {
+            deleteItemButton.addEventListener('click', deleteCartItem);
+          }
+
         })
         .catch((error) => {
           console.log(error);
