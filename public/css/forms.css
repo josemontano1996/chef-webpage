@@ -7,12 +7,11 @@ main p {
 
 .form-section {
   max-width: 80%;
-  margin: 0.5rem auto;
+  margin: 1rem auto;
   border: 1px solid var(--color-button);
   box-shadow: 0 0 10px var(--color-button);
   border-radius: 30px;
   padding: 0.25rem;
-  margin-bottom: 0.5rem;
 }
 
 

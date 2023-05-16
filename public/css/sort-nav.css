@@ -1,8 +1,18 @@
+header {
+  position: absolute;
+  top: 0;
+}
+
+main {
+  margin-top: 6vh;
+}
+
 .sort-nav {
   position: sticky;
   top: 0;
   background-color: var(--color-background);
   height: 3rem;
+  z-index: 2;
 }
 
 .sort-nav ul {
@@ -19,5 +29,3 @@
 .sort-nav hr {
   margin-top: 0;
 }
-
-

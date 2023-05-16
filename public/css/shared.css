@@ -19,9 +19,8 @@ body {
   font-family: var(--font-main);
 }
 
-
 header {
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   width: 100%;
   top: 0;
@@ -30,7 +29,7 @@ header {
   padding: 0.5rem;
 }
 
-#main-icon img{
+#main-icon img {
   height: 5vh;
   width: 100%;
 }
@@ -100,7 +99,7 @@ form button .log-out-btn {
 }
 
 #side-nav li {
-  margin-bottom: 0.5rem;
+  margin: auto auto 0.5rem 1rem;
 }
 
 main {
@@ -135,7 +134,7 @@ footer hr {
   text-align: center;
 }
 
-img{
+img {
   width: 70%;
 }
 
@@ -163,7 +162,6 @@ h1 {
   font-weight: 700;
 }
 
-
 button {
   border: none;
   background-color: transparent;
@@ -184,14 +182,14 @@ button {
   color: var(--color-button);
 }
 
-.btn:hover{
-border: 1px solid var(--color-button);
+.btn:hover {
+  border: 1px solid var(--color-button);
   background-color: var(--color-background);
   color: var(--color-button);
 }
 
-.btn.alt:hover{
-border: 1px solid var(--color-button);
+.btn.alt:hover {
+  border: 1px solid var(--color-button);
   background-color: var(--color-button);
   color: var(--color-2);
 }
@@ -203,7 +201,7 @@ ol {
   padding-left: 0;
 }
 
-li{
+li {
   list-style: none;
 }
 
