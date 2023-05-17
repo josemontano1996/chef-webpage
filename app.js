@@ -19,9 +19,7 @@ const protectRoutesMiddeware = require('./middlewares/protect-routes');
 const cartMiddleware = require('./middlewares/cart');
 const storeConfigData = require('./middlewares/config-cache');
 const updateCartPricesMiddleware = require('./middlewares/update-cart-middleware');
-const csrfMiddleware = require('./middlewares/csrf');
 
-/* const csrfProtection = require('./middlewares/customs-csrf-protection'); */
 
 //ROUTES IMPORTS
 const baseRoutes = require('./routes/base.routes');
@@ -58,9 +56,6 @@ app.use(checkAuthStatusMiddleware);
 
 //serving config files from cache
 app.use(storeConfigData);
-
-//creating csrfToken
-app.use(csrfMiddleware);
 
 //UNPROTECTED ROUTES
 app.use(baseRoutes);

@@ -1,16 +1,19 @@
 const express = require('express');
 const baseController = require('../controllers/base.controller');
 
+const csrfMiddleware = require('../middlewares/csrf');
+const csrf = require('../middlewares/csrf');
+
 const router = express.Router();
 
 router.get('/', baseController.getIndex);
 router.get('/about', baseController.getAbout);
-router.get('/auth', baseController.getAuth);
-router.get('/auth/signup', baseController.getSignup);
-router.get('/auth/login', baseController.getLogin);
+router.get('/auth', csrfMiddleware.generateCsrfToken, baseController.getAuth);
+router.get('/auth/signup', csrfMiddleware.generateCsrfToken, baseController.getSignup);
+router.get('/auth/login', csrfMiddleware.generateCsrfToken, baseController.getLogin);
 
-router.post('/login', baseController.login);
-router.post('/signup', baseController.signup);
+router.post('/login', csrfMiddleware.validateCsrfToken, baseController.login);
+router.post('/signup', csrfMiddleware.validateCsrfToken, baseController.signup);
 router.post('/logout', baseController.logout);
 
 //error routes
