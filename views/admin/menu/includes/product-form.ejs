@@ -1,9 +1,14 @@
-<form action="<%= submitPath %>" method="POST">
+<form action="<%= submitPath %>" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
            <p>
                <label for="name">Dish name</label>
                <input type="text" id="name" name="name" value="<%= product.name %>"  required>
            </p>
+           <p>
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" accept="image/png,image/jpg">
+           </p>
+
             <p>
                <label for="description">Description</label>
                <textarea  id="description" name="description" rows="7" required><%= product.description %></textarea>

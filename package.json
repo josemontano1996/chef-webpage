@@ -19,6 +19,7 @@
   "homepage": "https://github.com/josemontano1996/chef-webpage#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.37.0",
     "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "^1.4.6",
     "csrf": "^3.1.0",
@@ -28,6 +29,7 @@
     "express-session": "^1.17.3",
     "helmet": "^6.0.1",
     "mongodb": "^5.1.0",
+    "multer": "^1.4.5-lts.1",
     "node-cache": "^5.1.2",
     "uuid": "^9.0.0"
   },

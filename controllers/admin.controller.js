@@ -1,7 +1,5 @@
 const sessionFlash = require('../util/session-flash');
 
-const csrfMiddleware = require('../middlewares/csrf');
-
 const NodeCache = require('node-cache');
 const { v4: uuidv4 } = require('uuid');
 
@@ -191,6 +189,8 @@ function getNewProduct(req, res) {
 }
 
 async function addNewProduct(req, res, next) {
+  console.log(req.body);
+  console.log(req.file);
   const product = new Product(
     req.body.name,
     req.body.description,

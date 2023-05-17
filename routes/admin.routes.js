@@ -1,5 +1,7 @@
 const express = require('express');
 const adminController = require('../controllers/admin.controller');
+const multerMiddleware = require('../middlewares/multer');
+const cloudinaryMiddlware = require('../middlewares/cloudinary')
 
 const router = express.Router();
 
@@ -12,8 +14,8 @@ router.get('/menu/new', adminController.getNewProduct);
 router.get('/menu/:id', adminController.getUpdateProduct);
 router.get('/schedule', adminController.getSchedule);
 
-router.post('/menu/new', adminController.addNewProduct);
-router.post('/menu/:id', adminController.updateProduct);
+router.post('/menu', multerMiddleware, cloudinaryMiddlware.uploadImage, adminController.addNewProduct);
+router.post('/menu/:id', multerMiddleware, adminController.updateProduct);
 router.post('/config', adminController.updateConfig);
 router.post('/schedule', adminController.postSchedule);
 router.post('/holidays', adminController.postHolidays);
