@@ -4,6 +4,7 @@ const mongodb = require('mongodb'); //we import it for building objects id for m
 class Product {
   constructor(
     name,
+    imageUrl,
     description,
     price,
     cuisine,
@@ -12,6 +13,7 @@ class Product {
     _id = null
   ) {
     (this.name = name),
+      (this.imageUrl = imageUrl),
       (this.description = description),
       (this.price = +price),
       (this.cuisine = cuisine),
@@ -33,6 +35,7 @@ class Product {
     return products.map(function (product) {
       return new Product(
         product.name,
+        product.imageUrl,
         product.description,
         product.price,
         product.cuisine,
@@ -62,6 +65,7 @@ class Product {
         return new Product(
           product.name,
           null,
+          null,
           product.price,
           null,
           null,
@@ -81,6 +85,7 @@ class Product {
 
         return new Product(
           product.name,
+          product.imageUrl,
           product.description,
           product.price,
           product.cuisine,
@@ -126,6 +131,7 @@ class Product {
     const starters = startersArray.map(function (p) {
       return new Product(
         p.name,
+        p.imageUrl,
         p.description,
         p.price,
         p.cuisine,
@@ -137,6 +143,7 @@ class Product {
     const mainDishes = mainDishesArray.map(function (p) {
       return new Product(
         p.name,
+        p.imageUrl,
         p.description,
         p.price,
         p.cuisine,
@@ -148,6 +155,7 @@ class Product {
     const sideDishes = sideDishesArray.map(function (p) {
       return new Product(
         p.name,
+        p.imageUrl,
         p.description,
         p.price,
         p.cuisine,
@@ -159,6 +167,7 @@ class Product {
     const desserts = dessertsArray.map(function (p) {
       return new Product(
         p.name,
+        p.imageUrl,
         p.description,
         p.price,
         p.cuisine,
@@ -179,6 +188,7 @@ class Product {
   async save() {
     const productData = {
       name: this.name,
+      imageUrl: this.imageUrl,
       description: this.description,
       cuisine: this.cuisine,
       type: this.type,
@@ -197,6 +207,7 @@ class Product {
           {
             $set: {
               name: this.name.charAt(0).toUpperCase() + this.name.slice(1),
+              imageUrl: this.imageUrl,
               description:
                 this.description.charAt(0).toUpperCase() +
                 this.description.slice(1),

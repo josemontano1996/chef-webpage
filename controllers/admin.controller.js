@@ -189,10 +189,9 @@ function getNewProduct(req, res) {
 }
 
 async function addNewProduct(req, res, next) {
-  console.log(req.body);
-  console.log(req.file);
   const product = new Product(
     req.body.name,
+    res.locals.imageUrl,
     req.body.description,
     req.body.price,
     req.body.cuisine,

@@ -1,7 +1,7 @@
 const express = require('express');
 const adminController = require('../controllers/admin.controller');
 const multerMiddleware = require('../middlewares/multer');
-const cloudinaryMiddlware = require('../middlewares/cloudinary')
+const cloudinaryUpload = require('../middlewares/image-upload');
 
 const router = express.Router();
 
@@ -14,7 +14,12 @@ router.get('/menu/new', adminController.getNewProduct);
 router.get('/menu/:id', adminController.getUpdateProduct);
 router.get('/schedule', adminController.getSchedule);
 
-router.post('/menu', multerMiddleware, cloudinaryMiddlware.uploadImage, adminController.addNewProduct);
+router.post(
+  '/menu',
+  multerMiddleware,
+  cloudinaryUpload,
+  adminController.addNewProduct
+);
 router.post('/menu/:id', multerMiddleware, adminController.updateProduct);
 router.post('/config', adminController.updateConfig);
 router.post('/schedule', adminController.postSchedule);
