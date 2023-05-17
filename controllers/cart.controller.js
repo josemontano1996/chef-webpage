@@ -75,7 +75,7 @@ async function deleteCartItem(req, res, next) {
   try {
     const cart = res.locals.cart;
 
-    const updatedItemData = cart.updateItem(req.body.productId, 0);
+    const updatedItemData = cart.updateItem(req.body.productId);
 
     req.session.cart = cart;
 

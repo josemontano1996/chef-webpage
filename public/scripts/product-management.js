@@ -9,7 +9,7 @@ async function deleteProduct(event) {
 
   let response;
   try {
-    response = await fetch('/admin/menu/' + productId + '/' + csrfToken, {
+    response = await fetch('/admin/menu/' + productId + '?_csrf=' + csrfToken, {
       method: 'DELETE',
     });
   } catch (error) {

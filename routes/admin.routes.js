@@ -28,6 +28,6 @@ router.post('/holidays/delete/:holidayId', adminController.deleteHolidays);
 
 router.patch('/orders/status/:id', adminController.updateOrderStatus);
 
-router.delete('/menu/:id/:csrf', adminController.deleteProduct);
+router.delete('/menu/:id', adminController.deleteProduct);
 
 module.exports = router;

@@ -46,7 +46,7 @@ class Product {
     });
   }
 
-  static async findById(productId, exception) {
+  static async findById(productId, exception = null) {
     const objectId = new mongodb.ObjectId(productId);
     let product;
 
