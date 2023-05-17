@@ -22,47 +22,66 @@
   <nav id="side-scroll-nav" class="hidden">
     <ul class="side-scroll">
       <li ><a href="#main-icon"><i class="bi bi-house"></i></a></li>
-      <li><a href="#starters">Starters</a></li>
+      <%if(starters.length > 0){%>
+        <li><a href="#starters">Starters</a></li>
+      <%}%>  
+       <%if(mainDishes.length > 0){%>
         <li><a href="#main-dishes">Main Dishes</a></li>
+      <%}%>  
+      <%if(sideDishes.length > 0){%>
         <li><a href="#side-dishes">Side Dishes</a></li>
+      <%}%>
+      <%if(desserts.length > 0){%>
         <li><a href="#desserts">Desserts</a></li>
+      <%}%>
     </ul>
   </nav>
 
-    <section id="menu">
+  <section id="menu">
+      <% if(starters.length > 0){ %>
       <ul class="menu-list" id="starters">
         <h3>Starters</h3>
-        <% for (const starter of starters) { %>
-        <li class="menu-item">
-            <%- include("includes/product-item", {product : starter})%>
-        </li>
-        <% } %>
-       </ul>
-       <ul class="menu-list" id="main-dishes" >
-              <h3 >Main Dishes</h3>
-        <% for (const mainDish of mainDishes) { %>
-        <li class="menu-item">
-          <%- include("includes/product-item", {product : mainDish})%>
-        </li>
-        <% } %>
-       </ul>
-       <ul class="menu-list" id="side-dishes">
-              <h3>Side Dishes</h3>
-        <% for (const sideDish of sideDishes) { %>
-        <li class="menu-item">
-          <%- include("includes/product-item", {product : sideDish})%>
-        </li>
-        </li>
-        <% } %>
-       </ul>
-       <ul class="menu-list" id="desserts">
-              <h3>Desserts</h3>
-        <% for (const dessert of desserts) { %>
-        <li class="menu-item">
-            <%- include("includes/product-item", {product : dessert})%>
-        </li>
-        <% } %>
-       </ul>
+          <% for (const starter of starters) { %>
+          <li class="menu-item">
+              <%- include("includes/product-item", {product : starter})%>
+          </li>
+          <% } %>
+         </ul>
+       <% } %>
+
+       <% if(mainDishes.length > 0){ %> 
+        <ul class="menu-list" id="main-dishes" >
+               <h3 >Main Dishes</h3>
+         <% for (const mainDish of mainDishes) { %>
+         <li class="menu-item">
+           <%- include("includes/product-item", {product : mainDish})%>
+         </li>
+         <% } %>
+        </ul>
+      <% } %>
+
+      <%if(sideDishes.length > 0){ %>
+        <ul class="menu-list" id="side-dishes">
+               <h3>Side Dishes</h3>
+         <% for (const sideDish of sideDishes) { %>
+         <li class="menu-item">
+           <%- include("includes/product-item", {product : sideDish})%>
+         </li>
+         </li>
+         <% } %>
+        </ul>
+      <% } %>
+
+      <% if(desserts.length > 0){ %>
+        <ul class="menu-list" id="desserts">
+               <h3>Desserts</h3>
+         <% for (const dessert of desserts) { %>
+         <li class="menu-item">
+             <%- include("includes/product-item", {product : dessert})%>
+         </li>
+         <% } %>
+        </ul>
+      <% } %>
     </section>
     
     <section id="cart-section"> 
