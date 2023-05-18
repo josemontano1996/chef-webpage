@@ -219,3 +219,11 @@ a {
 .highligthed {
   border-bottom: 2px solid var(--color-button);
 }
+
+.alert {
+  background-color: red;
+  color: white;
+  width: 70%;
+  margin: 0 auto;
+
+}

@@ -2,7 +2,7 @@
   <input type="hidden" name="_csrf" value="<%= locals.csrfToken%>" />
   <p>
     <label for="signup-email">E-mail</label>
-    <input type="email" name="email" id="signup-email" <% if (inputData.errorMessage) { %> value="<%= inputData.password %>" <% } %> required />
+    <input type="email" name="email" id="signup-email" <% if (inputData.errorMessage) { %> value="<%= inputData.email %>" <% } %> required />
   </p>
   <p>
     <label for="confirm-email">Confirm Email</label>
