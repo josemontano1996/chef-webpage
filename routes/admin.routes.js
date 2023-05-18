@@ -48,12 +48,14 @@ router.get(
 router.post(
   '/menu',
   multerUtil,
-  cloudinaryUploadUtil,
+  cloudinaryUploadUtil.uploadImage,
   csrfMiddleware.validateCsrfToken,
   adminController.addNewProduct
 );
 router.post(
   '/menu/:id',
+  multerUtil,
+  cloudinaryUploadUtil.updateImage,
   csrfMiddleware.validateCsrfToken,
   adminController.updateProduct
 );

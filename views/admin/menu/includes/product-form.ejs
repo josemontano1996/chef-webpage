@@ -1,5 +1,8 @@
 <form action="<%= submitPath %>" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+    <% if(product.imageUrl){ %>
+        <input type="hidden" name="imageUrl" value="<%= product.imageUrl%>">
+   <% } %>
            <p>
                <label for="name">Dish name</label>
                <input type="text" id="name" name="name" value="<%= product.name %>"  required>

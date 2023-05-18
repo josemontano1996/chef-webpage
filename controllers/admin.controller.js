@@ -221,6 +221,7 @@ async function getUpdateProduct(req, res, next) {
 async function updateProduct(req, res, next) {
   const product = new Product(
     req.body.name,
+    res.locals.imageUrl,
     req.body.description,
     req.body.price,
     req.body.cuisine,

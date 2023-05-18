@@ -15,8 +15,7 @@ function validateCsrfToken(req, res, next) {
   const secret = req.session.csrfSecret;
 
   let token;
-  console.log(req.params);
-
+  
   if (req.body._csrf) {
     token = req.body._csrf;
   } else {

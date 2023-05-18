@@ -19,6 +19,16 @@ function calculateCompression(req) {
   }
 }
 
+function extractPublicId(url) {
+  const publicIdRegex = /\/v\d+\/(.*)\./;
+  const match = url.match(publicIdRegex);
+  if (match && match.length > 1) {
+    return match[1];
+  } else {
+    throw new Error('Invalid Cloudinary URL');
+  }
+}
+
 async function uploadImage(req, res, next) {
   if (!req.file) {
     next();
@@ -50,4 +60,41 @@ async function uploadImage(req, res, next) {
   }
 }
 
-module.exports = uploadImage;
+async function updateImage(req, res, next) {
+  if (!req.file) {
+    next();
+  } else {
+    const tempFilePath = path.join(os.tmpdir(), req.file.originalname);
+    fs.writeFileSync(tempFilePath, req.file.buffer);
+
+    try {
+      // Delete the old image from Cloudinary
+      const publicId = extractPublicId(req.body.imageUrl); //req.body.imageUrl contains the public_id of the old image
+      await cloudinary.uploader.destroy(publicId);
+
+      // Upload the new image to Cloudinary
+      const uploadResult = await cloudinary.uploader.upload(tempFilePath, {
+        resource_type: 'image',
+        width: 2560,
+        height: 1920,
+        crop: 'scale',
+        quality: calculateCompression(req),
+      });
+
+      fs.unlinkSync(tempFilePath); // remove the temporary file
+
+      // Retrieve the secure URL of the new image
+      res.locals.imageUrl = uploadResult.secure_url;
+    } catch (error) {
+      console.error('Error updating image:', error);
+      return res.status(500).json({ error: 'Image update failed' });
+    }
+
+    next();
+  }
+}
+
+module.exports = {
+  uploadImage: uploadImage,
+  updateImage: updateImage,
+};
