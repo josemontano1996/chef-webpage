@@ -98,7 +98,7 @@ async function deleteImage(req, res, next) {
   const encodedImageUrl = req.query.imageUrl;
   const imageUrl = decodeURIComponent(encodedImageUrl);
 
-  if (!imageUrl) {
+  if (imageUrl === 'false') {
     next();
   } else {
     try {

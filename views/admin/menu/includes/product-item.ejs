@@ -19,7 +19,9 @@
       class="btn alt"
       data-productid="<%= product.id %>"
       data-csrf="<%= locals.csrfToken %>"
-      data-imageurl=" <%= product.imageUrl || null %>"
+      <% if (product.imageUrl) { %> 
+        data-imageurl=" <%= product.imageUrl %>"
+        <% } %>
     >
       Delete
     </button>

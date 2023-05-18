@@ -6,9 +6,14 @@ async function deleteProduct(event) {
   event.preventDefault();
   const productId = event.target.dataset.productid;
   const csrf = event.target.dataset.csrf;
-  const imageUrl = event.target.dataset.imageurl;
-  const encodedImageUrl = encodeURIComponent(imageUrl);
 
+  let imageUrl = 'false';
+  if (event.target.dataset.imageurl) {
+    imageUrl = event.target.dataset.imageurl;
+  }
+
+  const encodedImageUrl = encodeURIComponent(imageUrl);
+  console.log(encodedImageUrl);
   let response;
   try {
     response = await fetch(

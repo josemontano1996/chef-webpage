@@ -56,7 +56,7 @@
           type="text"
           name="street"
           id="street"
-         value="<%= inputData.errorMessage ? inputData.street : user.address.street %>"
+         value="<%= inputData.errorMessage ? inputData.street : (user.address ? user.address.street : '' ) %>"
           required
         />
       </p>
@@ -68,7 +68,7 @@
           id="postal"
           minlength="5"
           maxlength="5"
-          value="<%= inputData.errorMessage ? inputData.postal : user.address.postal %>"
+          value="<%= inputData.errorMessage ? inputData.postal : (user.address ? user.address.postal : '') %>"
           required
         />
       </p>
@@ -78,7 +78,7 @@
           type="text"
           name="city"
           id="city"
-         value="<%= inputData.errorMessage ? inputData.city : user.address.city %>"
+         value="<%= inputData.errorMessage ? inputData.city : (user.address ? user.address.city : '') %>"
           required
         />
       </p>
@@ -88,7 +88,7 @@
           type="text"
           name="country"
           id="country"
-          value="<%= inputData.errorMessage ? inputData.country : user.address.country %>"
+          value="<%= inputData.errorMessage ? inputData.country : (user.address ? user.address.country : '') %>"
           required
         />
       </p>   

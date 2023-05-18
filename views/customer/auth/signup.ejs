@@ -12,11 +12,11 @@
     <p><%= inputData.errorMessage %></p>
   </section>
   <% } %>
-   <section id="signup">
-    <h2>Create new Account</h2>
+    <section id="signup" class="form-section">
+    <h2 >Create new Account</h2>
     <%- include('includes/signup-form', {inputData: inputData})%>
   </section>
-  <section id="login">
+  <section id="login" class="form-section">
     <h2>Log in</h2>
     <%- include('includes/login-form', {inputData: inputData})%>
   </section>

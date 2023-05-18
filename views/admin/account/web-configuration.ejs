@@ -90,9 +90,9 @@
       <p>
         <label for="pickup">Only pickup available?</label>
         <select name="pickup" id="pickup">
-          <option value="disabled" <% if (locals.configData.pickup === 'disabled') { %> selected <% } %>>Disable</option>
-          <option value="active" <% if (locals.configData.pickup === 'active') { %> selected <% } %>>Active</option>
-          <option value="only" <% if (locals.configData.pickup === 'only') { %> selected <% } %>>Only pickup available</option>
+          <option value="disabled" <% if (locals.configData && locals.configData.pickup === 'disabled') { %> selected <% } %>>Disable</option>
+          <option value="active" <% if (locals.configData && locals.configData.pickup === 'active') { %> selected <% } %>>Active</option>
+          <option value="only" <% if (locals.confiData && locals.configData.pickup === 'only') { %> selected <% } %>>Only pickup available</option>
         </select>
       </p>
       <p>
@@ -168,7 +168,7 @@
           name="facebook"
           id="facebook"
           value="<%= config && config.social ? config.social.facebook : '' %>"
-          required
+          
         />
       </p>   
       <p>
@@ -178,7 +178,7 @@
           name="instagram"
           id="instagram"
           value="<%= config && config.social ? config.social.instagram : '' %>"
-          required
+          
         />
       </p>   
       <div>
