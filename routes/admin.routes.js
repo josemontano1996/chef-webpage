@@ -88,6 +88,7 @@ router.patch(
 
 router.delete(
   '/menu/:productId/:csrf',
+  cloudinaryUploadUtil.deleteImage,
   csrfMiddleware.validateCsrfToken,
   adminController.deleteProduct
 );

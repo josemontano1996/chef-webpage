@@ -94,7 +94,26 @@ async function updateImage(req, res, next) {
   }
 }
 
+async function deleteImage(req, res, next) {
+  const encodedImageUrl = req.query.imageUrl;
+  const imageUrl = decodeURIComponent(encodedImageUrl);
+
+  if (!imageUrl) {
+    next();
+  } else {
+    try {
+      const publicId = extractPublicId(imageUrl);
+      console.log(publicId);
+      await cloudinary.uploader.destroy(publicId);
+    } catch (error) {
+      return res.status(500).json({ error: 'Image deletion failed' });
+    }
+    next();
+  }
+}
+
 module.exports = {
   uploadImage: uploadImage,
   updateImage: updateImage,
+  deleteImage: deleteImage,
 };
