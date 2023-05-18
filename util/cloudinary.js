@@ -62,6 +62,7 @@ async function uploadImage(req, res, next) {
 
 async function updateImage(req, res, next) {
   if (!req.file) {
+    res.locals.imageUrl = req.body.imageUrl;
     next();
   } else {
     const tempFilePath = path.join(os.tmpdir(), req.file.originalname);
