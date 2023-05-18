@@ -15,6 +15,7 @@ main {
   padding: 0;
 }
 
+
 .menu-item {
   display: flex;
   flex-direction: column;
@@ -51,6 +52,12 @@ main {
   width: 100%;
 }
 
+.product-item img{
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  border-radius: 10px;
+}
 
 button:hover {
   cursor: pointer;

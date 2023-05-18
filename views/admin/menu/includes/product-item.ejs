@@ -1,5 +1,9 @@
 <article class="product-item">
   <h4><%= product.name %></h4>
+  
+  <% if(product.imageUrl) {%>
+  <img crossorigin="anonymous" src="<%=product.imageUrl %>" alt="product-image" />
+  <%}%>
   <p><%= product.description %></p>
   <% if(product.minQuantity) { %>
   <p>Min. Quantity: <%= product.minQuantity %> ud.</p>
@@ -9,7 +13,8 @@
     <a href="/admin/menu/<%= product.id %>" class="btn">View & Edit</a>
     <button
       class="btn alt"
-      data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>"
+      data-productid="<%= product.id %>"
+      data-csrf="<%= locals.csrfToken %>"
     >
       Delete
     </button>

@@ -1,7 +1,9 @@
 <article class="product-item">
   <div>
     <h4><%= product.name %></h4>
-    <img crossorigin="anonymous" src="https://res.cloudinary.com/dfupfbnez/image/upload/v1683815113/ingrid-chef-webpage/sopa-pescado_cpxh3s.jpg" alt="">
+    <% if(product.imageUrl) {%>
+      <a target="_blank" href="<%=product.imageUrl %>"> <img crossorigin="anonymous" src="<%=product.imageUrl %>" alt="product-image" /> </a>
+    <%}%>
     <p class="description"><%= product.description %></p>
     <p class="allergens">Allergens: Eggs, Dairy, Nuts.</p>
     <% if(product.minQuantity) { %>
